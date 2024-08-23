@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -330,7 +332,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Utils", meta = (DisplayName = "OnSteamShutdown"))
 	FOnSteamShutdownDelegate m_OnSteamShutdown;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamUtils, OnGamepadTextInputDismissed, GamepadTextInputDismissed_t, OnGamepadTextInputDismissedCallback);
 	STEAM_CALLBACK_MANUAL(USteamUtils, OnIPCountry, IPCountry_t, OnIPCountryCallback);

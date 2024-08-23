@@ -1,6 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
-
-#pragma once
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #include "Core/SteamApps.h"
 
@@ -8,14 +8,14 @@
 
 USteamApps::USteamApps()
 {
-	OnDlcInstalledCallback.Register(this, &USteamApps::OnDlcInstalled);
+	OnDLCInstalledCallback.Register(this, &USteamApps::OnDLCInstalled);
 	OnFileDetailsResultCallback.Register(this, &USteamApps::OnFileDetailsResult);
 	OnNewUrlLaunchParametersCallback.Register(this, &USteamApps::OnNewUrlLaunchParameters);
 }
 
 USteamApps::~USteamApps()
 {
-	OnDlcInstalledCallback.Unregister();
+	OnDLCInstalledCallback.Unregister();
 	OnNewUrlLaunchParametersCallback.Unregister();
 }
 
@@ -63,9 +63,9 @@ int32 USteamApps::GetLaunchCommandLine(FString& CommandLine)
 	return res;
 }
 
-void USteamApps::OnDlcInstalled(DlcInstalled_t* pParam)
+void USteamApps::OnDLCInstalled(DlcInstalled_t* pParam)
 {
-	m_OnDlcInstalled.Broadcast((int32)pParam->m_nAppID);
+	m_OnDLCInstalled.Broadcast((int32)pParam->m_nAppID);
 }
 
 void USteamApps::OnFileDetailsResult(FileDetailsResult_t* pParam)

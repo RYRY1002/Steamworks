@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -190,7 +192,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnActiveBeaconsUpdated"))
 	FOnActiveBeaconsUpdatedDelegate m_OnActiveBeaconsUpdated;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamParties, OnJoinParty, JoinPartyCallback_t, OnJoinPartyCallback);
 	STEAM_CALLBACK_MANUAL(USteamParties, OnCreateBeacon, CreateBeaconCallback_t, OnCreateBeaconCallback);

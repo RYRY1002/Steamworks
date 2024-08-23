@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -517,7 +519,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLVerticalScroll"))
 	FOnHTMLVerticalScrollDelegate m_OnHTMLVerticalScroll;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamHTMLSurface, OnHTMLBrowserReady, HTML_BrowserReady_t, OnHTMLBrowserReadyCallback);
 	STEAM_CALLBACK_MANUAL(USteamHTMLSurface, OnHTMLCanGoBackAndForward, HTML_CanGoBackAndForward_t, OnHTMLCanGoBackAndForwardCallback);

@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -9,7 +11,7 @@
 
 #include "SteamApps.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDlcInstalledDelegate, int32, AppID);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDLCInstalledDelegate, int32, AppID);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFileDetailsResultDelegate, ESteamResult, Result, int64, FileSize, FString, FileSHA, int32, flags);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNewUrlLaunchParametersDelegate);
 
@@ -44,7 +46,7 @@ public:
 	/**
 	 * Checks if a specific app is installed.
 	 * The app may not actually be owned by the current user, they may have it left over from a free weekend, etc.
-	 * This only works for base applications, not Downloadable Content (DLC). Use BIsDlcInstalled for DLC instead.
+	 * This only works for base applications, not Downloadable Content (DLC). Use BIsDLCInstalled for DLC instead.
 	 *
 	 * @param int32 AppID - The App ID of the application to check.
 	 * @return bool - true if the specified App ID is installed; otherwise, false.
@@ -60,7 +62,7 @@ public:
 	 * @return bool - true if the user owns the DLC and it's currently installed, otherwise false.
 	 */
 	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
-	bool BIsDlcInstalled(int32 AppID) const { return SteamApps()->BIsDlcInstalled(AppID); }
+	bool BIsDLCInstalled(int32 AppID) const { return SteamApps()->BIsDlcInstalled(AppID); }
 
 	/**
 	 * Checks if the license owned by the user provides low violence depots.
@@ -188,7 +190,7 @@ public:
 	 * @return bool - true if the specified DLC exists and is currently downloading; otherwise, false.
 	 */
 	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
-	bool GetDlcDownloadProgress(int32 AppID, int64& BytesDownloaded, int64& BytesTotal) const { return SteamApps()->GetDlcDownloadProgress(AppID, (uint64*)&BytesDownloaded, (uint64*)&BytesTotal); }
+	bool GetDLCDownloadProgress(int32 AppID, int64& BytesDownloaded, int64& BytesTotal) const { return SteamApps()->GetDlcDownloadProgress(AppID, (uint64*)&BytesDownloaded, (uint64*)&BytesTotal); }
 
 	/**
 	 * Gets the time of purchase of the specified app in Unix epoch format (time since Jan 1st, 1970).
@@ -244,7 +246,7 @@ public:
 
 	/**
 	 * Allows you to install an optional DLC.
-	 * Triggers a DlcInstalled_t callback.
+	 * Triggers a DLCInstalled_t callback.
 	 *
 	 * @param int32 AppID - The DLC you want to install.
 	 * @return void
@@ -274,8 +276,8 @@ public:
 	/** Delegates */
 
 	/** Triggered after the current user gains ownership of DLC and that DLC is installed. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnDlcInstalled"))
-	FOnDlcInstalledDelegate m_OnDlcInstalled;
+	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnDLCInstalled"))
+	FOnDLCInstalledDelegate m_OnDLCInstalled;
 
 	/** Called after requesting the details of a specific file. */
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnFileDetailsResult"))
@@ -288,9 +290,8 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnNewUrlLaunchParameters"))
 	FOnNewUrlLaunchParametersDelegate m_OnNewUrlLaunchParameters;
 
-protected:
 private:
-	STEAM_CALLBACK_MANUAL(USteamApps, OnDlcInstalled, DlcInstalled_t, OnDlcInstalledCallback);
+	STEAM_CALLBACK_MANUAL(USteamApps, OnDLCInstalled, DlcInstalled_t, OnDLCInstalledCallback);
 	STEAM_CALLBACK_MANUAL(USteamApps, OnFileDetailsResult, FileDetailsResult_t, OnFileDetailsResultCallback);
 	STEAM_CALLBACK_MANUAL(USteamApps, OnNewUrlLaunchParameters, NewUrlLaunchParameters_t, OnNewUrlLaunchParametersCallback);
 };

@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -410,7 +412,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnGSPolicyResponse"))
 	FOnGSPolicyResponseDelegate m_OnGSPolicyResponse;
 
-protected:
 private:
 	STEAM_GAMESERVER_CALLBACK_MANUAL(USteamGameServer, OnAssociateWithClanResult, AssociateWithClanResult_t, OnAssociateWithClanResultCallback);
 	STEAM_GAMESERVER_CALLBACK_MANUAL(USteamGameServer, OnComputeNewPlayerCompatibilityResult, ComputeNewPlayerCompatibilityResult_t, OnComputeNewPlayerCompatibilityResultCallback);

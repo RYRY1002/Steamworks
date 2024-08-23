@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -977,7 +979,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnUserFavoriteItemsListChanged"))
 	FOnUserFavoriteItemsListChangedDelegate m_OnUserFavoriteItemsListChanged;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamUGC, OnAddAppDependencyResult, AddAppDependencyResult_t, OnAddAppDependencyResultCallback);
 	STEAM_CALLBACK_MANUAL(USteamUGC, OnAddUGCDependencyResult, AddUGCDependencyResult_t, OnAddUGCDependencyResultCallback);

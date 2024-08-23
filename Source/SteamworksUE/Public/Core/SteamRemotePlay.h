@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -100,7 +102,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemotePlay", meta = (DisplayName = "OnSteamRemotePlaySessionDisconnected"))
 	FOnSteamRemotePlaySessionDisconnectedDelegate m_OnSteamRemotePlaySessionDisconnected;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamRemotePlay, OnSteamRemotePlaySessionConnected, SteamRemotePlaySessionConnected_t, OnSteamRemotePlaySessionConnectedCallback);
 	STEAM_CALLBACK_MANUAL(USteamRemotePlay, OnSteamRemotePlaySessionDisconnected, SteamRemotePlaySessionDisconnected_t, OnSteamRemotePlaySessionDisconnectedCallback);

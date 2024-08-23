@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -145,7 +147,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Screenshots", meta = (DisplayName = "OnScreenshotRequested"))
 	FOnScreenshotRequestedDelegate m_OnScreenshotRequested;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamScreenshots, OnScreenshotReady, ScreenshotReady_t, OnScreenshotReadyCallback);
 	STEAM_CALLBACK_MANUAL(USteamScreenshots, OnScreenshotRequested, ScreenshotRequested_t, OnScreenshotRequestedCallback);

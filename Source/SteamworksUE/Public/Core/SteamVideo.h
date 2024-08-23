@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -91,7 +93,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Video", meta = (DisplayName = "OnGetVideoURLResult"))
 	FOnGetVideoURLResultDelegate m_OnGetVideoURLResult;
 
-protected:
 private:
 	/*STEAM_CALLBACK_MANUAL(USteamVideo, OnBroadcastUploadStart, BroadcastUploadStart_t, OnBroadcastUploadStartCallback);
 	STEAM_CALLBACK_MANUAL(USteamVideo, OnBroadcastUploadStop, BroadcastUploadStop_t, OnBroadcastUploadStopCallback);*/

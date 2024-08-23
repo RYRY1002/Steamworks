@@ -1,4 +1,6 @@
+// Copyright RYRY1002 <riley@riley.technology> (https://links.riley.technology). All Rights Reserved.
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
+// Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
 #pragma once
 
@@ -525,7 +527,6 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryRequestPricesResult"))
 	FOnSteamInventoryRequestPricesResultDelegate m_OnSteamInventoryRequestPricesResult;
 
-protected:
 private:
 	STEAM_CALLBACK_MANUAL(USteamInventory, OnSteamInventoryDefinitionUpdate, SteamInventoryDefinitionUpdate_t, OnSteamInventoryDefinitionUpdateCallback);
 	STEAM_CALLBACK_MANUAL(USteamInventory, OnSteamInventoryEligiblePromoItemDefIDs, SteamInventoryEligiblePromoItemDefIDs_t, OnSteamInventoryEligiblePromoItemDefIDsCallback);
