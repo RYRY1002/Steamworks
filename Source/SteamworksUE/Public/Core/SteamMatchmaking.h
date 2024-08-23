@@ -37,151 +37,151 @@ public:
 	USteamMatchmaking();
 	~USteamMatchmaking();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Matchmaking", CompactNodeTitle = "SteamMatchmaking"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Matchmaking", CompactNodeTitle = "SteamMatchmaking"))
 	static USteamMatchmaking* GetSteamMatchmaking() { return USteamMatchmaking::StaticClass()->GetDefaultObject<USteamMatchmaking>(); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	int32 AddFavoriteGame(int32 AppID, const FString& IP, int32 ConnPort, int32 QueryPort, const TArray<ESteamFavoriteFlags>& Flags, int32 TimeLastPlayedOnServer) const;
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void AddRequestLobbyListDistanceFilter(ESteamLobbyDistanceFilter LobbyDistanceFilter) { SteamMatchmaking()->AddRequestLobbyListDistanceFilter((ELobbyDistanceFilter)LobbyDistanceFilter); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void AddRequestLobbyListFilterSlotsAvailable(int32 SlotsAvailable) { SteamMatchmaking()->AddRequestLobbyListFilterSlotsAvailable(SlotsAvailable); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void AddRequestLobbyListNearValueFilter(const FString& KeyToMatch, int32 ValueToBeCloseTo) { SteamMatchmaking()->AddRequestLobbyListNearValueFilter(TCHAR_TO_UTF8(*KeyToMatch), ValueToBeCloseTo); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void AddRequestLobbyListNumericalFilter(const FString& KeyToMatch, int32 ValueToMatch, ESteamLobbyComparison ComparisonType) { SteamMatchmaking()->AddRequestLobbyListNumericalFilter(TCHAR_TO_UTF8(*KeyToMatch), ValueToMatch, (ELobbyComparison)((uint8)ComparisonType - 2)); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void AddRequestLobbyListResultCountFilter(int32 MaxResults) { SteamMatchmaking()->AddRequestLobbyListResultCountFilter(MaxResults); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void AddRequestLobbyListStringFilter(const FString& KeyToMatch, const FString& ValueToMatch, ESteamLobbyComparison ComparisonType) { SteamMatchmaking()->AddRequestLobbyListStringFilter(TCHAR_TO_UTF8(*KeyToMatch), TCHAR_TO_UTF8(*ValueToMatch), (ELobbyComparison)((uint8)ComparisonType - 2)); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	FSteamAPICall CreateLobby(ESteamLobbyType LobbyType = ESteamLobbyType::FriendsOnly, uint8 MaxMembers = 1) const { return SteamMatchmaking()->CreateLobby((ELobbyType)LobbyType, MaxMembers); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool DeleteLobbyData(FSteamID SteamIDLobby, const FString& Key) const { return SteamMatchmaking()->DeleteLobbyData(SteamIDLobby, TCHAR_TO_UTF8(*Key)); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool GetFavoriteGame(int32 GameIndex, int32& AppID, FString& IP, int32& ConnPort, int32& QueryPort, TArray<ESteamFavoriteFlags>& Flags, int32& TimeLastPlayedOnServer) const;
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	int32 GetFavoriteGameCount() const { return SteamMatchmaking()->GetFavoriteGameCount(); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	FSteamID GetLobbyByIndex(int32 LobbyIndex) const { return SteamMatchmaking()->GetLobbyByIndex(LobbyIndex).ConvertToUint64(); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	int32 GetLobbyChatEntry(FSteamID SteamIDLobby, int32 ChatID, FSteamID& SteamIDUser, FString& Message, ESteamChatEntryType& ChatEntryType) const;
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	FString GetLobbyData(FSteamID SteamIDLobby, const FString& Key) const { return UTF8_TO_TCHAR(SteamMatchmaking()->GetLobbyData(SteamIDLobby, TCHAR_TO_UTF8(*Key))); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool GetLobbyDataByIndex(FSteamID SteamIDLobby, int32 LobbyData, FString& Key, FString& Value) const;
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	int32 GetLobbyDataCount(FSteamID SteamIDLobby) const { return SteamMatchmaking()->GetLobbyDataCount(SteamIDLobby); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool GetLobbyGameServer(FSteamID SteamIDLobby, FString& GameServerIP, int32& GameServerPort, FSteamID& SteamIDGameServer) const;
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	FSteamID GetLobbyMemberByIndex(FSteamID SteamIDLobby, int32 MemberIndex) const { return SteamMatchmaking()->GetLobbyMemberByIndex(SteamIDLobby, MemberIndex).ConvertToUint64(); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	FString GetLobbyMemberData(FSteamID SteamIDLobby, FSteamID SteamIDUser, const FString& Key) const { return UTF8_TO_TCHAR(SteamMatchmaking()->GetLobbyMemberData(SteamIDLobby, SteamIDUser, TCHAR_TO_UTF8(*Key))); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	int32 GetLobbyMemberLimit(FSteamID SteamIDLobby) const { return SteamMatchmaking()->GetLobbyMemberLimit(SteamIDLobby); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	FSteamID GetLobbyOwner(FSteamID SteamIDLobby) const { return SteamMatchmaking()->GetLobbyOwner(SteamIDLobby).ConvertToUint64(); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Matchmaking")
 	int32 GetNumLobbyMembers(FSteamID SteamIDLobby) const { return SteamMatchmaking()->GetNumLobbyMembers(SteamIDLobby); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool InviteUserToLobby(FSteamID SteamIDLobby, FSteamID SteamIDInvitee) const { return SteamMatchmaking()->InviteUserToLobby(SteamIDLobby, SteamIDInvitee); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	FSteamAPICall JoinLobby(FSteamID SteamIDLobby) const { return SteamMatchmaking()->JoinLobby(SteamIDLobby); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void LeaveLobby(FSteamID SteamIDLobby) { SteamMatchmaking()->LeaveLobby(SteamIDLobby); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool RemoveFavoriteGame(int32 AppID, const FString& IP, int32 ConnPort, int32 QueryPort, const TArray<ESteamFavoriteFlags>& Flags) const;
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool RequestLobbyData(FSteamID SteamIDLobby) const { return SteamMatchmaking()->RequestLobbyData(SteamIDLobby); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	FSteamAPICall RequestLobbyList() const { return SteamMatchmaking()->RequestLobbyList(); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool SendLobbyChatMsg(FSteamID SteamIDLobby, FString Message) const;
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool SetLobbyData(FSteamID SteamIDLobby, const FString& Key, const FString& Value) const { return SteamMatchmaking()->SetLobbyData(SteamIDLobby, TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void SetLobbyGameServer(FSteamID SteamIDLobby, const FString& GameServerIP, int32 GameServerPort, FSteamID SteamIDGameServer) const;
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool SetLobbyJoinable(FSteamID SteamIDLobby, bool bLobbyJoinable) const { return SteamMatchmaking()->SetLobbyJoinable(SteamIDLobby, bLobbyJoinable); }
 
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Matchmaking")
 	void SetLobbyMemberData(FSteamID SteamIDLobby, const FString& Key, const FString& Value) { SteamMatchmaking()->SetLobbyMemberData(SteamIDLobby, TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool SetLobbyMemberLimit(FSteamID SteamIDLobby, uint8 MaxMembers = 5) const { return SteamMatchmaking()->SetLobbyMemberLimit(SteamIDLobby, MaxMembers); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool SetLobbyOwner(FSteamID SteamIDLobby, FSteamID SteamIDNewOwner) const { return SteamMatchmaking()->SetLobbyOwner(SteamIDLobby, SteamIDNewOwner); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Matchmaking")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Matchmaking")
 	bool SetLobbyType(FSteamID SteamIDLobby, ESteamLobbyType LobbyType) const { return SteamMatchmaking()->SetLobbyType(SteamIDLobby, (ELobbyType)LobbyType); }
 
 	/** Delegates */
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnFavoritesListAccountsUpdated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnFavoritesListAccountsUpdated"))
 	FOnFavoritesListAccountsUpdatedDelegate m_OnFavoritesListAccountsUpdated;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnFavoritesListChanged"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnFavoritesListChanged"))
 	FOnFavoritesListChangedDelegate m_OnFavoritesListChanged;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyChatMsg"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyChatMsg"))
 	FOnLobbyChatMsgDelegate m_OnLobbyChatMsg;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyChatUpdate"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyChatUpdate"))
 	FOnLobbyChatUpdateDelegate m_OnLobbyChatUpdate;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyCreated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyCreated"))
 	FOnLobbyCreatedDelegate m_OnLobbyCreated;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyDataUpdate"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyDataUpdate"))
 	FOnLobbyDataUpdateDelegate m_OnLobbyDataUpdate;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyEnter"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyEnter"))
 	FOnLobbyEnterDelegate m_OnLobbyEnter;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyGameCreated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyGameCreated"))
 	FOnLobbyGameCreatedDelegate m_OnLobbyGameCreated;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyInvite"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyInvite"))
 	FOnLobbyInviteDelegate m_OnLobbyInvite;
 
 	// This is currently unused
-	/*UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyKicked"))
+	/*UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyKicked"))
 	FOnLobbyKickedDelegate m_OnLobbyKicked;*/
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Matchmaking", meta = (DisplayName = "OnLobbyMatchList"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Matchmaking", meta = (DisplayName = "OnLobbyMatchList"))
 	FOnLobbyMatchListDelegate m_OnLobbyMatchList;
 
 private:

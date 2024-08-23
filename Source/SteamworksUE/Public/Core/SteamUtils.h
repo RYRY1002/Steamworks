@@ -31,7 +31,7 @@ public:
 	USteamUtils();
 	~USteamUtils();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Utils", CompactNodeTitle = "SteamUtils"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Utils", CompactNodeTitle = "SteamUtils"))
 	static USteamUtils* GetSteamUtils() { return USteamUtils::StaticClass()->GetDefaultObject<USteamUtils>(); }
 
 	/**
@@ -43,7 +43,7 @@ public:
 	 *
 	 * @return bool - true if the overlay needs you to refresh the screen, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool BOverlayNeedsPresent() const { return SteamUtils()->BOverlayNeedsPresent(); }
 
 	/**
@@ -53,7 +53,7 @@ public:
 	 * @param FSteamAPICall SteamAPICall - 	The Steam API Call handle to check the failure for.
 	 * @return ESteamAPICallFailure_
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	ESteamAPICallFailure_ GetAPICallFailureReason(FSteamAPICall SteamAPICall) const { return (ESteamAPICallFailure_)((uint8)SteamUtils()->GetAPICallFailureReason(SteamAPICall) - 1); }
 
 	// #TODO: GetAPICallResult
@@ -63,7 +63,7 @@ public:
 	 *
 	 * @return int32 - Returns the AppId.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	int32 GetAppID() const { return SteamUtils()->GetAppID(); }
 
 	/**
@@ -71,7 +71,7 @@ public:
 	 *
 	 * @return ESteamUniverse
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	ESteamUniverse GetConnectedUniverse() const { return (ESteamUniverse)SteamUtils()->GetConnectedUniverse(); }
 
 	/**
@@ -79,7 +79,7 @@ public:
 	 *
 	 * @return uint8 - The current battery power ranging between [0..100]%. Returns 255 when the user is on AC power.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	uint8 GetCurrentBatteryPower() const { return SteamUtils()->GetCurrentBatteryPower(); }
 
 	/**
@@ -90,7 +90,7 @@ public:
 	 * @param FString & Text - DESCHERE
 	 * @return bool - true if there was text to receive and cchText is the same size as GamepadTextInputDismissed_t.m_unSubmittedText; otherwise, false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Utils")
 	bool GetEnteredGamepadTextInput(FString& Text) const;
 
 	/**
@@ -99,7 +99,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	int32 GetEnteredGamepadTextLength() const { return SteamUtils()->GetEnteredGamepadTextLength(); }
 
 	/**
@@ -112,7 +112,7 @@ public:
 	 * @param TArray<uint8> & Buffer - The buffer that will be filled.
 	 * @return bool - true upon success if the image handle is valid and the buffer was filled out, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool GetImageRGBA(int32 Image, TArray<uint8>& Buffer) const;
 
 	/**
@@ -123,7 +123,7 @@ public:
 	 * @param FIntPoint & Size - Returns the width/height of the image.
 	 * @return bool - true upon success if the image handle is valid and the sizes were filled out, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool GetImageSize(int32 Image, FIntPoint& Size) const;
 
 	/**
@@ -133,7 +133,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	int32 GetIPCCallCount() const { return SteamUtils()->GetIPCCallCount(); }
 
 	/**
@@ -142,7 +142,7 @@ public:
 	 *
 	 * @return FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	FString GetIPCountry() const { return UTF8_TO_TCHAR(SteamUtils()->GetIPCountry()); }
 
 	/**
@@ -150,7 +150,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	int32 GetSecondsSinceAppActive() const { return SteamUtils()->GetSecondsSinceAppActive(); }
 
 	/**
@@ -158,7 +158,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	int32 GetSecondsSinceComputerActive() const { return SteamUtils()->GetSecondsSinceComputerActive(); }
 
 	/**
@@ -166,7 +166,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	int32 GetServerRealTime() const { return SteamUtils()->GetServerRealTime(); }
 
 	/**
@@ -175,7 +175,7 @@ public:
 	 *
 	 * @return FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	FString GetSteamUILanguage() const { return UTF8_TO_TCHAR(SteamUtils()->GetSteamUILanguage()); }
 
 	/**
@@ -186,7 +186,7 @@ public:
 	 * @param bool & bFailed - Returns whether the API call has encountered a failure (true) or not (false).
 	 * @return bool - true if the API Call is valid and has completed, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool IsAPICallCompleted(FSteamAPICall SteamAPICall, bool& bFailed) const { return SteamUtils()->IsAPICallCompleted(SteamAPICall, &bFailed); }
 
 	/**
@@ -195,7 +195,7 @@ public:
 	 *
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool IsOverlayEnabled() const { return SteamUtils()->IsOverlayEnabled(); }
 
 	/**
@@ -203,7 +203,7 @@ public:
 	 *
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool IsSteamChinaLauncher() const { return SteamUtils()->IsSteamChinaLauncher(); }
 
 	/**
@@ -211,7 +211,7 @@ public:
 	 *
 	 * @return bool - true if initialization succeeds, false if filtering is unavailable for the game's language, in which case FilterText() will act as a passthrough.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Utils")
 	bool InitFilterText() const { return SteamUtils()->InitFilterText(); }
 
 	// #NOTE: There's a conflict with API and docs
@@ -224,7 +224,7 @@ public:
 	 *
 	 * @return bool - true if the Big Picture overlay is available; otherwise, false. This will always return false if your app is not the 'game' application type.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool IsSteamInBigPictureMode() const { return SteamUtils()->IsSteamInBigPictureMode(); }
 
 	/**
@@ -232,7 +232,7 @@ public:
 	 *
 	 * @return bool - true if Steam itself is running in VR mode; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool IsSteamRunningInVR() const { return SteamUtils()->IsSteamRunningInVR(); }
 
 	/**
@@ -240,7 +240,7 @@ public:
 	 *
 	 * @return bool - true if VR is enabled and the HMD view is currently being streamed; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Utils")
 	bool IsVRHeadsetStreamingEnabled() const { return SteamUtils()->IsVRHeadsetStreamingEnabled(); }
 
 	/**
@@ -251,7 +251,7 @@ public:
 	 * @param const FIntPoint & Inset - The horizontal (left-right) and vertical (up-down) distance in pixels from the corner.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Utils")
 	void SetOverlayNotificationInset(const FIntPoint& Inset) { SteamUtils()->SetOverlayNotificationInset(Inset.X, Inset.Y); }
 
 	/**
@@ -262,7 +262,7 @@ public:
 	 * @param ESteamNotificationPosition NotificationPosition
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Utils")
 	void SetOverlayNotificationPosition(ESteamNotificationPosition NotificationPosition) { SteamUtils()->SetOverlayNotificationPosition((ENotificationPosition)NotificationPosition); }
 
 	/**
@@ -274,7 +274,7 @@ public:
 	 * @param bool bEnabled - Turns VR HMD Streaming on (true) or off (false).
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Utils")
 	void SetVRHeadsetStreamingEnabled(bool bEnabled) { SteamUtils()->SetVRHeadsetStreamingEnabled(bEnabled); }
 
 	// #TODO: SetWarningMessageHook
@@ -289,7 +289,7 @@ public:
 	 * @param int32 CharMax - The maximum number of characters that the user can input.
 	 * @return bool - true if the big picture overlay is running; otherwise, false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Utils")
 	bool ShowGamepadTextInput(ESteamGamepadTextInputMode InputMode, ESteamGamepadTextInputLineMode LineInputMode, const FString& Description, const FString& ExistingText, int32 CharMax = 200) const;
 
 	/**
@@ -297,29 +297,29 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Utils")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Utils")
 	void StartVRDashboard() { SteamUtils()->StartVRDashboard(); }
 
 	/** Delegates */
 
 	/** Called when the big picture gamepad text input has been closed. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Utils", meta = (DisplayName = "OnGamepadTextInputDismissed"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Utils", meta = (DisplayName = "OnGamepadTextInputDismissed"))
 	FOnGamepadTextInputDismissedDelegate m_OnGamepadTextInputDismissed;
 
 	/** Called when the country of the user changed. The country should be updated with GetIPCountry. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Utils", meta = (DisplayName = "OnIPCountry"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Utils", meta = (DisplayName = "OnIPCountry"))
 	FOnIPCountryDelegate m_OnIPCountry;
 
 	/** Called when running on a laptop and less than 10 minutes of battery is left, and then fires then every minute afterwards. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Utils", meta = (DisplayName = "OnLowBatteryPower"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Utils", meta = (DisplayName = "OnLowBatteryPower"))
 	FOnLowBatteryPowerDelegate m_OnLowBatteryPower;
 
 	/** Called when a SteamAPICall_t has completed (or failed) */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Utils", meta = (DisplayName = "OnSteamAPICallCompleted"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Utils", meta = (DisplayName = "OnSteamAPICallCompleted"))
 	FOnSteamAPICallCompletedDelegate m_OnSteamAPICallCompleted;
 
 	/** Called when Steam wants to shutdown. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Utils", meta = (DisplayName = "OnSteamShutdown"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Utils", meta = (DisplayName = "OnSteamShutdown"))
 	FOnSteamShutdownDelegate m_OnSteamShutdown;
 
 private:

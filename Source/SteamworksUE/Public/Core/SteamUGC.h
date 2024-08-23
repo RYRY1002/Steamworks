@@ -42,7 +42,7 @@ public:
 	USteamUGC();
 	~USteamUGC();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam UGC", CompactNodeTitle = "SteamUGC"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam UGC", CompactNodeTitle = "SteamUGC"))
 	static USteamUGC* GetSteamUGC() { return USteamUGC::StaticClass()->GetDefaultObject<USteamUGC>(); }
 
 	/**
@@ -52,7 +52,7 @@ public:
 	 * @param int32 AppID - The required app/dlc.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a AddAppDependencyResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall AddAppDependency(FPublishedFileId PublishedFileID, int32 AppID) const { return SteamUGC()->AddAppDependency(PublishedFileID, AppID); }
 
 	/**
@@ -63,7 +63,7 @@ public:
 	 * @param FPublishedFileId ChildPublishedFileID - The dependency to add to the parent.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a AddUGCDependencyResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall AddDependency(FPublishedFileId ParentPublishedFileID, FPublishedFileId ChildPublishedFileID) const { return SteamUGC()->AddDependency(ParentPublishedFileID, ChildPublishedFileID); }
 
 	/**
@@ -74,7 +74,7 @@ public:
 	 * @param const FString & TagName - The tag that must NOT be attached to the UGC to receive it.
 	 * @return bool - true upon success. false if the UGC query handle is invalid, if the UGC query handle is from CreateQueryUGCDetailsRequest, or pTagName was NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddExcludedTag(FUGCQueryHandle handle, const FString& TagName) const { return SteamUGC()->AddExcludedTag(handle, TCHAR_TO_UTF8(*TagName)); }
 
 	/**
@@ -89,7 +89,7 @@ public:
 	 * @param const FString & Value - A value to map to the key.
 	 * @return bool - true upon success. false if the UGC update handle is invalid, if pchKey or pchValue invalid because they are NULL or have exceeded the maximum length, or if you are trying to add more than 100 key-value tags in a single update.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddItemKeyValueTag(FUGCUpdateHandle handle, const FString& Key, const FString& Value) const { return SteamUGC()->AddItemKeyValueTag(handle, TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
 	/**
@@ -103,7 +103,7 @@ public:
 	 * @param ESteamItemPreviewType type - The type of this preview.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddItemPreviewFile(FUGCUpdateHandle handle, const FString& PreviewFile, ESteamItemPreviewType type) const { return SteamUGC()->AddItemPreviewFile(handle, TCHAR_TO_UTF8(*PreviewFile), (EItemPreviewType)type); }
 
 	/**
@@ -114,7 +114,7 @@ public:
 	 * @param const FString & VideoID - The YouTube video ID to add. (e.g. "jHgZh4GV9G0")
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddItemPreviewVideo(FUGCUpdateHandle handle, const FString& VideoID) const { return SteamUGC()->AddItemPreviewVideo(handle, TCHAR_TO_UTF8(*VideoID)); }
 
 	/**
@@ -124,7 +124,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item to add to the users favorites list.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a UserFavoriteItemsListChanged_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall AddItemToFavorites(int32 AppId, FPublishedFileId PublishedFileID) const { return SteamUGC()->AddItemToFavorites(AppId, PublishedFileID); }
 
 	/**
@@ -136,7 +136,7 @@ public:
 	 * @param const FString & Value - The key-value value associated with pKey that must be attached to the UGC to receive it.
 	 * @return bool - true upon success. false if the UGC query handle is invalid or if pKey or pValue are NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddRequiredKeyValueTag(FUGCQueryHandle handle, const FString& Key, const FString& Value) const { return SteamUGC()->AddRequiredKeyValueTag(handle, TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
 	/**
@@ -147,7 +147,7 @@ public:
 	 * @param const FString & TagName - The tag that must be attached to the UGC to receive it.
 	 * @return bool - true upon success. false if the UGC query handle is invalid, if the UGC query handle is from CreateQueryUGCDetailsRequest, or pTagName was NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddRequiredTag(FUGCQueryHandle handle, const FString& TagName) const { return SteamUGC()->AddRequiredTag(handle, TCHAR_TO_UTF8(*TagName)); }
 
 	/**
@@ -158,7 +158,7 @@ public:
 	 * @param const TArray<FString> & Tags - A set of tags where at least one of the tags must attached to the UGC.
 	 * @return bool - true upon success. false if the UGC query handle is invalid, if the UGC query handle is from CreateQueryUGCDetailsRequest, or pTagName was NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool AddRequiredTagGroup(FUGCQueryHandle handle, const TArray<FString>& Tags) const;
 
 	/**
@@ -169,7 +169,7 @@ public:
 	 * @param const FString & FolderName - The absolute path to store the workshop content.
 	 * @return bool - true upon success; otherwise, false if the calling user is not a game server or if the workshop is currently updating it's content.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool BInitWorkshopForGameServer(int32 WorkshopDepotID, const FString& FolderName) const { return SteamUGC()->BInitWorkshopForGameServer(WorkshopDepotID, TCHAR_TO_UTF8(*FolderName)); }
 
 	/**
@@ -179,7 +179,7 @@ public:
 	 * @param ESteamWorkshopFileType FileType - The type of UGC to create.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a CreateItemResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall CreateItem(int32 ConsumerAppId, ESteamWorkshopFileType FileType) const { return SteamUGC()->CreateItem(ConsumerAppId, (EWorkshopFileType)FileType); }
 
 	/**
@@ -200,7 +200,7 @@ public:
 	 * An internal error occurred.
 	 * This handle can be used to further customize the query before sending it out with SendQueryUGCRequest.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FUGCQueryHandle CreateQueryAllUGCRequest(ESteamUGCQuery QueryType, ESteamUGCMatchingUGCType MatchingUGCTypeFileType, int32 CreatorAppID, int32 ConsumerAppID, int32 Page) const;
 
 	/**
@@ -217,7 +217,7 @@ public:
 	 * An internal error occurred.
 	 * This handle can be used to further customize the query before sending it out with SendQueryUGCRequest.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FUGCQueryHandle CreateQueryUGCDetailsRequest(TArray<FPublishedFileId> PublishedFileIDs, int32 NumPublishedFileIDs) const { return SteamUGC()->CreateQueryUGCDetailsRequest((PublishedFileId_t*)PublishedFileIDs.GetData(), NumPublishedFileIDs); }
 
 	/**
@@ -242,7 +242,7 @@ public:
 	 * An internal error occurred.
 	 * This handle can be used to further customize the query before sending it out with SendQueryUGCRequest.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FUGCQueryHandle CreateQueryUserUGCRequest(FAccountID AccountID, ESteamUserUGCList ListType, ESteamUGCMatchingUGCType MatchingUGCType, ESteamUserUGCListSortOrder SortOrder, int32 CreatorAppID, int32 ConsumerAppID, int32 Page) const;
 
 	/**
@@ -251,7 +251,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The item to delete.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a DeleteItemResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall DeleteItem(FPublishedFileId PublishedFileID) const { return SteamUGC()->DeleteItem(PublishedFileID); }
 
 	/**
@@ -266,7 +266,7 @@ public:
 	 * @param bool bHighPriority - Start the download in high priority mode, pausing any existing in-progress Steam downloads and immediately begin downloading this workshop item.
 	 * @return bool - true if the download was successfully started; otherwise, false if nPublishedFileID is invalid or the user is not logged on.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool DownloadItem(FPublishedFileId PublishedFileID, bool bHighPriority) const { return SteamUGC()->DownloadItem(PublishedFileID, bHighPriority); }
 
 	/**
@@ -275,7 +275,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item to get app dependencies for.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a GetAppDependenciesResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall GetAppDependencies(FPublishedFileId PublishedFileID) const { return SteamUGC()->GetAppDependencies(PublishedFileID); }
 
 	/**
@@ -286,7 +286,7 @@ public:
 	 * @param int64 & BytesTotal - Returns the total bytes. This is only valid after the download has started.
 	 * @return bool - true if the download information was available; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetItemDownloadInfo(FPublishedFileId PublishedFileID, int64& BytesDownloaded, int64& BytesTotal) const { return SteamUGC()->GetItemDownloadInfo(PublishedFileID, (uint64*)&BytesDownloaded, (uint64*)&BytesTotal); }
 
 	/**
@@ -304,7 +304,7 @@ public:
 	 * The workshop item has no content.
 	 * The workshop item is not installed.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetItemInstallInfo(FPublishedFileId PublishedFileID, int64& SizeOnDisk, FString& FolderName, int32 FolderSize, int32& TimeStamp) const;
 
 	/**
@@ -313,7 +313,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item to get the state for.
 	 * @return int32 - Returns the item state. Should be used with the EItemState flags to determine the state of the workshop item.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	int32 GetItemState(FPublishedFileId PublishedFileID) const { return SteamUGC()->GetItemState(PublishedFileID); }
 
 	/**
@@ -324,7 +324,7 @@ public:
 	 * @param int64 & BytesTotal - Returns the total number of bytes that will be uploaded.
 	 * @return ESteamItemUpdateStatus - The current status.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	ESteamItemUpdateStatus GetItemUpdateProgress(FUGCUpdateHandle handle, int64& BytesProcessed, int64& BytesTotal) const { return (ESteamItemUpdateStatus)SteamUGC()->GetItemUpdateProgress(handle, (uint64*)BytesProcessed, (uint64*)BytesTotal); }
 
 	/**
@@ -332,7 +332,7 @@ public:
 	 *
 	 * @return int32 - Returns 0 if called from a game server.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	int32 GetNumSubscribedItems() const { return SteamUGC()->GetNumSubscribedItems(); }
 
 	/**
@@ -351,7 +351,7 @@ public:
 	 * @param ESteamItemPreviewType & PreviewType - The type of preview that was returned.
 	 * @return bool - true upon success, indicates that pchURLOrVideoID and pPreviewType have been filled out. Otherwise, false if the UGC query handle is invalid, the index is out of bounds, or previewIndex is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCAdditionalPreview(FUGCQueryHandle handle, int32 index, int32 previewIndex, FString& URLOrVideoID, int32 URLSize, FString& OriginalFileName, int32 OriginalFileNameSize, ESteamItemPreviewType& PreviewType) const;
 
 	/**
@@ -366,7 +366,7 @@ public:
 	 * @param int32 MaxEntries - The length of pvecPublishedFileID.
 	 * @return bool - true upon success, indicates that pvecPublishedFileID has been filled out. Otherwise, false if the UGC query handle is invalid or the index is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCChildren(FUGCQueryHandle handle, int32 index, TArray<FPublishedFileId>& PublishedFileIDs, int32 MaxEntries) const;
 
 	// #TODO: GetQueryUGCNumTags (available in sdk 1.51)
@@ -388,7 +388,7 @@ public:
 	 * @param int32 ValueSize - The size of pchValue in bytes.
 	 * @return bool - true upon success, indicates that pchKey and pchValue have been filled out. Otherwise, false if the UGC query handle is invalid, the index is out of bounds, or keyValueTagIndex is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCKeyValueTag(FUGCQueryHandle handle, int32 index, int32 keyValueTagIndex, FString& Key, int32 KeySize, FString& Value, int32 ValueSize) const;
 
 	/**
@@ -402,7 +402,7 @@ public:
 	 * @param int32 Metadatasize - The size of pchMetadata in bytes.
 	 * @return bool - true upon success, indicates that pchMetadata has been filled out. Otherwise, false if the UGC query handle is invalid or the index is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCMetadata(FUGCQueryHandle handle, int32 index, FString& Metadata, int32 Metadatasize) const;
 
 	/**
@@ -415,7 +415,7 @@ public:
 	 * @param int32 index - The index of the item to get the details of.
 	 * @return int32 - The number of additional previews associated with the specified workshop item. Returns 0 if the UGC query handle is invalid or the index is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	int32 GetQueryUGCNumAdditionalPreviews(FUGCQueryHandle handle, int32 index) const { return SteamUGC()->GetQueryUGCNumAdditionalPreviews(handle, index); }
 
 	/**
@@ -428,7 +428,7 @@ public:
 	 * @param int32 index - The index of the item to get the details of.
 	 * @return int32 - The number of key-value tags associated with the specified workshop item. Returns 0 if the UGC query handle is invalid or the index is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	int32 GetQueryUGCNumKeyValueTags(FUGCQueryHandle handle, int32 index) const { return SteamUGC()->GetQueryUGCNumKeyValueTags(handle, index); }
 
 	/**
@@ -443,7 +443,7 @@ public:
 	 * @param int32 URLSize - The size of pchURL in bytes.
 	 * @return bool - true upon success, indicates that pchURL has been filled out. Otherwise, false if the UGC query handle is invalid or the index is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCPreviewURL(FUGCQueryHandle handle, int32 index, FString& URL, int32 URLSize) const;
 
 	/**
@@ -456,7 +456,7 @@ public:
 	 * @param FSteamUGCDetails & Details - Returns the the UGC details.
 	 * @return bool - true upon success, indicates that pDetails has been filled out. Otherwise, false if the UGC query handle is invalid or the index is out of bounds.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCResult(FUGCQueryHandle handle, int32 index, FSteamUGCDetails& Details) const;
 
 	/**
@@ -470,7 +470,7 @@ public:
 	 * @param int64 & StatValue - Returns the value associated with the specified statistic.
 	 * @return bool - true upon success, indicates that pStatValue has been filled out. Otherwise, false if the UGC query handle is invalid, the index is out of bounds, or eStatType was invalid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	bool GetQueryUGCStatistic(FUGCQueryHandle handle, int32 index, ESteamItemStatistic StatType, int64& StatValue) const { return SteamUGC()->GetQueryUGCStatistic(handle, index, (EItemStatistic)StatType, (uint64*)&StatValue); }
 
 	/**
@@ -481,7 +481,7 @@ public:
 	 * @param int32 MaxEntries - The maximum number of items to return. This should typically be the same as GetNumSubscribedItems and the same size as pvecPublishedFileID.
 	 * @return int32 - The number of subscribed workshop items that were populated into pvecPublishedFileID. Returns 0 if called from a game server.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	int32 GetSubscribedItems(TArray<FPublishedFileId>& PublishedFileIDs, int32 MaxEntries) const;
 
 	/**
@@ -490,7 +490,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item ID to get the users vote.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a GetUserItemVoteResult_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|UGC")
 	FSteamAPICall GetUserItemVote(FPublishedFileId PublishedFileID) const { return SteamUGC()->GetUserItemVote(PublishedFileID); }
 
 	/**
@@ -499,7 +499,7 @@ public:
 	 * @param FUGCQueryHandle handle - The UGC query handle to release.
 	 * @return bool - Always returns true.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool ReleaseQueryUGCRequest(FUGCQueryHandle handle) const { return SteamUGC()->ReleaseQueryUGCRequest(handle); }
 
 	/**
@@ -509,7 +509,7 @@ public:
 	 * @param int32 AppID - The app/dlc.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a RemoveAppDependencyResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall RemoveAppDependency(FPublishedFileId PublishedFileID, int32 AppID) const { return SteamUGC()->RemoveAppDependency(PublishedFileID, AppID); }
 
 	/**
@@ -519,7 +519,7 @@ public:
 	 * @param FPublishedFileId ChildPublishedFileID - The dependency to remove from the parent.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a RemoveUGCDependencyResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall RemoveDependency(FPublishedFileId ParentPublishedFileID, FPublishedFileId ChildPublishedFileID) const { return SteamUGC()->RemoveDependency(ParentPublishedFileID, ChildPublishedFileID); }
 
 	/**
@@ -529,7 +529,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item to remove from the users favorites list.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a UserFavoriteItemsListChanged_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall RemoveItemFromFavorites(int32 AppId, FPublishedFileId PublishedFileID) const { return SteamUGC()->RemoveItemFromFavorites(AppId, PublishedFileID); }
 
 	/**
@@ -541,10 +541,10 @@ public:
 	 * @param const FString & Key - The key to remove from the item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid or if you are trying to remove more than 100 key-value tags in a single update.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool RemoveItemKeyValueTags(FUGCUpdateHandle handle, const FString& Key) const { return SteamUGC()->RemoveItemKeyValueTags(handle, TCHAR_TO_UTF8(*Key)); }
 
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool RemoveItemPreview(FUGCUpdateHandle handle, int32 index) const { return SteamUGC()->RemoveItemPreview(handle, index); }
 
 	/**
@@ -557,7 +557,7 @@ public:
 	 * @param FUGCQueryHandle handle - The UGC query request handle to send.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a SteamUGCQueryCompleted_t call result. Returns k_uAPICallInvalid if the UGC query handle was invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall SendQueryUGCRequest(FUGCQueryHandle handle) const { return SteamUGC()->SendQueryUGCRequest(handle); }
 
 	/**
@@ -568,7 +568,7 @@ public:
 	 * @param int32 MaxAgeSeconds - The maximum amount of time that an item can be returned without a cache invalidation.
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetAllowCachedResponse(FUGCQueryHandle handle, int32 MaxAgeSeconds) const { return SteamUGC()->SetAllowCachedResponse(handle, MaxAgeSeconds); }
 
 	/**
@@ -580,7 +580,7 @@ public:
 	 * @param const FString & MatchCloudFileName - The filename to match.
 	 * @return bool - true upon success. false if the UGC query handle is invalid, if the UGC query handle is not from CreateQueryUserUGCRequest or if pMatchCloudFileName is NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetCloudFileNameFilter(FUGCQueryHandle handle, const FString& MatchCloudFileName) const { return SteamUGC()->SetCloudFileNameFilter(handle, TCHAR_TO_UTF8(*MatchCloudFileName)); }
 
 	/**
@@ -592,7 +592,7 @@ public:
 	 * @param const FString & ContentFolder - The absolute path to a local folder containing the content for the item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemContent(FUGCUpdateHandle handle, const FString& ContentFolder) const { return SteamUGC()->SetItemContent(handle, TCHAR_TO_UTF8(*ContentFolder)); }
 
 	/**
@@ -605,7 +605,7 @@ public:
 	 * @param const FString & Description - The new description of the item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemDescription(FUGCUpdateHandle handle, const FString& Description) const { return SteamUGC()->SetItemDescription(handle, TCHAR_TO_UTF8(*Description)); }
 
 	/**
@@ -617,7 +617,7 @@ public:
 	 * @param const FString & MetaData - The new metadata for this item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid, or if pchMetadata is longer than k_cchDeveloperMetadataMax.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemMetadata(FUGCUpdateHandle handle, const FString& MetaData) const { return SteamUGC()->SetItemMetadata(handle, TCHAR_TO_UTF8(*MetaData)); }
 
 	/**
@@ -629,7 +629,7 @@ public:
 	 * @param const FString & PreviewFile - The absolute path to a local preview image file for the item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemPreview(FUGCUpdateHandle handle, const FString& PreviewFile) const { return SteamUGC()->SetItemPreview(handle, TCHAR_TO_UTF8(*PreviewFile)); }
 
 	/**
@@ -641,7 +641,7 @@ public:
 	 * @param const TArray<FString> & Tags - The list of tags to set on this item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid, or if one of the tags is invalid either due to exceeding the maximum length or because it is NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemTags(FUGCUpdateHandle UpdateHandle, const TArray<FString>& Tags) const;
 
 	/**
@@ -654,7 +654,7 @@ public:
 	 * @param const FString & Title - The new title of the item.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemTitle(FUGCUpdateHandle handle, const FString& Title) const { return SteamUGC()->SetItemTitle(handle, TCHAR_TO_UTF8(*Title)); }
 
 	/**
@@ -667,7 +667,7 @@ public:
 	 * @param const FString & Language - The language of the title and description that will be set in this update.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemUpdateLanguage(FUGCUpdateHandle handle, const FString& Language) const { return SteamUGC()->SetItemUpdateLanguage(handle, TCHAR_TO_UTF8(*Language)); }
 
 	/**
@@ -678,7 +678,7 @@ public:
 	 * @param ESteamRemoteStoragePublishedFileVisibility Visibility - The visibility to set.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetItemVisibility(FUGCUpdateHandle handle, ESteamRemoteStoragePublishedFileVisibility Visibility) const { return SteamUGC()->SetItemVisibility(handle, (ERemoteStoragePublishedFileVisibility)Visibility); }
 
 	/**
@@ -691,7 +691,7 @@ public:
 	 * @param const FString & Language - The language to return.
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetLanguage(FUGCQueryHandle handle, const FString& Language) const { return SteamUGC()->SetLanguage(handle, TCHAR_TO_UTF8(*Language)); }
 
 	/**
@@ -703,7 +703,7 @@ public:
 	 * @param bool bMatchAnyTag - Should the item just need to have one required tag (true), or all of them? (false)
 	 * @return bool - true upon success. false if the UGC query handle is invalid or if the UGC query handle is not from CreateQueryAllUGCRequest.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetMatchAnyTag(FUGCQueryHandle handle, bool bMatchAnyTag) const { return SteamUGC()->SetMatchAnyTag(handle, bMatchAnyTag); }
 
 	/**
@@ -717,7 +717,7 @@ public:
 	 * false if the UGC query handle is invalid, if the UGC query handle is not from CreateQueryAllUGCRequest or if the EUGCQuery of the query is not one of:
 	 * k_PublishedFileQueryType_RankedByTrend, k_PublishedFileQueryType_RankedByPlaytimeTrend, k_PublishedFileQueryType_RankedByAveragePlaytimeTrend, k_PublishedFileQueryType_RankedByVotesUp, or k_PublishedFileQueryType_RankedByPlaytimeSessionsTrend
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetRankedByTrendDays(FUGCQueryHandle handle, int32 Days) const { return SteamUGC()->SetRankedByTrendDays(handle, Days); }
 
 	/**
@@ -728,7 +728,7 @@ public:
 	 * @param bool bReturnAdditionalPreviews - Return the additional previews for the items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnAdditionalPreviews(FUGCQueryHandle handle, bool bReturnAdditionalPreviews) const { return SteamUGC()->SetReturnAdditionalPreviews(handle, bReturnAdditionalPreviews); }
 
 	/**
@@ -739,7 +739,7 @@ public:
 	 * @param bool bReturnChildren - Return the IDs of children of the items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnChildren(FUGCQueryHandle handle, bool bReturnChildren) const { return SteamUGC()->SetReturnChildren(handle, bReturnChildren); }
 
 	/**
@@ -750,7 +750,7 @@ public:
 	 * @param bool bReturnKeyValueTags - Return any key-value tags for the items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnKeyValueTags(FUGCQueryHandle handle, bool bReturnKeyValueTags) const { return SteamUGC()->SetReturnKeyValueTags(handle, bReturnKeyValueTags); }
 
 	/**
@@ -762,7 +762,7 @@ public:
 	 * @param bool bReturnLongDescription - Return the long description for the items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnLongDescription(FUGCQueryHandle handle, bool bReturnLongDescription) const { return SteamUGC()->SetReturnLongDescription(handle, bReturnLongDescription); }
 
 	/**
@@ -773,7 +773,7 @@ public:
 	 * @param bool bReturnMetadata - Return the metadata for the items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnMetadata(FUGCQueryHandle handle, bool bReturnMetadata) const { return SteamUGC()->SetReturnMetadata(handle, bReturnMetadata); }
 
 	/**
@@ -785,7 +785,7 @@ public:
 	 * @param bool bReturnOnlyIDs - Return only the IDs of items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid or if the UGC query handle is from CreateQueryUGCDetailsRequest.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnOnlyIDs(FUGCQueryHandle handle, bool bReturnOnlyIDs) const { return SteamUGC()->SetReturnOnlyIDs(handle, bReturnOnlyIDs); }
 
 	/**
@@ -796,7 +796,7 @@ public:
 	 * @param int32 Days - The number of days worth of playtime stats to return.
 	 * @return bool - true upon success. false if the UGC query handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnPlaytimeStats(FUGCQueryHandle handle, int32 Days) const { return SteamUGC()->SetReturnPlaytimeStats(handle, Days); }
 
 	/**
@@ -808,7 +808,7 @@ public:
 	 * @param bool bReturnTotalOnly - Only return the total number of items?
 	 * @return bool - true upon success. false if the UGC query handle is invalid or if the UGC query handle is from CreateQueryUGCDetailsRequest
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetReturnTotalOnly(FUGCQueryHandle handle, bool bReturnTotalOnly) const { return SteamUGC()->SetReturnTotalOnly(handle, bReturnTotalOnly); }
 
 	/**
@@ -820,7 +820,7 @@ public:
 	 * @param const FString & SearchText - The text to be searched for.
 	 * @return bool - true upon success. false if the UGC query handle is invalid, if the UGC query handle is not from CreateQueryAllUGCRequest or if pSearchText is NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool SetSearchText(FUGCQueryHandle handle, const FString& SearchText) const { return SteamUGC()->SetSearchText(handle, TCHAR_TO_UTF8(*SearchText)); }
 
 	/**
@@ -830,7 +830,7 @@ public:
 	 * @param bool bVoteUp - Vote up (true) or down (false)?
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a SetUserItemVoteResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall SetUserItemVote(FPublishedFileId PublishedFileID, bool bVoteUp) const { return SteamUGC()->SetUserItemVote(PublishedFileID, bVoteUp); }
 
 	/**
@@ -841,7 +841,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The item to update.
 	 * @return FUGCUpdateHandle - A handle that you can use with future calls to modify the item before finally sending the update.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FUGCUpdateHandle StartItemUpdate(int32 ConsumerAppId, FPublishedFileId PublishedFileID) const { return SteamUGC()->StartItemUpdate(ConsumerAppId, PublishedFileID); }
 
 	// #NOTE: These methods need to be async
@@ -857,7 +857,7 @@ public:
 	 * @param const FString & ChangeNote - A brief description of the changes made. (Optional, set to NULL for no change note)
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a SubmitItemUpdateResult_t call result. Returns k_uAPICallInvalid if handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall SubmitItemUpdate(FUGCUpdateHandle handle, const FString& ChangeNote) const { return SteamUGC()->SubmitItemUpdate(handle, TCHAR_TO_UTF8(*ChangeNote)); }
 
 	/**
@@ -866,7 +866,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item to subscribe to.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a RemoteStorageSubscribePublishedFileResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall SubscribeItem(FPublishedFileId PublishedFileID) const { return SteamUGC()->SubscribeItem(PublishedFileID); }
 
 	/**
@@ -876,7 +876,7 @@ public:
 	 * @param bool bSuspend - Suspend (true) or Resume (false) workshop downloads?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|UGC")
 	void SuspendDownloads(bool bSuspend) { SteamUGC()->SuspendDownloads(bSuspend); }
 
 	/**
@@ -885,7 +885,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item to unsubscribe from.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a RemoteStorageUnsubscribePublishedFileResult_t call result.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	FSteamAPICall UnsubscribeItem(FPublishedFileId PublishedFileID) const { return SteamUGC()->UnsubscribeItem(PublishedFileID); }
 
 	/**
@@ -898,7 +898,7 @@ public:
 	 * @param const FString & PreviewFile - Absolute path to the local image.
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool UpdateItemPreviewFile(FUGCUpdateHandle handle, int32 index, const FString& PreviewFile) const { return SteamUGC()->UpdateItemPreviewFile(handle, index, TCHAR_TO_UTF8(*PreviewFile)); }
 
 	/**
@@ -910,73 +910,73 @@ public:
 	 * @param const FString & VideoID - The YouTube video to add. (e.g. "jHgZh4GV9G0")
 	 * @return bool - true upon success. false if the UGC update handle is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|UGC")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|UGC")
 	bool UpdateItemPreviewVideo(FUGCUpdateHandle handle, int32 index, const FString& VideoID) const { return SteamUGC()->UpdateItemPreviewVideo(handle, index, TCHAR_TO_UTF8(*VideoID)); }
 
 	/** Delegates */
 
 	/** The result of a call to AddAppDependency. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnAddAppDependencyResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnAddAppDependencyResult"))
 	FOnAddAppDependencyResultDelegate m_OnAddAppDependencyResult;
 
 	/** The result of a call to AddDependency. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnAddUGCDependencyResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnAddUGCDependencyResult"))
 	FOnAddUGCDependencyResultDelegate m_OnAddUGCDependencyResult;
 
 	/** Called when a new workshop item has been created. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnCreateItemResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnCreateItemResult"))
 	FOnCreateItemResultDelegate m_OnCreateItemResult;
 
 	/** Called when a workshop item has been downloaded. NOTE: This callback goes out to all running applications, ensure that the app ID associated with the item matches what you expect. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnDownloadItemResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnDownloadItemResult"))
 	FOnDownloadItemResultDelegate m_OnDownloadItemResult;
 
 	/** Called when getting the app dependencies for an item. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnGetAppDependenciesResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnGetAppDependenciesResult"))
 	FOnGetAppDependenciesResultDelegate m_OnGetAppDependenciesResult;
 
 	/** Called when an attempt at deleting an item completes. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnDeleteItemResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnDeleteItemResult"))
 	FOnDeleteItemResultDelegate m_OnDeleteItemResult;
 
 	/** Called when getting the users vote status on an item. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnGetUserItemVoteResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnGetUserItemVoteResult"))
 	FOnGetUserItemVoteResultDelegate m_OnGetUserItemVoteResult;
 
 	/** Called when a workshop item has been installed or updated. NOTE: This callback goes out to all running applications, ensure that the app ID associated with the item matches what you expect. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnItemInstalled"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnItemInstalled"))
 	FOnItemInstalledDelegate m_OnItemInstalled;
 
 	/** Purpose: The result of a call to RemoveAppDependency. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnRemoveAppDependencyResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnRemoveAppDependencyResult"))
 	FOnRemoveAppDependencyResultDelegate m_OnRemoveAppDependencyResult;
 
 	/** Purpose: The result of a call to RemoveDependency. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnRemoveUGCDependencyResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnRemoveUGCDependencyResult"))
 	FOnRemoveUGCDependencyResultDelegate m_OnRemoveUGCDependencyResult;
 
 	/** Called when the user has voted on an item. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnSetUserItemVoteResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnSetUserItemVoteResult"))
 	FOnSetUserItemVoteResultDelegate m_OnSetUserItemVoteResult;
 
 	/** Called when workshop item playtime tracking has started. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnStartPlaytimeTrackingResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnStartPlaytimeTrackingResult"))
 	FOnStartPlaytimeTrackingResultDelegate m_OnStartPlaytimeTrackingResult;
 
 	/** Called when a UGC query request completes. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnSteamUGCQueryCompleted"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnSteamUGCQueryCompleted"))
 	FOnSteamUGCQueryCompletedDelegate m_OnSteamUGCQueryCompleted;
 
 	/** Called when workshop item playtime tracking has stopped. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnStopPlaytimeTrackingResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnStopPlaytimeTrackingResult"))
 	FOnStopPlaytimeTrackingResultDelegate m_OnStopPlaytimeTrackingResult;
 
 	/** Called when an item update has completed. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnSubmitItemUpdateResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnSubmitItemUpdateResult"))
 	FOnSubmitItemUpdateResultDelegate m_OnSubmitItemUpdateResult;
 
 	/** Called when the user has added or removed an item to/from their favorites. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|UGC", meta = (DisplayName = "OnUserFavoriteItemsListChanged"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|UGC", meta = (DisplayName = "OnUserFavoriteItemsListChanged"))
 	FOnUserFavoriteItemsListChangedDelegate m_OnUserFavoriteItemsListChanged;
 
 private:

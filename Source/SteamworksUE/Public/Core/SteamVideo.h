@@ -30,7 +30,7 @@ public:
 	USteamVideo();
 	~USteamVideo();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Video", CompactNodeTitle = "SteamVideo"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Video", CompactNodeTitle = "SteamVideo"))
 	static USteamVideo* GetSteamVideo() { return USteamVideo::StaticClass()->GetDefaultObject<USteamVideo>(); }
 
 	/**
@@ -42,7 +42,7 @@ public:
 	 * @param int32 VideoAppID - The video app ID to get the OPF details of.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Video")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Video")
 	void GetOPFSettings(int32 VideoAppID) { SteamVideo()->GetOPFSettings(VideoAppID); }
 
 	/**
@@ -55,7 +55,7 @@ public:
 	 * @param FString & OPFString - Returns the OPF string by writing it to this buffer.
 	 * @return bool - true if we have the OPF details from a previous call to GetOPFSettings, otherwise false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Video")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Video")
 	bool GetOPFStringForApp(int32 VideoAppID, FString& OPFString) const;
 
 	/**
@@ -65,7 +65,7 @@ public:
 	 * @param int32 VideoAppID - The video app ID to receive the video stream for.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Video")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Video")
 	void GetVideoURL(int32 VideoAppID) { SteamVideo()->GetVideoURL(VideoAppID); }
 
 	/**
@@ -74,23 +74,23 @@ public:
 	 * @param int32 & NumViewers - Returns the number of viewers currently watching the live broadcast.
 	 * @return bool - true if user is uploading a live broadcast, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Video")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Video")
 	bool IsBroadcasting(int32& NumViewers) { return SteamVideo()->IsBroadcasting(&NumViewers); }
 
 	/** Delegates */
 
-	/*UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Video", meta = (DisplayName = "OnBroadcastUploadStart"))
+	/*UPROPERTY(BlueprintAssignable, Category = "Steamworks|Video", meta = (DisplayName = "OnBroadcastUploadStart"))
 	FOnBroadcastUploadStartDelegate m_OnBroadcastUploadStart;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Video", meta = (DisplayName = "OnBroadcastUploadStop"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Video", meta = (DisplayName = "OnBroadcastUploadStop"))
 	FOnBroadcastUploadStopDelegate m_OnBroadcastUploadStop;*/
 
 	/** Triggered when the OPF Details for 360 video playback are retrieved. After receiving this you can use GetOPFStringForApp to access the OPF details. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Video", meta = (DisplayName = "OnGetOPFSettingsResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Video", meta = (DisplayName = "OnGetOPFSettingsResult"))
 	FOnGetOPFSettingsResultDelegate m_OnGetOPFSettingsResult;
 
 	/** Provides the result of a call to GetVideoURL. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Video", meta = (DisplayName = "OnGetVideoURLResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Video", meta = (DisplayName = "OnGetVideoURLResult"))
 	FOnGetVideoURLResultDelegate m_OnGetVideoURLResult;
 
 private:

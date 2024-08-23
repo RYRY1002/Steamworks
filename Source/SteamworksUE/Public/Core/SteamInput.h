@@ -25,7 +25,7 @@ public:
 	USteamInput();
 	~USteamInput();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Input", CompactNodeTitle = "SteamInput"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Input", CompactNodeTitle = "SteamInput"))
 	static USteamInput* GetSteamInput() { return USteamInput::StaticClass()->GetDefaultObject<USteamInput>(); }
 
 	/**
@@ -36,7 +36,7 @@ public:
 	 * @param FInputActionSetHandle ActionSetHandle - The handle of the action set you want to activate.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void ActivateActionSet(FInputHandle InputHandle, FInputActionSetHandle ActionSetHandle) { SteamInput()->ActivateActionSet(InputHandle, ActionSetHandle); }
 
 	/**
@@ -46,7 +46,7 @@ public:
 	 * @param FInputActionSetHandle ActionSetHandle - The handle of the action set layer you want to activate.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void ActivateActionSetLayer(FInputHandle InputHandle, FInputActionSetHandle ActionSetHandle) { SteamInput()->ActivateActionSetLayer(InputHandle, ActionSetHandle); }
 
 	/**
@@ -56,7 +56,7 @@ public:
 	 * @param FInputActionSetHandle ActionSetHandle - The handle of the action set layer you want to deactivate.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void DeactivateActionSetLayer(FInputHandle InputHandle, FInputActionSetHandle ActionSetHandle) { SteamInput()->DeactivateActionSetLayer(InputHandle, ActionSetHandle); }
 
 	/**
@@ -65,7 +65,7 @@ public:
 	 * @param FInputHandle InputHandle - The handle of the controller you want to deactivate all action set layers for.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void DeactivateAllActionSetLayers(FInputHandle InputHandle) { SteamInput()->DeactivateAllActionSetLayers(InputHandle); }
 
 	/**
@@ -75,7 +75,7 @@ public:
 	 * @param TArray<int64> & Handles - This must point to a STEAM_INPUT_MAX_COUNT sized array of InputHandle_t.
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	int32 GetActiveActionSetLayers(FInputHandle InputHandle, TArray<FInputHandle>& Handles);
 
 	/**
@@ -84,7 +84,7 @@ public:
 	 * @param const FString & ActionSetName - The string identifier of an action set defined in the game's VDF file.
 	 * @return FInputActionSetHandle - The handle of the specified action set.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FInputActionSetHandle GetActionSetHandle(const FString& ActionSetName) const { return SteamInput()->GetActionSetHandle(TCHAR_TO_UTF8(*ActionSetName)); }
 
 	/**
@@ -94,7 +94,7 @@ public:
 	 * @param FInputActionSetHandle ActionSetHandle - The handle of the analog action you want to query.
 	 * @return FSteamInputAnalogActionData - The current state of the specified analog action.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FSteamInputAnalogActionData GetAnalogActionData(FInputHandle InputHandle, FInputActionSetHandle ActionSetHandle) const;
 
 	/**
@@ -105,7 +105,7 @@ public:
 	 * @param const FString & ActionName - The string identifier of the analog action defined in the game's VDF file.
 	 * @return FInputAnalogActionHandle - The handle of the specified analog action.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FInputAnalogActionHandle GetAnalogActionHandle(const FString& ActionName) const { return SteamInput()->GetAnalogActionHandle(TCHAR_TO_UTF8(*ActionName)); }
 
 	/**
@@ -117,7 +117,7 @@ public:
 	 * @param TArray<ESteamInputActionOrigin> & Origins - A STEAM_INPUT_MAX_ORIGINS sized array of EInputActionOrigin handles.
 	 * @return int32 - The number of origins supplied in Origins.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	int32 GetAnalogActionOrigins(FInputHandle InputHandle, FInputActionSetHandle ActionSetHandle, FInputAnalogActionHandle AnalogActionHandle, TArray<ESteamInputActionOrigin>& Origins);
 
 	/**
@@ -126,7 +126,7 @@ public:
 	 * @param TArray<int64> & Handles - This must point to a STEAM_INPUT_MAX_COUNT sized array of InputHandle_t.
 	 * @return int32 - The number of handles written to Handles.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	int32 GetConnectedControllers(TArray<FInputHandle>& Handles);
 
 	/**
@@ -135,7 +135,7 @@ public:
 	 * @param int32 Index - The index of the emulated gamepad you want to get a controller handle for.
 	 * @return FInputHandle
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	FInputHandle GetControllerForGamepadIndex(int32 Index) const { return SteamInput()->GetControllerForGamepadIndex(Index); }
 
 	/**
@@ -144,7 +144,7 @@ public:
 	 * @param FInputHandle InputHandle - The handle of the controller you want to query.
 	 * @return FInputActionSetHandle - The handle of the action set activated for the specified controller.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FInputActionSetHandle GetCurrentActionSet(FInputHandle InputHandle) const { return SteamInput()->GetCurrentActionSet(InputHandle); }
 
 	/**
@@ -154,7 +154,7 @@ public:
 	 * @param FInputDigitalActionHandle DigitalActionHandle - The handle of the digital action you want to query.
 	 * @return FSteamInputDigitalActionData - The current state of the specified digital action.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FSteamInputDigitalActionData GetDigitalActionData(FInputHandle InputHandle, FInputDigitalActionHandle DigitalActionHandle) const;
 
 	/**
@@ -165,7 +165,7 @@ public:
 	 * @param const FString & ActionName - 	The string identifier of the digital action defined in the game's VDF file.
 	 * @return FInputDigitalActionHandle - The handle of the specified digital action.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FInputDigitalActionHandle GetDigitalActionHandle(const FString& ActionName) const { return SteamInput()->GetDigitalActionHandle(TCHAR_TO_UTF8(*ActionName)); }
 
 	/**
@@ -177,7 +177,7 @@ public:
 	 * @param TArray<ESteamInputActionOrigin> & Origins - A STEAM_INPUT_MAX_ORIGINS sized array of EInputActionOrigin handles.
 	 * @return int32 - The number of origins supplied in Origins.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	int32 GetDigitalActionOrigins(FInputHandle InputHandle, FInputActionSetHandle ActionSetHandle, FInputDigitalActionHandle DigitalActionHandle, TArray<ESteamInputActionOrigin>& Origins);
 
 	/**
@@ -186,7 +186,7 @@ public:
 	 * @param FInputHandle ControllerHandle - The handle of the controller you want to get a gamepad index for.
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	int32 GetGamepadIndexForController(FInputHandle ControllerHandle) const { return SteamInput()->GetGamepadIndexForController(ControllerHandle); }
 
 	/**
@@ -196,7 +196,7 @@ public:
 	 * @param ESteamInputActionOrigin Origin
 	 * @return FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input", meta = (DeprecatedFunction, DeprecationMessage = "Use `GetGlyphPNGForActionOrigin` instead."))
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input", meta = (DeprecatedFunction, DeprecationMessage = "Use `GetGlyphPNGForActionOrigin` instead."))
 	FString GetGlyphForActionOrigin(ESteamInputActionOrigin Origin) const { return UTF8_TO_TCHAR(*SteamInput()->GetGlyphForActionOrigin_Legacy((EInputActionOrigin)Origin)); }
 
 	// #TODO: GetGlyphPNGForActionOrigin
@@ -208,7 +208,7 @@ public:
 	 * @param FInputHandle InputHandle - The handle of the controller whose input type (device model) you want to query
 	 * @return ESteamInputType_
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	ESteamInputType_ GetInputTypeForHandle(FInputHandle InputHandle) const { return (ESteamInputType_)SteamInput()->GetInputTypeForHandle(InputHandle); }
 
 	/**
@@ -217,7 +217,7 @@ public:
 	 * @param FInputHandle InputHandle - The handle of the controller you want to get motion data for.
 	 * @return FSteamInputMotionData
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FSteamInputMotionData GetMotionData(FInputHandle InputHandle) const;
 
 	/**
@@ -226,7 +226,7 @@ public:
 	 * @param ESteamInputActionOrigin Origin
 	 * @return FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	FString GetStringForActionOrigin(ESteamInputActionOrigin Origin) const { return SteamInput()->GetStringForActionOrigin((EInputActionOrigin)Origin); }
 
 	/**
@@ -235,7 +235,7 @@ public:
 	 * @param bool bExplicitlyCallRunFrame - If true, you must call `RunFrame()` yourself every frame; otherwise, it will be called automatically by `SteamAPI_RunCallbacks()`.
 	 * @return bool - Always returns true.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	bool Init(bool bExplicitlyCallRunFrame) { return SteamInput()->Init(bExplicitlyCallRunFrame); }
 
 	/**
@@ -244,7 +244,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void RunFrame() { SteamInput()->RunFrame(); }
 
 	/**
@@ -259,7 +259,7 @@ public:
 	 * @param const TArray<ESteamControllerLEDFlag_> & Flags - Bit-masked flags combined from values defined in ESteamControllerLEDFlag.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void SetLEDColorU(FInputHandle InputHandle, uint8 R, uint8 G, uint8 B, const TArray<ESteamControllerLEDFlag_>& Flags);
 
 	/**
@@ -272,7 +272,7 @@ public:
 	 * @param const TArray<ESteamControllerLEDFlag_> & Flags - Bit-masked flags combined from values defined in ESteamControllerLEDFlag.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void SetLEDColor(FInputHandle InputHandle, const FLinearColor& Color, const TArray<ESteamControllerLEDFlag_>& Flags);
 
 	/**
@@ -281,7 +281,7 @@ public:
 	 * @param FInputHandle InputHandle - The handle of the controller you want to bring up the binding screen for.
 	 * @return bool - true for success; false if overlay is disabled/unavailable, or the user is not in Big Picture Mode.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	bool ShowBindingPanel(FInputHandle InputHandle) const { return SteamInput()->ShowBindingPanel(InputHandle); }
 
 	/**
@@ -289,7 +289,7 @@ public:
 	 *
 	 * @return bool - Always returns true.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	bool Shutdown() { return SteamInput()->Shutdown(); }
 
 	/**
@@ -300,7 +300,7 @@ public:
 	 * @param FInputAnalogActionHandle ActionHandle - The analog action to stop momentum for.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void StopAnalogActionMomentum(FInputHandle InputHandle, FInputAnalogActionHandle ActionHandle) { SteamInput()->StopAnalogActionMomentum(InputHandle, ActionHandle); }
 
 	/**
@@ -316,7 +316,7 @@ public:
 	 * @param int32 DurationMicroSec - Duration of the pulse, in microseconds (1/1,000,000th of a second)
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input", meta = (DeprecatedFunction))
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input", meta = (DeprecatedFunction))
 	void TriggerHapticPulse(FInputHandle InputHandle, ESteamControllerPad_ TargetPad, int32 DurationMicroSec) { SteamInput()->Legacy_TriggerHapticPulse(InputHandle, (ESteamControllerPad)TargetPad, DurationMicroSec); }
 
 	/**
@@ -334,7 +334,7 @@ public:
 	 * @param int32 Repeat - Number of times to repeat the DurationMicroSec / OffMicroSec duty cycle.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input", meta = (DeprecatedFunction))
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input", meta = (DeprecatedFunction))
 	void TriggerRepeatedHapticPulse(FInputHandle InputHandle, ESteamControllerPad_ TargetPad, int32 DurationMicroSec, int32 OffMicroSec, int32 Repeat) { SteamInput()->Legacy_TriggerRepeatedHapticPulse(InputHandle, (ESteamControllerPad)TargetPad, DurationMicroSec, OffMicroSec, Repeat, 0); }
 
 	/**
@@ -348,7 +348,7 @@ public:
 	 * @param int32 RightSpeed - The intensity value for the right rumble motor.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Input")
 	void TriggerVibration(FInputHandle InputHandle, int32 LeftSpeed, int32 RightSpeed) { SteamInput()->TriggerVibration(InputHandle, LeftSpeed, RightSpeed); }
 
 	/**
@@ -358,7 +358,7 @@ public:
 	 * @param ESteamXboxOrigin Origin - This is the button you want to get the image for ex: k_EXboxOrigin_A
 	 * @return ESteamInputActionOrigin
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	ESteamInputActionOrigin GetActionOriginFromXboxOrigin(FInputHandle InputHandle, ESteamXboxOrigin Origin) const { return (ESteamInputActionOrigin)SteamInput()->GetActionOriginFromXboxOrigin(InputHandle, (EXboxOrigin)Origin); }
 
 	/**
@@ -369,7 +369,7 @@ public:
 	 * @param ESteamInputActionOrigin SourceOrigin - This is the button you want to translate
 	 * @return ESteamInputActionOrigin
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	ESteamInputActionOrigin TranslateActionOrigin(ESteamInputType_ DestinationInputType, ESteamInputActionOrigin SourceOrigin) const { return (ESteamInputActionOrigin)SteamInput()->TranslateActionOrigin((ESteamInputType)DestinationInputType, (EInputActionOrigin)SourceOrigin); }
 
 	/**
@@ -383,7 +383,7 @@ public:
 	 * @param int32 & Minor - Pointer to int that Minor binding revision will be populated into
 	 * @return bool - true if a device binding was successfully found and false if the binding is still loading.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	bool GetDeviceBindingRevision(FInputHandle InputHandle, int32& Major, int32& Minor) const { return SteamInput()->GetDeviceBindingRevision(InputHandle, &Major, &Minor); }
 
 	/**
@@ -392,7 +392,7 @@ public:
 	 * @param FInputHandle InputHandle - The handle of the controller to query.
 	 * @return int32 - Steam Remote Play session ID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Input")
 	int32 GetRemotePlaySessionID(FInputHandle InputHandle) const { return SteamInput()->GetRemotePlaySessionID(InputHandle); }
 
 private:

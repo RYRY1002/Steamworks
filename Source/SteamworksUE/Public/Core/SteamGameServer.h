@@ -34,7 +34,7 @@ public:
 	USteamGameServer();
 	~USteamGameServer();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Game Server", CompactNodeTitle = "SteamGameServer"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Game Server", CompactNodeTitle = "SteamGameServer"))
 	static USteamGameServer* GetSteamGameServer() { return USteamGameServer::StaticClass()->GetDefaultObject<USteamGameServer>(); }
 
 	/**
@@ -43,7 +43,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam ID of the group you want to be associated with.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a AssociateWithClanResult_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	FSteamAPICall AssociateWithClan(FSteamID SteamIDClan) const { return SteamGameServer()->AssociateWithClan(SteamIDClan); }
 
 	/**
@@ -56,7 +56,7 @@ public:
 	 * @param FSteamID SteamID - The entity's Steam ID that sent this ticket.
 	 * @return ESteamBeginAuthSessionResult
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	ESteamBeginAuthSessionResult BeginAuthSession(TArray<uint8> AuthTicket, FSteamID SteamID) const;
 
 	/**
@@ -64,7 +64,7 @@ public:
 	 *
 	 * @return bool - true if the game server is logged on; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	bool BLoggedOn() const { return SteamGameServer()->BLoggedOn(); }
 
 	/**
@@ -72,7 +72,7 @@ public:
 	 *
 	 * @return bool - true if the game server secure; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	bool BSecure() const { return SteamGameServer()->BSecure(); }
 
 	/**
@@ -81,7 +81,7 @@ public:
 	 * @param FHAuthTicket AuthTicketHandle - The active auth ticket to cancel.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void CancelAuthTicket(FHAuthTicket AuthTicketHandle) { SteamGameServer()->CancelAuthTicket(AuthTicketHandle); }
 
 	/**
@@ -89,7 +89,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void ClearAllKeyValues() { SteamGameServer()->ClearAllKeyValues(); }
 
 	// #TODO ComputeNewPlayerCompatibility
@@ -103,7 +103,7 @@ public:
 	 * @param bool bActive - Enable (true) or disable (false) the master server updater.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetAdvertiseServerActive(bool bActive) { SteamGameServer()->SetAdvertiseServerActive(bActive); }
 
 	/**
@@ -116,7 +116,7 @@ public:
 	 * @param bool bActive - Enable (true) or disable (false) the master server updater.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer", meta = (DeprecatedFunction, DeprecationMessage = "Use SetAdvertiseServerActive instead."))
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer", meta = (DeprecatedFunction, DeprecationMessage = "Use SetAdvertiseServerActive instead."))
 	void EnableHeartbeats(bool bActive) { SetAdvertiseServerActive(bActive); }
 
 	/**
@@ -125,7 +125,7 @@ public:
 	 * @param FSteamID SteamID - The entity to end the active auth session with.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void EndAuthSession(FSteamID SteamID) { SteamGameServer()->EndAuthSession(SteamID); }
 
 	/**
@@ -139,7 +139,7 @@ public:
 	 * @param TArray<uint8> & AuthTicket - 	The buffer where the new auth ticket will be copied into if the call was successful.
 	 * @return FHAuthTicket - A handle to the auth ticket. When you're done interacting with the entity you must call CancelAuthTicket on the handle.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	FHAuthTicket GetAuthSessionTicket(TArray<uint8>& AuthTicket) const;
 
 	// #TODO GetNextOutgoingPacket
@@ -152,7 +152,7 @@ public:
 	 *
 	 * @return FString - Returns the IP address (IPv4) as an FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	FString GetPublicIP() const;
 
 	/**
@@ -160,7 +160,7 @@ public:
 	 *
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	FSteamID GetSteamID() const { return SteamGameServer()->GetSteamID().ConvertToUint64(); }
 
 	// #TODO HandleIncomingPacket
@@ -174,7 +174,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void LogOff() { SteamGameServer()->LogOff(); }
 
 	/**
@@ -186,7 +186,7 @@ public:
 	 * @param const FString & Token
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void LogOn(const FString& Token) { SteamGameServer()->LogOn(TCHAR_TO_UTF8(*Token)); }
 
 	/**
@@ -197,7 +197,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void LogOnAnonymous() { SteamGameServer()->LogOnAnonymous(); }
 
 	/**
@@ -208,7 +208,7 @@ public:
 	 * @param FSteamID SteamIDGroup - The group to check.
 	 * @return bool - true if the call was successfully sent out to the Steam servers; otherwise, false if we're not connected to the steam servers or an invalid user or group was provided.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	bool RequestUserGroupStatus(FSteamID SteamIDUser, FSteamID SteamIDGroup) const { return SteamGameServer()->RequestUserGroupStatus(SteamIDUser, SteamIDGroup); }
 
 	/**
@@ -217,7 +217,7 @@ public:
 	 * @param int32 BotPlayers - The number of bot/AI players currently playing on the server.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetBotPlayerCount(int32 BotPlayers) { SteamGameServer()->SetBotPlayerCount(BotPlayers); }
 
 	/**
@@ -227,7 +227,7 @@ public:
 	 * @param bool bDedicated - Is this a dedicated server (true) or a listen server (false)?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetDedicatedServer(bool bDedicated) { SteamGameServer()->SetDedicatedServer(bDedicated); }
 
 	/**
@@ -238,7 +238,7 @@ public:
 	 * @param const FString & GameData - The new "gamedata" value to set. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerGameData.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetGameData(const FString& GameData) { SteamGameServer()->SetGameData(TCHAR_TO_UTF8(*GameData)); }
 
 	/**
@@ -248,7 +248,7 @@ public:
 	 * @param const FString GameDescription - The description of your game. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerGameDescription.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetGameDescription(const FString GameDescription) { SteamGameServer()->SetGameDescription(TCHAR_TO_UTF8(*GameDescription)); }
 
 	/**
@@ -259,7 +259,7 @@ public:
 	 * @param const FString & GameTags - The new "gametags" value to set. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerTags.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetGameTags(const FString& GameTags) { SteamGameServer()->SetGameTags(TCHAR_TO_UTF8(*GameTags)); }
 
 	/**
@@ -269,7 +269,7 @@ public:
 	 * @param const FString & Value
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetKeyValue(const FString& Key, const FString& Value) { SteamGameServer()->SetKeyValue(TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
 	/**
@@ -278,7 +278,7 @@ public:
 	 * @param const FString & MapName - The new map name to set. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerMapName.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetMapName(const FString& MapName) { SteamGameServer()->SetMapName(TCHAR_TO_UTF8(*MapName)); }
 
 	/**
@@ -288,7 +288,7 @@ public:
 	 * @param int32 PlayersMax - The new maximum number of players allowed on this server.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetMaxPlayerCount(int32 PlayersMax) { SteamGameServer()->SetMaxPlayerCount(PlayersMax); }
 
 	/**
@@ -299,7 +299,7 @@ public:
 	 * @param const FString & ModDir - The game directory to set. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerGameDir
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetModDir(const FString& ModDir) { SteamGameServer()->SetModDir(TCHAR_TO_UTF8(*ModDir)); }
 
 	/**
@@ -308,7 +308,7 @@ public:
 	 * @param bool bPasswordProtected - Enable (true) or disable (false) password protection.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetPasswordProtected(bool bPasswordProtected) { SteamGameServer()->SetPasswordProtected(bPasswordProtected); }
 
 	/**
@@ -319,7 +319,7 @@ public:
 	 * @param const FString & Product - The unique identifier for your game. Must not be NULL or an empty string ("").
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetProduct(const FString& Product) { SteamGameServer()->SetProduct(TCHAR_TO_UTF8(*Product)); }
 
 	/**
@@ -328,7 +328,7 @@ public:
 	 * @param const FString & Region
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetRegion(const FString& Region) { SteamGameServer()->SetRegion(TCHAR_TO_UTF8(*Region)); }
 
 	/**
@@ -337,7 +337,7 @@ public:
 	 * @param const FString & ServerName - The new server name to set. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerName.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetServerName(const FString& ServerName) { SteamGameServer()->SetServerName(TCHAR_TO_UTF8(*ServerName)); }
 
 	/**
@@ -346,7 +346,7 @@ public:
 	 * @param int32 SpectatorPort - The port for spectators to join.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetSpectatorPort(int32 SpectatorPort) { SteamGameServer()->SetSpectatorPort(FMath::Clamp<uint16>(SpectatorPort, 0, 65535)); }
 
 	/**
@@ -355,7 +355,7 @@ public:
 	 * @param const FString & SpectatorServerName - The spectator server name to set. Must not be NULL or an empty string (""). This can not be longer than k_cbMaxGameServerMapName.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	void SetSpectatorServerName(const FString& SpectatorServerName) { SteamGameServer()->SetSpectatorServerName(TCHAR_TO_UTF8(*SpectatorServerName)); }
 
 	/**
@@ -366,7 +366,7 @@ public:
 	 * @param int32 AppID - The DLC App ID to check if the user owns it.
 	 * @return ESteamUserHasLicenseForAppResult
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|GameServer")
 	ESteamUserHasLicenseForAppResult UserHasLicenseForApp(FSteamID SteamID, int32 AppID) const { return (ESteamUserHasLicenseForAppResult)SteamGameServer()->UserHasLicenseForApp(SteamID, AppID); }
 
 	/**
@@ -375,37 +375,37 @@ public:
 	 *
 	 * @return bool - true if the master server wants this game server to update and restart; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|GameServer")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|GameServer")
 	bool WasRestartRequested() const { return SteamGameServer()->WasRestartRequested(); }
 
 	/** Delegates */
 
 	/** Sent when the game server attempted to be associated with a Steam Group. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnAssociateWithClanResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnAssociateWithClanResult"))
 	FOnAssociateWithClanResultDelegate m_OnAssociateWithClanResult;
 
 	/** Sent when the game server is checking if the new player is a good fit for the server based on the frenemy system. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnComputeNewPlayerCompatibilityResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnComputeNewPlayerCompatibilityResult"))
 	FOnComputeNewPlayerCompatibilityResultDelegate m_OnComputeNewPlayerCompatibilityResult;
 
 	/** A client has been approved to connect to this game server. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnGSClientApprove"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnGSClientApprove"))
 	FOnGSClientApproveDelegate m_OnGSClientApprove;
 
 	/** Called when a user has been denied to connection to this game server. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnGSClientDeny"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnGSClientDeny"))
 	FOnGSClientDenyDelegate m_OnGSClientDeny;
 
 	/** Called when we have received the group status of a user. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnGSClientGroupStatus"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnGSClientGroupStatus"))
 	FOnGSClientGroupStatusDelegate m_OnGSClientGroupStatus;
 
 	/** Called when the game server should kick the user. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnGSClientKick"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnGSClientKick"))
 	FOnGSClientKickDelegate m_OnGSClientKick;
 
 	/** Received when the game server requests to be displayed as secure (VAC protected) */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|GameServer", meta = (DisplayName = "OnGSPolicyResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|GameServer", meta = (DisplayName = "OnGSPolicyResponse"))
 	FOnGSPolicyResponseDelegate m_OnGSPolicyResponse;
 
 private:

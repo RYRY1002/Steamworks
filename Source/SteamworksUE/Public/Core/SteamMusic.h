@@ -29,7 +29,7 @@ public:
 	USteamMusic();
 	~USteamMusic();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Music", CompactNodeTitle = "SteamMusic"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Music", CompactNodeTitle = "SteamMusic"))
 	static USteamMusic* GetSteamMusic() { return USteamMusic::StaticClass()->GetDefaultObject<USteamMusic>(); }
 
 	/**
@@ -37,7 +37,7 @@ public:
 	 *
 	 * @return bool - true if it is enabled; otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Music")
 	bool BIsEnabled() const { return SteamMusic()->BIsEnabled(); }
 
 	/**
@@ -46,7 +46,7 @@ public:
 	 *
 	 * @return bool - true if a song is currently playing, paused, or queued up to play; otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Music")
 	bool BIsPlaying() const { return SteamMusic()->BIsPlaying(); }
 
 	/**
@@ -54,7 +54,7 @@ public:
 	 *
 	 * @return ESteamAudioPlaybackStatus
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Music")
 	ESteamAudioPlaybackStatus GetPlaybackStatus() const { return (ESteamAudioPlaybackStatus)SteamMusic()->GetPlaybackStatus(); }
 
 	/**
@@ -62,7 +62,7 @@ public:
 	 *
 	 * @return float - The volume is returned as a percentage between 0.0 and 1.0.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Music")
 	float GetVolume() const { return SteamMusic()->GetVolume(); }
 
 	/**
@@ -70,7 +70,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Music")
 	void Pause() { SteamMusic()->Pause(); }
 
 	/**
@@ -78,7 +78,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Music")
 	void Play() { SteamMusic()->Play(); }
 
 	/**
@@ -86,7 +86,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Music")
 	void PlayNext() { SteamMusic()->PlayNext(); }
 
 	/**
@@ -94,7 +94,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Music")
 	void PlayPrevious() { SteamMusic()->PlayPrevious(); }
 
 	/**
@@ -103,15 +103,15 @@ public:
 	 * @param float Volume - The volume percentage to set from 0.0 to 1.0.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Music")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Music")
 	void SetVolume(float Volume) { SteamMusic()->SetVolume(Volume); }
 
 	/** Delegates */
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Music", meta = (DisplayName = "OnPlaybackStatusHasChanged"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Music", meta = (DisplayName = "OnPlaybackStatusHasChanged"))
 	FOnPlaybackStatusHasChangedDelegate m_OnPlaybackStatusHasChanged;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Music", meta = (DisplayName = "OnVolumeHasChanged"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Music", meta = (DisplayName = "OnVolumeHasChanged"))
 	FOnVolumeHasChangedDelegate m_OnVolumeHasChanged;
 
 private:

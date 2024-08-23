@@ -50,7 +50,7 @@ public:
 	USteamHTMLSurface();
 	~USteamHTMLSurface();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam HTML Surface", CompactNodeTitle = "SteamHTMLSurface"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam HTML Surface", CompactNodeTitle = "SteamHTMLSurface"))
 	static USteamHTMLSurface* GetSteamHTMLSurface() { return USteamHTMLSurface::StaticClass()->GetDefaultObject<USteamHTMLSurface>(); }
 
 	/**
@@ -61,7 +61,7 @@ public:
 	 * @param const FString & Value - 	The header value to associate with the key.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void AddHeader(FHHTMLBrowser BrowserHandle, const FString& Key, const FString& Value) { SteamHTMLSurface()->AddHeader(BrowserHandle, TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
 	/**
@@ -73,7 +73,7 @@ public:
 	 * @param bool bAllowed - Allow or deny the navigation to the current start request.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void AllowStartRequest(FHHTMLBrowser BrowserHandle, bool bAllowed) { SteamHTMLSurface()->AllowStartRequest(BrowserHandle, bAllowed); }
 
 	/**
@@ -82,7 +82,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to copy the text from.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void CopyToClipboard(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->CopyToClipboard(BrowserHandle); }
 
 	/**
@@ -96,7 +96,7 @@ public:
 	 * @param const FString & UserCSS - This allows you to set a CSS style to every page displayed by this browser. Use NULL if you do not require this functionality.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a HTML_BrowserReady_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|HTMLSurface")
 	FSteamAPICall CreateBrowser(const FString& UserAgent, const FString& UserCSS) const { return SteamHTMLSurface()->CreateBrowser(TCHAR_TO_UTF8(*UserAgent), TCHAR_TO_UTF8(*UserCSS)); }
 
 	/**
@@ -106,7 +106,7 @@ public:
 	 * @param const FString & Script - The javascript script to run.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void ExecuteJavascript(FHHTMLBrowser BrowserHandle, const FString& Script) { SteamHTMLSurface()->ExecuteJavascript(BrowserHandle, TCHAR_TO_UTF8(*Script)); }
 
 	// #TODO FileLoadDialogResponse
@@ -123,7 +123,7 @@ public:
 	 * @param bool bReverse - Search from the bottom up?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void Find(FHHTMLBrowser BrowserHandle, const FString& SearchStr, bool bCurrentlyInFind, bool bReverse) { SteamHTMLSurface()->Find(BrowserHandle, TCHAR_TO_UTF8(*SearchStr), bCurrentlyInFind, bReverse); }
 
 	/**
@@ -135,7 +135,7 @@ public:
 	 * @param int32 y - The Y (height) position in pixels within the surface. (0, 0) is the top left corner.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void GetLinkAtPosition(FHHTMLBrowser BrowserHandle, int32 x, int32 y) { SteamHTMLSurface()->GetLinkAtPosition(BrowserHandle, x, y); }
 
 	/**
@@ -144,7 +144,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to navigate back on.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void GoBack(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->GoBack(BrowserHandle); }
 
 	/**
@@ -153,7 +153,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to navigate forward on.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void GoForward(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->GoForward(BrowserHandle); }
 
 	/**
@@ -163,7 +163,7 @@ public:
 	 *
 	 * @return bool - true if the API was successfully initialized; otherwise, false.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	bool Init() { return SteamHTMLSurface()->Init(); }
 
 	/**
@@ -174,7 +174,7 @@ public:
 	 * @param bool bResult - Set this to true to simulate pressing the "OK" button, otherwise false for "Cancel".
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void JSDialogResponse(FHHTMLBrowser BrowserHandle, bool bResult) { SteamHTMLSurface()->JSDialogResponse(BrowserHandle, bResult); }
 
 	/**
@@ -185,7 +185,7 @@ public:
 	 * @param ESteamHTMLKeyModifiers HTMLKeyModifiers - This should be set to a bitmask of the modifier keys that the user is currently pressing.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void KeyChar(FHHTMLBrowser BrowserHandle, int32 UnicodeChar, ESteamHTMLKeyModifiers HTMLKeyModifiers) { SteamHTMLSurface()->KeyChar(BrowserHandle, UnicodeChar, (ISteamHTMLSurface::EHTMLKeyModifiers)HTMLKeyModifiers); }
 
 	/**
@@ -196,7 +196,7 @@ public:
 	 * @param ESteamHTMLKeyModifiers HTMLKeyModifiers - This should be set to a bitmask of the modifier keys that the user is currently pressing.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void KeyDown(FHHTMLBrowser BrowserHandle, int32 NativeKeyCode, ESteamHTMLKeyModifiers HTMLKeyModifiers) { SteamHTMLSurface()->KeyDown(BrowserHandle, NativeKeyCode, (ISteamHTMLSurface::EHTMLKeyModifiers)HTMLKeyModifiers); }
 
 	/**
@@ -207,7 +207,7 @@ public:
 	 * @param ESteamHTMLKeyModifiers HTMLKeyModifiers - This should be set to a bitmask of the modifier keys that the user is currently pressing.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void KeyUp(FHHTMLBrowser BrowserHandle, int32 NativeKeyCode, ESteamHTMLKeyModifiers HTMLKeyModifiers) { SteamHTMLSurface()->KeyUp(BrowserHandle, NativeKeyCode, (ISteamHTMLSurface::EHTMLKeyModifiers)HTMLKeyModifiers); }
 
 	/**
@@ -221,7 +221,7 @@ public:
 	 * @param const FString & PostData - Optionally send a POST request with this data, set this to NULL to not send any data.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void LoadURL(FHHTMLBrowser BrowserHandle, const FString& URL, const FString& PostData) { SteamHTMLSurface()->LoadURL(BrowserHandle, TCHAR_TO_UTF8(*URL), TCHAR_TO_UTF8(*PostData)); }
 
 	/**
@@ -232,7 +232,7 @@ public:
 	 * @param ESteamHTMLMouseButton MouseButton - The mouse button which was double clicked.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void MouseDoubleClick(FHHTMLBrowser BrowserHandle, ESteamHTMLMouseButton MouseButton) { SteamHTMLSurface()->MouseDoubleClick(BrowserHandle, (ISteamHTMLSurface::EHTMLMouseButton)MouseButton); }
 
 	/**
@@ -243,7 +243,7 @@ public:
 	 * @param ESteamHTMLMouseButton MouseButton - 	The mouse button which was pressed.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void MouseDown(FHHTMLBrowser BrowserHandle, ESteamHTMLMouseButton MouseButton) { SteamHTMLSurface()->MouseDown(BrowserHandle, (ISteamHTMLSurface::EHTMLMouseButton)MouseButton); }
 
 	/**
@@ -254,7 +254,7 @@ public:
 	 * @param int32 y - Y (height) coordinate in pixels relative to the position of the HTML surface. (0, 0) is the top left.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void MouseMove(FHHTMLBrowser BrowserHandle, int32 x, int32 y) { SteamHTMLSurface()->MouseMove(BrowserHandle, x, y); }
 
 	/**
@@ -265,7 +265,7 @@ public:
 	 * @param ESteamHTMLMouseButton MouseButton - The mouse button which was released.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void MouseUp(FHHTMLBrowser BrowserHandle, ESteamHTMLMouseButton MouseButton) { SteamHTMLSurface()->MouseUp(BrowserHandle, (ISteamHTMLSurface::EHTMLMouseButton)MouseButton); }
 
 	/**
@@ -275,7 +275,7 @@ public:
 	 * @param int32 Delta - The number of pixels to scroll.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void MouseWheel(FHHTMLBrowser BrowserHandle, int32 Delta) { SteamHTMLSurface()->MouseWheel(BrowserHandle, Delta); }
 
 	/**
@@ -284,7 +284,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to paste into.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void PasteFromClipboard(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->PasteFromClipboard(BrowserHandle); }
 
 	/**
@@ -294,7 +294,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to reload.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void Reload(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->Reload(BrowserHandle); }
 
 	/**
@@ -304,7 +304,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The browser handle to release.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void RemoveBrowser(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->RemoveBrowser(BrowserHandle); }
 
 	/**
@@ -316,7 +316,7 @@ public:
 	 * @param bool bBackgroundMode - Toggle background mode on or off.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetBackgroundMode(FHHTMLBrowser BrowserHandle, bool bBackgroundMode) { SteamHTMLSurface()->SetBackgroundMode(BrowserHandle, bBackgroundMode); }
 
 	/**
@@ -331,7 +331,7 @@ public:
 	 * @param bool bHTTPOnly - Sets the 'HttpOnly' attribute.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetCookie(const FString& Hostname, const FString& Key, const FString& Value, const FString& Path = "/", int32 Expires = 0, bool bSecure = false, bool bHTTPOnly = false);
 
 	/**
@@ -342,7 +342,7 @@ public:
 	 * @param int32 AbsolutePixelScroll - The absolute pixel position to scroll to. 0 is the left and HTML_HorizontalScroll_t.unScrollMax is the right side.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetHorizontalScroll(FHHTMLBrowser BrowserHandle, int32 AbsolutePixelScroll) { SteamHTMLSurface()->SetHorizontalScroll(BrowserHandle, AbsolutePixelScroll); }
 
 	/**
@@ -352,7 +352,7 @@ public:
 	 * @param bool bHasKeyFocus - Turn key focus on or off?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetKeyFocus(FHHTMLBrowser BrowserHandle, bool bHasKeyFocus) { SteamHTMLSurface()->SetKeyFocus(BrowserHandle, bHasKeyFocus); }
 
 	/**
@@ -365,7 +365,7 @@ public:
 	 * @param int32 PointY - The Y point in pixels to zoom around. Use 0 if you don't care.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetPageScaleFactor(FHHTMLBrowser BrowserHandle, float Zoom, int32 PointX, int32 PointY) { SteamHTMLSurface()->SetPageScaleFactor(BrowserHandle, Zoom, PointX, PointY); }
 
 	/**
@@ -376,7 +376,7 @@ public:
 	 * @param int32 Height - The height of the surface in pixels.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetSize(FHHTMLBrowser BrowserHandle, int32 Width, int32 Height) { SteamHTMLSurface()->SetSize(BrowserHandle, Width, Height); }
 
 	/**
@@ -387,7 +387,7 @@ public:
 	 * @param int32 AbsolutePixelScroll - The absolute pixel position to scroll to. 0 is the top and HTML_VerticalScroll_t.unScrollMax is the bottom.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void SetVerticalScroll(FHHTMLBrowser BrowserHandle, int32 AbsolutePixelScroll) { SteamHTMLSurface()->SetVerticalScroll(BrowserHandle, AbsolutePixelScroll); }
 
 	/**
@@ -396,7 +396,7 @@ public:
 	 *
 	 * @return bool - This function currently always returns true.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	bool Shutdown() { return SteamHTMLSurface()->Shutdown(); }
 
 	/**
@@ -405,7 +405,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to stop the find results.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void StopFind(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->StopFind(BrowserHandle); }
 
 	/**
@@ -414,7 +414,7 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to stop loading.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void StopLoad(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->StopLoad(BrowserHandle); }
 
 	/**
@@ -423,100 +423,100 @@ public:
 	 * @param FHHTMLBrowser BrowserHandle - The handle of the surface to view its current pages source.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|HTMLSurface")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|HTMLSurface")
 	void ViewSource(FHHTMLBrowser BrowserHandle) { SteamHTMLSurface()->ViewSource(BrowserHandle); }
 
 	/** Delegates */
 
 	/** A new browser was created and is ready for use. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLBrowserReady"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLBrowserReady"))
 	FOnHTMLBrowserReadyDelegate m_OnHTMLBrowserReady;
 
 	/** Called when page history status has changed the ability to go backwards and forward. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLCanGoBackAndForward"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLCanGoBackAndForward"))
 	FOnHTMLCanGoBackAndForwardDelegate m_OnHTMLCanGoBackAndForward;
 
 	/** Called when the current page in a browser gets a new title. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLChangedTitle"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLChangedTitle"))
 	FOnHTMLChangedTitleDelegate m_OnHTMLChangedTitle;
 
 	/** Called when the browser has been requested to close due to user interaction; usually because of a javascript window.close() call. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLCloseBrowser"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLCloseBrowser"))
 	FOnHTMLCloseBrowserDelegate m_OnHTMLCloseBrowser;
 
 	/** Called when a browser surface has received a file open dialog from a <input type="file"> click or similar, you must call FileLoadDialogResponse with the file(s) the user selected. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLFileOpenDialog"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLFileOpenDialog"))
 	FOnHTMLFileOpenDialogDelegate m_OnHTMLFileOpenDialog;
 
 	/** Called when a browser has finished loading a page. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLFinishedRequest"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLFinishedRequest"))
 	FOnHTMLFinishedRequestDelegate m_OnHTMLFinishedRequest;
 
 	/** Called when a a browser wants to hide a tooltip. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLHideToolTip"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLHideToolTip"))
 	FOnHTMLHideToolTipDelegate m_OnHTMLHideToolTip;
 
 	/** Provides details on the visibility and size of the horizontal scrollbar. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLHorizontalScroll"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLHorizontalScroll"))
 	FOnHTMLHorizontalScrollDelegate m_OnHTMLHorizontalScroll;
 
 	/** Called when the browser wants to display a Javascript alert dialog, call JSDialogResponse when the user dismisses this dialog; or right away to ignore it. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLJSAlert"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLJSAlert"))
 	FOnHTMLJSAlertDelegate m_OnHTMLJSAlert;
 
 	/** Called when the browser wants to display a Javascript confirmation dialog, call JSDialogResponse when the user dismisses this dialog; or right away to ignore it. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLJSConfirm"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLJSConfirm"))
 	FOnHTMLJSConfirmDelegate m_OnHTMLJSConfirm;
 
 	/** Result of a call to GetLinkAtPosition */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLLinkAtPosition"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLLinkAtPosition"))
 	FOnHTMLLinkAtPositionDelegate m_OnHTMLLinkAtPosition;
 
 	/** Called when a browser surface has a pending paint. This is where you get the actual image data to render to the screen. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLNeedsPaint"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLNeedsPaint"))
 	FOnHTMLNeedsPaintDelegate m_OnHTMLNeedsPaint;
 
 	/** A browser has created a new HTML window. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLNewWindow"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLNewWindow"))
 	FOnHTMLNewWindowDelegate m_OnHTMLNewWindow;
 
 	/** The browser has requested to load a url in a new tab. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLOpenLinkInNewTab"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLOpenLinkInNewTab"))
 	FOnHTMLOpenLinkInNewTabDelegate m_OnHTMLOpenLinkInNewTab;
 
 	/** Results from a search. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLSearchResults"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLSearchResults"))
 	FOnHTMLSearchResultsDelegate m_OnHTMLSearchResults;
 
 	/** Called when a browser wants to change the mouse cursor. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLSetCursor"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLSetCursor"))
 	FOnHTMLSetCursorDelegate m_OnHTMLSetCursor;
 
 	/** Called when a browser wants to display a tooltip. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLShowToolTip"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLShowToolTip"))
 	FOnHTMLShowToolTipDelegate m_OnHTMLShowToolTip;
 
 	/**
 	 * Called when a browser wants to navigate to a new page.
 	 * NOTE: You MUST call AllowStartRequest in response to this callback!
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLStartRequest"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLStartRequest"))
 	FOnHTMLStartRequestDelegate m_OnHTMLStartRequest;
 
 	/** Called when a browser wants you to display an informational message. This is most commonly used when you hover over links. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLStatusText"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLStatusText"))
 	FOnHTMLStatusTextDelegate m_OnHTMLStatusText;
 
 	/** Called when the text of an existing tooltip has been updated. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLUpdateToolTip"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLUpdateToolTip"))
 	FOnHTMLUpdateToolTipDelegate m_OnHTMLUpdateToolTip;
 
 	/** Called when the browser is navigating to a new url */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLURLChanged"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLURLChanged"))
 	FOnHTMLURLChangedDelegate m_OnHTMLURLChanged;
 
 	/** Provides details on the visibility and size of the vertical scrollbar. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnHTMLVerticalScroll"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnHTMLVerticalScroll"))
 	FOnHTMLVerticalScrollDelegate m_OnHTMLVerticalScroll;
 
 private:

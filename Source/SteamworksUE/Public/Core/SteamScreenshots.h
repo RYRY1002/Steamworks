@@ -30,7 +30,7 @@ public:
 	USteamScreenshots();
 	~USteamScreenshots();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Screenshots", CompactNodeTitle = "SteamScreenshots"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Screenshots", CompactNodeTitle = "SteamScreenshots"))
 	static USteamScreenshots* GetSteamScreenshots() { return USteamScreenshots::StaticClass()->GetDefaultObject<USteamScreenshots>(); }
 
 	/**
@@ -43,7 +43,7 @@ public:
 	 * @param const FIntPoint & Size - The size of the screenshot.
 	 * @return FScreenshotHandle - The handle to this screenshot that is valid for the duration of the game process and can be used to apply tags. Returns INVALID_SCREENSHOT_HANDLE if the file could not be saved.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Screenshots")
 	FScreenshotHandle AddScreenshotToLibrary(const FString& FileName, const FString& ThumbnailFileName, const FIntPoint& Size) const;
 
 	/**
@@ -56,7 +56,7 @@ public:
 	 * @param const FString & VRFileName - The absolute file path to the VR screenshot, this should be the same type of screenshot specified in eType.
 	 * @return FScreenshotHandle - The handle to this screenshot that is valid for the duration of the game process and can be used to apply tags. Returns INVALID_SCREENSHOT_HANDLE if the file could not be saved.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Screenshots")
 	FScreenshotHandle AddVRScreenshotToLibrary(ESteamVRScreenshotType Type, const FString& FileName, const FString& VRFileName) const;
 
 	/**
@@ -68,7 +68,7 @@ public:
 	 * @param bool bHook - Enable (true) or disable (false) hooking?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Screenshots")
 	void HookScreenshots(bool bHook) { SteamScreenshots()->HookScreenshots(bHook); }
 
 	/**
@@ -76,7 +76,7 @@ public:
 	 *
 	 * @return bool - true if the game is hooking screenshots and is expected to handle them; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Screenshots")
 	bool IsScreenshotsHooked() const { return SteamScreenshots()->IsScreenshotsHooked(); }
 
 	/**
@@ -87,7 +87,7 @@ public:
 	 * @param const FString & Location - The location in the game where this screenshot was taken. This can not be longer than k_cubUFSTagValueMax.
 	 * @return bool - true if the location was successfully added to the screenshot. false if hScreenshot was invalid, or pchLocation is invalid or too long.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Screenshots")
 	bool SetLocation(FScreenshotHandle ScreenshotHandle, const FString& Location) const { return SteamScreenshots()->SetLocation(ScreenshotHandle, TCHAR_TO_UTF8(*Location)); }
 
 	/**
@@ -100,7 +100,7 @@ public:
 	 * @param FPublishedFileId PublishedFileID - The workshop item ID that is in the screenshot.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Screenshots")
 	bool TagPublishedFile(FScreenshotHandle ScreenshotHandle, FPublishedFileId PublishedFileID) const { return SteamScreenshots()->TagPublishedFile(ScreenshotHandle, PublishedFileID); }
 
 	/**
@@ -113,7 +113,7 @@ public:
 	 * @param FSteamID SteamID - The Steam ID of a user that is in the screenshot.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Screenshots")
 	bool TagUser(FScreenshotHandle ScreenshotHandle, FSteamID SteamID) const { return SteamScreenshots()->TagUser(ScreenshotHandle, SteamID); }
 
 	/**
@@ -123,7 +123,7 @@ public:
 	 * Only causes ScreenshotRequested_t if hooking has been enabled with HookScreenshots. Otherwise ScreenshotReady_t will be called when the screenshot has been saved and added to the library.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Screenshots")
 	void TriggerScreenshot() { SteamScreenshots()->TriggerScreenshot(); }
 
 	/**
@@ -134,17 +134,17 @@ public:
 	 * @param UTexture2D * Image - The image to write.
 	 * @return FScreenshotHandle - The handle to this screenshot that is valid for the duration of the game process and can be used to apply tags. Returns INVALID_SCREENSHOT_HANDLE if the file could not be saved.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Screenshots")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Screenshots")
 	FScreenshotHandle WriteScreenshot(UTexture2D* Image) const;
 
 	/** Delegates */
 
 	/** A screenshot successfully written or otherwise added to the library and can now be tagged. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Screenshots", meta = (DisplayName = "OnScreenshotReady"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Screenshots", meta = (DisplayName = "OnScreenshotReady"))
 	FOnScreenshotReadyDelegate m_OnScreenshotReady;
 
 	/** A screenshot has been requested by the user from the Steam screenshot hotkey. This will only be called if HookScreenshots has been enabled, in which case Steam will not take the screenshot itself. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Screenshots", meta = (DisplayName = "OnScreenshotRequested"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Screenshots", meta = (DisplayName = "OnScreenshotRequested"))
 	FOnScreenshotRequestedDelegate m_OnScreenshotRequested;
 
 private:

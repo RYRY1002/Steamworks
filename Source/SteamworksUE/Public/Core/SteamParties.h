@@ -43,7 +43,7 @@ public:
 	USteamParties();
 	~USteamParties();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Parties", CompactNodeTitle = "SteamParties"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Parties", CompactNodeTitle = "SteamParties"))
 	static USteamParties* GetSteamParties() { return USteamParties::StaticClass()->GetDefaultObject<USteamParties>(); }
 
 	/**
@@ -53,7 +53,7 @@ public:
 	 * @param int32 & NumLocations
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Parties")
 	bool GetNumAvailableBeaconLocations(int32& NumLocations) const { return SteamParties()->GetNumAvailableBeaconLocations((uint32*)&NumLocations); }
 
 	/**
@@ -62,7 +62,7 @@ public:
 	 * @param TArray<FSteamPartyBeaconLocation> & LocationList - Output list of available beacon locations.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	bool GetAvailableBeaconLocations(TArray<FSteamPartyBeaconLocation>& LocationList) const;
 
 	/**
@@ -75,7 +75,7 @@ public:
 	 * @param const FString & Metadata - 	Additional game metadata that can be set on the beacon, and is exposed via ISteamParties::GetBeaconDetails.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a CreateBeaconCallback_t call result. Returns k_uAPICallInvalid if the process already has an active beacon, or if the location information is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	FSteamAPICall CreateBeacon(int32 OpenSlots, FSteamPartyBeaconLocation& BeaconLocation, const FString& ConnectString, const FString& Metadata) const;
 
 	/**
@@ -86,7 +86,7 @@ public:
 	 * @param FSteamID SteamIDUser - 	SteamID of the user joining your party.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Parties")
 	void OnReservationCompleted(FPartyBeaconID BeaconID, FSteamID SteamIDUser) { SteamParties()->OnReservationCompleted(BeaconID, SteamIDUser); }
 
 	/**
@@ -98,7 +98,7 @@ public:
 	 * @param int32 OpenSlots - The new number of open slots in your party.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a ChangeNumOpenSlotsCallback_t call result. Returns k_uAPICallInvalid if the beacon ID is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	FSteamAPICall ChangeNumOpenSlots(FPartyBeaconID BeaconID, int32 OpenSlots) const { return SteamParties()->ChangeNumOpenSlots(BeaconID, OpenSlots); }
 
 	/**
@@ -109,7 +109,7 @@ public:
 	 * @param FPartyBeaconID BeaconID - Beacon ID to be destroyed.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	bool DestroyBeacon(FPartyBeaconID BeaconID) const { return SteamParties()->DestroyBeacon(BeaconID); }
 
 	/**
@@ -117,7 +117,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	int32 GetNumActiveBeacons() const { return SteamParties()->GetNumActiveBeacons(); }
 
 	/**
@@ -127,7 +127,7 @@ public:
 	 * @param int32 Index - Index of Beacon.
 	 * @return FPartyBeaconID - DESCHERE
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Parties")
 	FPartyBeaconID GetBeaconByIndex(int32 Index) const { return SteamParties()->GetBeaconByIndex(Index); }
 
 	/**
@@ -140,7 +140,7 @@ public:
 	 * @param FString & Metadata - Buffer to receive any additional metadata the game has set on this beacon (e.g. game mode). Will be NULL terminated on success
 	 * @return bool - DESCHERE
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	bool GetBeaconDetails(FPartyBeaconID BeaconID, FSteamID& SteamIDBeaconOwner, FSteamPartyBeaconLocation& BeaconLocation, FString& Metadata) const;
 
 	/**
@@ -149,7 +149,7 @@ public:
 	 * @param FPartyBeaconID BeaconID - Beacon ID for the party you wish to join.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a JoinParty_t call result. Returns k_uAPICallInvalid if the beacon ID is invalid.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	FSteamAPICall JoinParty(FPartyBeaconID BeaconID) const { return SteamParties()->JoinParty(BeaconID); }
 
 	/**
@@ -160,36 +160,36 @@ public:
 	 * @param FString & DataString - 	Output buffer for location data string. Will be NULL-terminated on success.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Parties")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Parties")
 	bool GetBeaconLocationData(FSteamPartyBeaconLocation BeaconLocation, ESteamPartyBeaconLocationData_ LocationData, FString& DataString) const;
 
 	/** Delegates */
 
 	/** This callback is used as a call response for ISteamParties::JoinParty. On success, you will have reserved a slot in the beacon-owner's party, and should use m_rgchConnectString to connect to their game and complete the process. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnJoinParty"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Parties", meta = (DisplayName = "OnJoinParty"))
 	FOnJoinPartyDelegate m_OnJoinParty;
 
 	/**
 	 * This callback is used as a call response for ISteamParties::CreateBeacon. If successful, your beacon has been posted in the desired location and you may start receiving ISteamParties::ReservationNotificationCallback_t
 	 * callbacks for users following the beacon.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnCreateBeacon"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Parties", meta = (DisplayName = "OnCreateBeacon"))
 	FOnCreateBeaconDelegate m_OnCreateBeacon;
 
 	/** After creating a beacon, when a user "follows" that beacon Steam will send you this callback to know that you should be prepared for the user to join your game. When they do join, be sure to call ISteamParties::OnReservationCompleted to let Steam know. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnReservationNotification"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Parties", meta = (DisplayName = "OnReservationNotification"))
 	FOnReservationNotificationDelegate m_OnReservationNotification;
 
 	/** Call result for ISteamParties::ChangeNumOpenSlots.  */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnChangeNumOpenSlots"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Parties", meta = (DisplayName = "OnChangeNumOpenSlots"))
 	FOnChangeNumOpenSlotsDelegate m_OnChangeNumOpenSlots;
 
 	/** Notification that the list of available locations for posting a beacon has been updated.  */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnAvailableBeaconLocationsUpdated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Parties", meta = (DisplayName = "OnAvailableBeaconLocationsUpdated"))
 	FOnAvailableBeaconLocationsUpdatedDelegate m_OnAvailableBeaconLocationsUpdated;
 
 	/** Notification that the list of active beacons visible to the current user has changed.  */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Parties", meta = (DisplayName = "OnActiveBeaconsUpdated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Parties", meta = (DisplayName = "OnActiveBeaconsUpdated"))
 	FOnActiveBeaconsUpdatedDelegate m_OnActiveBeaconsUpdated;
 
 private:

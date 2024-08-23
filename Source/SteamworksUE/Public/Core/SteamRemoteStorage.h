@@ -34,7 +34,7 @@ public:
 	USteamRemoteStorage();
 	~USteamRemoteStorage();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Remote Storage", CompactNodeTitle = "SteamRemoteStorage"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Remote Storage", CompactNodeTitle = "SteamRemoteStorage"))
 	static USteamRemoteStorage* GetSteamRemoteStorage() { return USteamRemoteStorage::StaticClass()->GetDefaultObject<USteamRemoteStorage>(); }
 
 	/**
@@ -45,7 +45,7 @@ public:
 	 * @param const FString & FileName - The name of the file that will be deleted.
 	 * @return bool - true if the file exists and has been successfully deleted; otherwise, false if the file did not exist.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool FileDelete(const FString& FileName) const { return SteamRemoteStorage()->FileDelete(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -54,7 +54,7 @@ public:
 	 * @param const FString & FileName - The name of the file.
 	 * @return bool - true if the file exists; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	bool FileExists(const FString& FileName) const { return SteamRemoteStorage()->FileExists(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -68,7 +68,7 @@ public:
 	 * @param const FString & FileName - The name of the file that will be forgotten.
 	 * @return bool - true if the file exists and has been successfully forgotten; otherwise, false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool FileForget(const FString& FileName) const { return SteamRemoteStorage()->FileForget(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -77,7 +77,7 @@ public:
 	 * @param const FString & FileName - The name of the file.
 	 * @return bool - true if the file exists and the file is persisted in the Steam Cloud. false if FileForget was called on it and is only available locally.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	bool FilePersisted(const FString& FileName) const { return SteamRemoteStorage()->FilePersisted(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -90,7 +90,7 @@ public:
 	 * @param int32 DataToRead - The amount of bytes to read. Generally obtained from GetFileSize or GetFileTimestamp.
 	 * @return int32 - The number of bytes read. Returns 0 if the file doesn't exist or the read fails.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	int32 FileRead(const FString& FileName, TArray<uint8>& Data, int32 DataToRead) const;
 
 	// #TODO: FileReadAsync
@@ -102,7 +102,7 @@ public:
 	 * @param const FString & FileName - The file
 	 * @return FSteamAPICall
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	FSteamAPICall FileShare(const FString& FileName) const { return SteamRemoteStorage()->FileShare(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -121,7 +121,7 @@ public:
 	 * The current user's Steam Cloud storage quota has been exceeded. They may have run out of space, or have too many files.
 	 * Steam could not write to the disk, the location might be read-only.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool FileWrite(const FString& FileName, const TArray<uint8>& Data) const { return SteamRemoteStorage()->FileWrite(TCHAR_TO_UTF8(*FileName), Data.GetData(), Data.Num()); }
 
 	// #TODO: FileWriteAsync
@@ -132,7 +132,7 @@ public:
 	 * @param FUGCFileWriteStreamHandle WriteHandle - The file write stream to cancel.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool FileWriteStreamCancel(FUGCFileWriteStreamHandle WriteHandle) const { return SteamRemoteStorage()->FileWriteStreamCancel(WriteHandle); }
 
 	/**
@@ -141,7 +141,7 @@ public:
 	 * @param FUGCFileWriteStreamHandle WriteHandle - The file write stream to close.
 	 * @return bool - true if the file write stream was successfully closed, the file has been committed to the disk. false if writeHandle is not a valid file write stream.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool FileWriteStreamClose(FUGCFileWriteStreamHandle WriteHandle) const { return SteamRemoteStorage()->FileWriteStreamClose(WriteHandle); }
 
 	/**
@@ -153,7 +153,7 @@ public:
 	 * You tried to write to an invalid path or filename. Because Steam Cloud is cross platform the files need to have valid names on all supported OSes and file systems. See Microsoft's documentation on Naming Files, Paths, and Namespaces.
 	 * The current user's Steam Cloud storage quota has been exceeded. They may have run out of space, or have too many files.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	FUGCFileWriteStreamHandle FileWriteStreamOpen(const FString& FileName) const { return SteamRemoteStorage()->FileWriteStreamOpen(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -164,13 +164,13 @@ public:
 	 * @return bool - true if the data was successfully written to the file write stream.
 	 * false if writeHandle is not a valid file write stream, cubData is negative or larger than k_unMaxCloudFileChunkSize, or the current user's Steam Cloud storage quota has been exceeded. They may have run out of space, or have too many files.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool FileWriteStreamWriteChunk(FUGCFileWriteStreamHandle WriteHandle, const TArray<uint8>& Data) const { return SteamRemoteStorage()->FileWriteStreamWriteChunk(WriteHandle, Data.GetData(), Data.Num()); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	int32 GetCachedUGCCount() const { return SteamRemoteStorage()->GetCachedUGCCount(); }
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	FUGCHandle GetCachedUGCHandle(int32 CachedContent) const { return SteamRemoteStorage()->GetCachedUGCHandle(CachedContent); }
 
 	/**
@@ -178,7 +178,7 @@ public:
 	 *
 	 * @return int32 - The number of files present for the current user, including files in subfolders.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	int32 GetFileCount() const { return SteamRemoteStorage()->GetFileCount(); }
 
 	/**
@@ -189,7 +189,7 @@ public:
 	 * @param int32 & FileSizeInBytes - Returns the file size in bytes.
 	 * @return FString - The name of the file at the specified index, if it exists. Returns an empty string ("") if the file doesn't exist.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	FString GetFileNameAndSize(int32 FileIndex, int32& FileSizeInBytes) const { return UTF8_TO_TCHAR(SteamRemoteStorage()->GetFileNameAndSize(FileIndex, &FileSizeInBytes)); }
 
 	/**
@@ -198,7 +198,7 @@ public:
 	 * @param const FString & FileName - The name of the file.
 	 * @return int32 - The size of the file in bytes. Returns0 if the file does not exist.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	int32 GetFileSize(const FString& FileName) const { return SteamRemoteStorage()->GetFileSize(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -207,7 +207,7 @@ public:
 	 * @param const FString & FileName - The name of the file.
 	 * @return int64 - The last modified timestamp in Unix epoch format (seconds since Jan 1st 1970).
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	int64 GetFileTimestamp(const FString& FileName) const { return SteamRemoteStorage()->GetFileTimestamp(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -217,7 +217,7 @@ public:
 	 * @param int64 & AvailableBytes - Returns the number of bytes available.
 	 * @return bool - This function always returns true.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool GetQuota(int64& TotalBytes, int64& AvailableBytes) const;
 
 	/**
@@ -226,13 +226,13 @@ public:
 	 * @param const FString & FileName - The name of the file.
 	 * @return ESteamRemoteStoragePlatform - Bitfield containing the platforms that the file was set to with SetSyncPlatforms.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	ESteamRemoteStoragePlatform GetSyncPlatforms(const FString& FileName) const { return (ESteamRemoteStoragePlatform)SteamRemoteStorage()->GetSyncPlatforms(TCHAR_TO_UTF8(*FileName)); }
 
 	// #NOTE: No docs for this method currently
 	// #TODO: GetUGCDetails
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	bool GetUGCDownloadProgress(FUGCHandle ContentHandle, int32& BytesDownloaded, int32& BytesExpected) const { return SteamRemoteStorage()->GetUGCDownloadProgress(ContentHandle, &BytesDownloaded, &BytesExpected); }
 
 	/**
@@ -241,7 +241,7 @@ public:
 	 *
 	 * @return bool - true if Steam Cloud is enabled for this account; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	bool IsCloudEnabledForAccount() const { return SteamRemoteStorage()->IsCloudEnabledForAccount(); }
 
 	/**
@@ -251,7 +251,7 @@ public:
 	 *
 	 * @return bool - true if Steam Cloud is enabled for this app; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemoteStorage")
 	bool IsCloudEnabledForApp() const { return SteamRemoteStorage()->IsCloudEnabledForApp(); }
 
 	/**
@@ -261,7 +261,7 @@ public:
 	 * @param bool bEnabled - Enable (true) or disable (false) the Steam Cloud for this application?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|RemoteStorage")
 	void SetCloudEnabledForApp(bool bEnabled) const { SteamRemoteStorage()->SetCloudEnabledForApp(bEnabled); }
 
 	/**
@@ -273,7 +273,7 @@ public:
 	 * @param ESteamRemoteStoragePlatform RemoteStoragePlatform - 	The platforms that the file will be syncronized to.
 	 * @return bool - true if the file exists, otherwise false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	bool SetSyncPlatforms(const FString& FileName, ESteamRemoteStoragePlatform RemoteStoragePlatform) const { return SteamRemoteStorage()->SetSyncPlatforms(TCHAR_TO_UTF8(*FileName), (ERemoteStoragePlatform)RemoteStoragePlatform); }
 
 	/**
@@ -283,7 +283,7 @@ public:
 	 * @param int32 Priority
 	 * @return FSteamAPICall
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	FSteamAPICall UGCDownload(FUGCHandle ContentHandle, int32 Priority) const { return SteamRemoteStorage()->UGCDownload(ContentHandle, Priority); }
 
 	/**
@@ -294,7 +294,7 @@ public:
 	 * @param int32 Priority
 	 * @return FSteamAPICall
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemoteStorage")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemoteStorage")
 	FSteamAPICall UGCDownloadToLocation(FUGCHandle ContentHandle, const FString& Location, int32 Priority) const { return SteamRemoteStorage()->UGCDownloadToLocation(ContentHandle, TCHAR_TO_UTF8(*Location), Priority); }
 
 	// #NOTE: No docs for this method currently
@@ -302,32 +302,32 @@ public:
 
 	/** Delegates */
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStorageDownloadUGCResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStorageDownloadUGCResult"))
 	FOnRemoteStorageDownloadUGCResultDelegate m_OnRemoteStorageDownloadUGCResult;
 
 	/** Response when reading a file asyncrounously with FileReadAsync. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStorageFileReadAsyncComplete"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStorageFileReadAsyncComplete"))
 	FOnRemoteStorageFileReadAsyncCompleteDelegate m_OnRemoteStorageFileReadAsyncComplete;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStorageFileShareResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStorageFileShareResult"))
 	FOnRemoteStorageFileShareResultDelegate m_OnRemoteStorageFileShareResult;
 
 	/** Response when writing a file asyncrounously with FileWriteAsync. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStorageFileWriteAsyncComplete"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStorageFileWriteAsyncComplete"))
 	FOnRemoteStorageFileWriteAsyncCompleteDelegate m_OnRemoteStorageFileWriteAsyncComplete;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStoragePublishedFileSubscribed"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStoragePublishedFileSubscribed"))
 	FOnRemoteStoragePublishedFileSubscribedDelegate m_OnRemoteStoragePublishedFileSubscribed;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStoragePublishedFileUnsubscribed"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStoragePublishedFileUnsubscribed"))
 	FOnRemoteStoragePublishedFileUnsubscribedDelegate m_OnRemoteStoragePublishedFileUnsubscribed;
 
 	/** Called when the user has subscribed to a piece of UGC. Result from ISteamUGC::SubscribeItem. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStorageSubscribePublishedFileResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStorageSubscribePublishedFileResult"))
 	FOnRemoteStorageSubscribePublishedFileResultDelegate m_OnRemoteStorageSubscribePublishedFileResult;
 
 	/** Called when the user has unsubscribed from a piece of UGC. Result from ISteamUGC::UnsubscribeItem. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemoteStorage", meta = (DisplayName = "OnRemoteStorageUnsubscribePublishedFileResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemoteStorage", meta = (DisplayName = "OnRemoteStorageUnsubscribePublishedFileResult"))
 	FOnRemoteStorageUnsubscribePublishedFileResultDelegate m_OnRemoteStorageUnsubscribePublishedFileResult;
 
 private:

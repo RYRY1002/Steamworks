@@ -46,7 +46,7 @@ public:
 	USteamFriends();
 	~USteamFriends();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Friends", CompactNodeTitle = "SteamFriends"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Friends", CompactNodeTitle = "SteamFriends"))
 	static USteamFriends* GetSteamFriends() { return USteamFriends::StaticClass()->GetDefaultObject<USteamFriends>(); }
 
 	/**
@@ -56,7 +56,7 @@ public:
 	 * @param const ESteamOverlayTypes OverlayType - The dialog to open.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void ActivateGameOverlay(const ESteamGameOverlayTypes OverlayType);
 
 	/**
@@ -65,7 +65,7 @@ public:
 	 * @param FSteamID SteamIDLobby - The Steam ID of the lobby that selected users will be invited to.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void ActivateGameOverlayInviteDialog(FSteamID SteamIDLobby) { SteamFriends()->ActivateGameOverlayInviteDialog(SteamIDLobby); }
 
 	/**
@@ -76,7 +76,7 @@ public:
 	 * @param ESteamOverlayToStoreFlag StoreFlag - 	Flags to modify the behavior when the page opens.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void ActivateGameOverlayToStore(int32 AppID, ESteamOverlayToStoreFlag StoreFlag) { SteamFriends()->ActivateGameOverlayToStore(AppID, (EOverlayToStoreFlag)StoreFlag); }
 
 	/**
@@ -86,7 +86,7 @@ public:
 	 * @param FSteamID SteamID - The Steam ID of the context to open this dialog to.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void ActivateGameOverlayToUser(const ESteamGameUserOverlayTypes OverlayType, FSteamID SteamID);
 
 	/**
@@ -96,7 +96,7 @@ public:
 	 * @param bool bShowModal
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void ActivateGameOverlayToWebPage(const FString& URL, bool bShowModal = false) { SteamFriends()->ActivateGameOverlayToWebPage(TCHAR_TO_UTF8(*URL), bShowModal ? k_EActivateGameOverlayToWebPageMode_Modal : k_EActivateGameOverlayToWebPageMode_Default); }
 
 	/**
@@ -104,7 +104,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void ClearRichPresence() { SteamFriends()->ClearRichPresence(); }
 
 	/**
@@ -113,7 +113,7 @@ public:
 	 * @param FSteamID SteamIDClanChat - The Steam ID of the Steam group chat room to close.
 	 * @return bool - true if the user successfully left the Steam group chat room. false if the user is not in the provided Steam group chat room.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool CloseClanChatWindowInSteam(FSteamID SteamIDClanChat) const { return SteamFriends()->CloseClanChatWindowInSteam(SteamIDClanChat); }
 
 	/**
@@ -124,10 +124,10 @@ public:
 	 * @param int32 ClansToRequest - This MUST be the number of groups in SteamClanIDs.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a DownloadClanActivityCountsResult_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamAPICall DownloadClanActivityCounts(TArray<FSteamID>& SteamClanIDs, int32 ClansToRequest = 1) const;
 
-	/*UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Friends")
+	/*UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Friends")
 	TArray<FSteamID> EnumerateFollowingList() const;*/
 
 	/**
@@ -138,7 +138,7 @@ public:
 	 * @param int32 UserIndex - An index between 0 and GetClanChatMemberCount.
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetChatMemberByIndex(FSteamID SteamIDClan, int32 UserIndex) const { return SteamFriends()->GetChatMemberByIndex(SteamIDClan, UserIndex).ConvertToUint64(); }
 
 	/**
@@ -151,7 +151,7 @@ public:
 	 * @param int32 & Chatting - 	Returns the number of members in the group chat room.
 	 * @return bool - true if the data was successfully returned. false if the provided Steam ID is invalid or the local client does not have info about the Steam group and sets all the other parameters to 0.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool GetClanActivityCounts(FSteamID SteamIDClan, int32& Online, int32& InGame, int32& Chatting) { return SteamFriends()->GetClanActivityCounts(SteamIDClan, &Online, &InGame, &Chatting); }
 
 	/**
@@ -160,7 +160,7 @@ public:
 	 * @param int32 ClanIndex - An index between 0 and GetClanCount.
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetClanByIndex(int32 ClanIndex) const { return SteamFriends()->GetClanByIndex(ClanIndex).ConvertToUint64(); }
 
 	/**
@@ -172,7 +172,7 @@ public:
 	 * @param FSteamID  SteamIDClan - The Steam group to get the chat count of.
 	 * @return int32 - 0 if the Steam ID provided is invalid or if the local user doesn't have the data available.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetClanChatMemberCount(FSteamID SteamIDClan) const { return SteamFriends()->GetClanChatMemberCount(SteamIDClan); }
 
 	/**
@@ -186,7 +186,7 @@ public:
 	 * @param FSteamID & SteamIDChatter - Returns the Steam ID of the user that sent the message.
 	 * @return int32 - The number of bytes copied into prgchText. Returns 0 and sets peChatEntryType to k_EChatEntryTypeInvalid if the current user is not in the specified Steam group chat room or if the index provided in iMessage is invalid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetClanChatMessage(FSteamID SteamIDClanChat, int32 MessageID, FString& Message, ESteamChatEntryType& ChatEntryType, FSteamID& SteamIDChatter);
 
 	/**
@@ -195,7 +195,7 @@ public:
 	 *
 	 * @return int32 - The number of Steam groups that the user is a member of.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetClanCount() const { return SteamFriends()->GetClanCount(); }
 
 	/**
@@ -204,7 +204,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam group to get the name of.
 	 * @return FString - The Steam groups name in UTF-8 format. Returns an empty string ("") if the provided Steam ID is invalid or the user does not know about the group.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetClanName(FSteamID SteamIDClan) const { return SteamFriends()->GetClanName(SteamIDClan); }
 
 	/**
@@ -215,7 +215,7 @@ public:
 	 * @param int32 OfficerIndex - An index between 0 and GetClanOfficerCount.
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetClanOfficerByIndex(FSteamID SteamIDClan, int32 OfficerIndex) const { return SteamFriends()->GetClanOfficerByIndex(SteamIDClan, OfficerIndex).ConvertToUint64(); }
 
 	/**
@@ -227,7 +227,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam group to get the officer count of.
 	 * @return int32 - The number of officers in the Steam group. Returns 0 if steamIDClan is invalid or if RequestClanOfficerList has not been called for it.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetClanOfficerCount(FSteamID SteamIDClan) const { return SteamFriends()->GetClanOfficerCount(SteamIDClan); }
 
 	/**
@@ -237,7 +237,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam ID of the Steam group to get the owner for.
 	 * @return FSteamID - Returns k_steamIDNil if SteamIDClan is invalid or if RequestClanOfficerList has not been called for it.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetClanOwner(FSteamID SteamIDClan) const { return SteamFriends()->GetClanOwner(SteamIDClan).ConvertToUint64(); }
 
 	/**
@@ -247,7 +247,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam group to get the tag of.
 	 * @return FString - The Steam groups tag in UTF-8 format. Returns an empty string ("") if the provided Steam ID is invalid or the user does not know about the group.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetClanTag(FSteamID SteamIDClan) const { return SteamFriends()->GetClanTag(SteamIDClan); }
 
 	/**
@@ -257,7 +257,7 @@ public:
 	 * @param int32 CoplayFriendIndex - An index between 0 and GetCoplayFriendCount.
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetCoplayFriend(int32 CoplayFriendIndex) const { return SteamFriends()->GetCoplayFriend(CoplayFriendIndex).ConvertToUint64(); }
 
 	/**
@@ -267,7 +267,7 @@ public:
 	 *
 	 * @return int32 - The number of users that the current user has recently played with.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetCoplayFriendCount() const { return SteamFriends()->GetCoplayFriendCount(); }
 
 	/**
@@ -276,7 +276,7 @@ public:
 	 * @param FSteamID SteamID - The user to get the follower count for.
 	 * @return int32 - SteamAPICall_t to be used with a FriendsGetFollowerCount_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFollowerCount(FSteamID SteamID) const { return SteamFriends()->GetFollowerCount(SteamID); }
 
 	/**
@@ -287,7 +287,7 @@ public:
 	 * @param const TArray<ESteamFriendFlags> & FriendFlags - A combined union (binary "or") of EFriendFlags. This must be the same value as used in the previous call to GetFriendCount.
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetFriendByIndex(int32 FriendIndex, const TArray<ESteamFriendFlags>& FriendFlags) const;
 
 	/**
@@ -296,7 +296,7 @@ public:
 	 * @param FSteamID SteamIDFriend - The Steam ID of the user on the recently-played-with list to get the game played.
 	 * @return int32 - Steam IDs not in the recently-played-with list return k_uAppIdInvalid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendCoplayGame(FSteamID SteamIDFriend) const { return SteamFriends()->GetFriendCoplayGame(SteamIDFriend); }
 
 	/**
@@ -305,7 +305,7 @@ public:
 	 * @param FSteamID SteamIDFriend - The Steam ID of the user on the recently-played-with list to get the timestamp for.
 	 * @return int32 - The time is provided in Unix epoch format (seconds since Jan 1st 1970). Steam IDs not in the recently-played-with list return 0.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendCoplayTime(FSteamID SteamIDFriend) const { return SteamFriends()->GetFriendCoplayTime(SteamIDFriend); }
 
 	/**
@@ -315,7 +315,7 @@ public:
 	 * @param const TArray<ESteamFriendFlags> & FriendFlags - A combined union (binary "or") of one or more EFriendFlags.
 	 * @return int32 - The number of users that meet the specified criteria.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendCount(const TArray<ESteamFriendFlags>& FriendFlags) const;
 
 	/**
@@ -327,7 +327,7 @@ public:
 	 * @param const FSteamID & SteamIDSource - The Steam group, chat room, lobby or game server to get the user count of.
 	 * @return int32 - 0 if the Steam ID provided is invalid or if the local user doesn't have the data available.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendCountFromSource(FSteamID SteamIDSource) const { return SteamFriends()->GetFriendCountFromSource(SteamIDSource); }
 
 	/**
@@ -338,7 +338,7 @@ public:
 	 * @param int32 FriendIndex - An index between 0 and GetFriendCountFromSource.
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamID GetFriendFromSourceByIndex(FSteamID SteamIDSource, int32 FriendIndex) const { return SteamFriends()->GetFriendFromSourceByIndex(SteamIDSource, FriendIndex).ConvertToUint64(); }
 
 	/**
@@ -352,7 +352,7 @@ public:
 	 * @param FSteamID & SteamIDLobby - The Steam ID of the lobby the friend is in
 	 * @return bool - true if the user is a friend and is in a game; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool GetFriendGamePlayed(FSteamID SteamIDFriend, FSteamID& GameID, FString& GameIP, int32& Port, int32& QueryPort, FSteamID& SteamIDLobby);
 
 	/**
@@ -365,7 +365,7 @@ public:
 	 * @param ESteamChatEntryType & ChatEntryType - Returns the type of chat entry that was received.
 	 * @return int32 - The number of bytes copied into pvData. Returns 0 and sets peChatEntryType to k_EChatEntryTypeInvalid if the current user is chat restricted, if the provided Steam ID is not a friend, or if the index provided in iMessageID is invalid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendMessage(FSteamID SteamIDFriend, int32 MessageIndex, FString& Message, ESteamChatEntryType& ChatEntryType);
 
 	/**
@@ -377,7 +377,7 @@ public:
 	 * @param FSteamID SteamIDFriend - The Steam ID of the other user.
 	 * @return FString - The current users persona name in UTF-8 format. Guaranteed to not be NULL. Returns an empty string (""), or "[unknown]" if the Steam ID is invalid or not known to the caller.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetFriendPersonaName(FSteamID SteamIDFriend) const { return SteamFriends()->GetFriendPersonaName(SteamIDFriend); }
 
 	/**
@@ -388,7 +388,7 @@ public:
 	 * @param int32 NameHistoryIndex - The index of the history to receive. 0 is their current persona name, 1 is their most recent before they changed it, etc.
 	 * @return FString - The players old persona name at the given index. Returns an empty string when there are no further items in the history.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetFriendPersonaNameHistory(FSteamID SteamIDFriend, int32 NameHistoryIndex = 0) const { return SteamFriends()->GetFriendPersonaNameHistory(SteamIDFriend, NameHistoryIndex); }
 
 	/**
@@ -399,7 +399,7 @@ public:
 	 * @param FString SteamIDFriend - The Steam ID of the other user.
 	 * @return ESteamPersonaState - The friend state of the specified user. (Online, Offline, In-Game, etc)
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	ESteamPersonaState GetFriendPersonaState(FSteamID SteamIDFriend) const { return (ESteamPersonaState)SteamFriends()->GetFriendPersonaState(SteamIDFriend); }
 
 	/**
@@ -408,7 +408,7 @@ public:
 	 * @param FSteamID SteamIDFriend - 	The Steam ID of the other user.
 	 * @return ESteamFriendRelationship - How the users know each other.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	ESteamFriendRelationship GetFriendRelationship(FSteamID SteamIDFriend) const { return (ESteamFriendRelationship)SteamFriends()->GetFriendRelationship(SteamIDFriend); }
 
 	/**
@@ -418,7 +418,7 @@ public:
 	 * @param const FString & Key - The Rich Presence key to request.
 	 * @return FString - Returns an empty string ("") if the specified key is not set.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetFriendRichPresence(FSteamID SteamIDFriend, const FString& Key) const { return SteamFriends()->GetFriendRichPresence(SteamIDFriend, TCHAR_TO_UTF8(*Key)); }
 
 	/**
@@ -428,7 +428,7 @@ public:
 	 * @param int32 KeyIndex - An index between 0 and GetFriendRichPresenceKeyCount.
 	 * @return FString - Returns an empty string ("") if the index is invalid or the specified user has no Rich Presence data available.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetFriendRichPresenceKeyByIndex(FSteamID SteamIDFriend, int32 KeyIndex) const { return SteamFriends()->GetFriendRichPresenceKeyByIndex(SteamIDFriend, KeyIndex); }
 
 	/**
@@ -439,7 +439,7 @@ public:
 	 * @param FSteamID SteamIDFriend - The Steam ID of the user to get the Rich Presence Key Count of.
 	 * @return int32 - Returns 0 if there is no Rich Presence information for the specified user.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendRichPresenceKeyCount(FSteamID SteamIDFriend) const { return SteamFriends()->GetFriendRichPresenceKeyCount(SteamIDFriend); }
 
 	/**
@@ -449,7 +449,7 @@ public:
 	 *
 	 * @return int32 - The number of friends groups the current user has.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendsGroupCount() const { return SteamFriends()->GetFriendsGroupCount(); }
 
 	/**
@@ -459,7 +459,7 @@ public:
 	 * @param int32 GroupIndex - An index between 0 and GetFriendsGroupCount.
 	 * @return FSteamFriendsGroupID - Invalid indices return k_FriendsGroupID_Invalid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamFriendsGroupID GetFriendsGroupIDByIndex(int32 GroupIndex = 0) const { return SteamFriends()->GetFriendsGroupIDByIndex(GroupIndex); }
 
 	/**
@@ -469,7 +469,7 @@ public:
 	 * @param FSteamFriendsGroupID FriendsGroupID - The friends group ID to get the number of friends in.
 	 * @return int32 - The number of friends in the specified friends group.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendsGroupMembersCount(FSteamFriendsGroupID FriendsGroupID) const { return SteamFriends()->GetFriendsGroupMembersCount(FriendsGroupID); }
 
 	/**
@@ -481,7 +481,7 @@ public:
 	 * @param TArray<FSteamID> & MemberSteamIDs - Returns the Steam IDs of the friends by setting them in this array.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void GetFriendsGroupMembersList(FSteamFriendsGroupID FriendsGroupID, TArray<FSteamID>& MemberSteamIDs);
 
 	/**
@@ -490,7 +490,7 @@ public:
 	 * @param FSteamFriendsGroupID FriendsGroupID - The friends group ID to get the name of.
 	 * @return FString - The friend groups name in UTF-8 format. Returns NULL if the group ID is invalid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetFriendsGroupName(FSteamFriendsGroupID FriendsGroupID) const { return SteamFriends()->GetFriendsGroupName(FriendsGroupID); }
 
 	/**
@@ -501,7 +501,7 @@ public:
 	 * @return int32 - The Steam level if it's available. If the Steam level is not immediately available for the specified user then this returns 0 and queues it to be downloaded from the Steam servers.
 	 * When it gets downloaded a PersonaStateChange_t callback will be posted with m_nChangeFlags including k_EPersonaChangeSteamLevel.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	int32 GetFriendSteamLevel(FSteamID SteamIDFriend) const { return SteamFriends()->GetFriendSteamLevel(SteamIDFriend); }
 
 	/**
@@ -515,7 +515,7 @@ public:
 	 * @param int32& ImageHandle
 	 * @return UTexture2D*
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	UTexture2D* GetFriendAvatar(FSteamID SteamIDFriend, ESteamAvatarSize AvatarSize, int32& ImageHandle) const;
 
 	/**
@@ -525,7 +525,7 @@ public:
 	 *
 	 * @return FString - The current users persona name in UTF-8 format. Guaranteed to not be NULL.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetPersonaName() const { return SteamFriends()->GetPersonaName(); }
 
 	/**
@@ -534,7 +534,7 @@ public:
 	 *
 	 * @return ESteamPersonaState - The friend state of the current user. (Online, Offline, In-Game, etc)
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	ESteamPersonaState GetPersonaState() const { return (ESteamPersonaState)SteamFriends()->GetPersonaState(); }
 
 	/**
@@ -543,7 +543,7 @@ public:
 	 * @param FSteamID SteamIDPlayer - The Steam ID of the user.
 	 * @return FString - NULL if the no nickname has been set for that user.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FString GetPlayerNickname(FSteamID SteamIDPlayer) const { return SteamFriends()->GetPlayerNickname(SteamIDPlayer); }
 
 	/**
@@ -551,7 +551,7 @@ public:
 	 *
 	 * @return TArray<ESteamUserRestrictions>
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	TArray<ESteamUserRestrictions> GetUserRestrictions() const;
 
 	/**
@@ -561,7 +561,7 @@ public:
 	 * @param const TArray<ESteamFriendFlags> & FriendFlags - A combined union (binary "or") of one or more EFriendFlags.
 	 * @return bool - true if the specified user meets any of the criteria specified in iFriendFlags; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool HasFriend(FSteamID SteamIDFriend, const TArray<ESteamFriendFlags>& FriendFlags);
 
 	/**
@@ -577,7 +577,7 @@ public:
 	 * The Steam ID provided to steamIDFriend is not a friend or does not share the same Steam Group as the current user.
 	 * The value provided to pchConnectString was too long.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool InviteUserToGame(FSteamID SteamIDFriend, const FString& ConnectString) const { return SteamFriends()->InviteUserToGame(SteamIDFriend, TCHAR_TO_UTF8(*ConnectString)); }
 
 	/**
@@ -587,7 +587,7 @@ public:
 	 * @param FSteamID SteamIDUser - The Steam ID of the user to check the admin status of.
 	 * @return bool - true if the specified user is an admin. false if the user is not an admin, if the current user is not in the chat room specified, or the specified user is not in the chat room.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool IsClanChatAdmin(FSteamID SteamIDClanChat, FSteamID SteamIDUser) const { return SteamFriends()->IsClanChatAdmin(SteamIDClanChat, SteamIDUser); }
 
 	/**
@@ -596,7 +596,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam ID of the Steam group.
 	 * @return bool - true if the specified group is public, false if the specified group is not public
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool IsClanPublic(FSteamID SteamIDClan) const { return SteamFriends()->IsClanPublic(SteamIDClan); }
 
 	/**
@@ -605,7 +605,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam ID of the Steam group.
 	 * @return bool - true if the specified group is an official game group/community hub, false if the specified group is not an official game group/community hub
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool IsClanOfficialGameGroup(FSteamID SteamIDClan) const { return SteamFriends()->IsClanOfficialGameGroup(SteamIDClan); }
 
 	/**
@@ -614,7 +614,7 @@ public:
 	 * @param FSteamID SteamIDClanChat - The Steam ID of the Steam group chat room to check.
 	 * @return bool - true if the specified Steam group chat room is opened; otherwise, false. This also returns false if the specified Steam group chat room is unknown.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool IsClanChatWindowOpenInSteam(FSteamID SteamIDClanChat) const { return SteamFriends()->IsClanChatWindowOpenInSteam(SteamIDClanChat); }
 
 	/**
@@ -623,7 +623,7 @@ public:
 	 * @param FSteamID SteamID - The Steam ID of the check if we are following.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a FriendsIsFollowing_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamAPICall IsFollowing(FSteamID SteamID) const { return SteamFriends()->IsFollowing(SteamID); }
 
 	/**
@@ -633,7 +633,7 @@ public:
 	 * @param FSteamID SteamIDSource - 	The source to check for the user.
 	 * @return bool - true if the local user can see that steamIDUser is a member or in steamIDSource; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool IsUserInSource(FSteamID SteamIDUser, FSteamID SteamIDSource) const { return SteamFriends()->IsUserInSource(SteamIDUser, SteamIDSource); }
 
 	/**
@@ -648,7 +648,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam ID of the Steam group to join.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a JoinClanChatRoomCompletionResult_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamAPICall JoinClanChatRoom(FSteamID SteamIDClan) const { return SteamFriends()->JoinClanChatRoom(SteamIDClan); }
 
 	/**
@@ -658,7 +658,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam ID of the Steam group chat to leave.
 	 * @return bool - true if user is in the specified chat room, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool LeaveClanChatRoom(FSteamID SteamIDClan) const { return SteamFriends()->LeaveClanChatRoom(SteamIDClan); }
 
 	/**
@@ -670,7 +670,7 @@ public:
 	 * The current user is currently rate limited.
 	 * The current user is chat restricted.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool OpenClanChatWindowInSteam(FSteamID SteamIDClanChat) const { return SteamFriends()->OpenClanChatWindowInSteam(SteamIDClanChat); }
 
 	/**
@@ -680,7 +680,7 @@ public:
 	 * @param const FString & MsgToSend - The UTF-8 formatted message to send.
 	 * @return bool - true if the message was successfully sent. false if the current user is rate limited or chat restricte
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool ReplyToFriendMessage(FSteamID SteamIDFriend, const FString& MsgToSend) const { return SteamFriends()->ReplyToFriendMessage(SteamIDFriend, TCHAR_TO_UTF8(*MsgToSend)); }
 
 	/**
@@ -691,7 +691,7 @@ public:
 	 * @param FSteamID SteamIDClan - The Steam group to get the officers list for.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a ClanOfficerListResponse_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamAPICall RequestClanOfficerList(FSteamID SteamIDClan) const { return SteamFriends()->RequestClanOfficerList(SteamIDClan); }
 
 	/**
@@ -702,7 +702,7 @@ public:
 	 * @param FSteamID SteamIDFriend - 	The Steam ID of the user to request the rich presence of.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void RequestFriendRichPresence(FSteamID SteamIDFriend) { SteamFriends()->RequestFriendRichPresence(SteamIDFriend); }
 
 	/**
@@ -715,7 +715,7 @@ public:
 	 * @return bool - true means that the data has being requested, and a PersonaStateChange_t callback will be posted when it's retrieved.
 	 * false means that we already have all the details about that user, and functions that require this information can be used immediately.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool RequestUserInformation(FSteamID SteamIDUser, bool bRequireNameOnly) const { return SteamFriends()->RequestUserInformation(SteamIDUser, bRequireNameOnly); }
 
 	/**
@@ -730,7 +730,7 @@ public:
 	 * The current user is chat restricted.
 	 * The message in pchText exceeds 2048 characters.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool SendClanChatMessage(FSteamID SteamIDClanChat, const FString& Text) const { return SteamFriends()->SendClanChatMessage(SteamIDClanChat, TCHAR_TO_UTF8(*Text)); }
 
 	/**
@@ -741,7 +741,7 @@ public:
 	 * @param bool bSpeaking - Did the user start speaking in game (true) or stopped speaking in game (false)?
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void SetInGameVoiceSpeaking(FSteamID SteamIDUser, bool bSpeaking) { SteamFriends()->SetInGameVoiceSpeaking(SteamIDUser, bSpeaking); }
 
 	/**
@@ -753,7 +753,7 @@ public:
 	 * @param bool bInterceptEnabled - 	Turn friends message interception on (true) or off (false)?
 	 * @return bool - Always returns true
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool SetListenForFriendsMessages(bool bInterceptEnabled) const { return SteamFriends()->SetListenForFriendsMessages(bInterceptEnabled); }
 
 	/**
@@ -764,7 +764,7 @@ public:
 	 * @param const FString & PersonaName - The users new persona name. Can not be longer than k_cchPersonaNameMax bytes.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a SetPersonaNameResponse_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	FSteamAPICall SetPersonaName(const FString& PersonaName) const { return SteamFriends()->SetPersonaName(TCHAR_TO_UTF8(*PersonaName)); }
 
 	/**
@@ -774,7 +774,7 @@ public:
 	 * @param FSteamID SteamIDUserPlayedWith - The other user that we have played with.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Friends")
 	void SetPlayedWith(FSteamID SteamIDUserPlayedWith) { SteamFriends()->SetPlayedWith(SteamIDUserPlayedWith); }
 
 	/**
@@ -788,53 +788,53 @@ public:
 	 * pchValue was longer than k_cchMaxRichPresenceValueLength.
 	 * The user has reached the maximum amount of rich presence keys as defined by k_cchMaxRichPresenceKeys.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Friends")
 	bool SetRichPresence(const FString& Key, const FString& Value) const { return SteamFriends()->SetRichPresence(TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value)); }
 
 	/** Delegates */
 
 	/** Called when a large avatar is loaded if you have tried requesting it when it was unavailable. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnAvatarImageLoaded"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnAvatarImageLoaded"))
 	FOnAvatarImageLoadedDelegate m_OnAvatarImageLoaded;
 
 	/** Marks the return of a request officer list call. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnClanOfficerListResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnClanOfficerListResponse"))
 	FOnClanOfficerListResponseDelegate m_OnClanOfficerListResponse;
 
 	/** Called when a Steam group activity has received. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnDownloadClanActivityCountsResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnDownloadClanActivityCountsResult"))
 	FOnDownloadClanActivityCountsResultDelegate m_OnDownloadClanActivityCountsResult;
 
 	/** Called when Rich Presence data has been updated for a user, this can happen automatically when friends in the same game update their rich presence, or after a call to RequestFriendRichPresence. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnFriendRichPresenceUpdate"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnFriendRichPresenceUpdate"))
 	FOnFriendRichPresenceUpdateDelegate m_OnFriendRichPresenceUpdate;
 
 	/** Returns the result of EnumerateFollowingList. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnFriendsEnumerateFollowingList"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnFriendsEnumerateFollowingList"))
 	FOnFriendsEnumerateFollowingListDelegate m_OnFriendsEnumerateFollowingList;
 
 	/** Returns the result of GetFollowerCount. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnFriendsGetFollowerCount"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnFriendsGetFollowerCount"))
 	FOnFriendsGetFollowerCountDelegate m_OnFriendsGetFollowerCount;
 
 	/** Returns the result of IsFollowing. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnFriendsIsFollowing"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnFriendsIsFollowing"))
 	FOnFriendsIsFollowingDelegate m_OnFriendsIsFollowing;
 
 	/** Called when a user has joined a Steam group chat that the we are in. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameConnectedChatJoin"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameConnectedChatJoin"))
 	FOnGameConnectedChatJoinDelegate m_OnGameConnectedChatJoin;
 
 	/** Called when a user has left a Steam group chat that the we are in. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameConnectedChatLeave"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameConnectedChatLeave"))
 	FOnGameConnectedChatLeaveDelegate m_OnGameConnectedChatLeave;
 
 	/** Called when a chat message has been received in a Steam group chat that we are in. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameConnectedClanChatMsg"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameConnectedClanChatMsg"))
 	FOnGameConnectedClanChatMsgDelegate m_OnGameConnectedClanChatMsg;
 
 	/** Called when chat message has been received from a friend. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameConnectedFriendChatMsg"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameConnectedFriendChatMsg"))
 	FOnGameConnectedFriendChatMsgDelegate m_OnGameConnectedFriendChatMsg;
 
 	/**
@@ -842,34 +842,34 @@ public:
 	 * If the game isn't running yet then the game will be automatically launched with the command line parameter +connect_lobby <64-bit lobby Steam ID> instead.
 	 * NOTE: This callback is made when joining a lobby. If the user is attempting to join a game but not a lobby, then the callback GameRichPresenceJoinRequested_t will be made.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameLobbyJoinRequested"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameLobbyJoinRequested"))
 	FOnGameLobbyJoinRequestedDelegate m_OnGameLobbyJoinRequested;
 
 	/** Posted when the Steam Overlay activates or deactivates. The game can use this to be pause or resume single player games. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameOverlayActivated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameOverlayActivated"))
 	FOnGameOverlayActivatedDelegate m_OnGameOverlayActivated;
 
 	/**
 	 * Called when the user tries to join a game from their friends list or after a user accepts an invite by a friend with InviteUserToGame.
 	 * NOTE: This callback is made when joining a game. If the user is attempting to join a lobby, then the callback GameLobbyJoinRequested_t will be made.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameRichPresenceJoinRequested"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameRichPresenceJoinRequested"))
 	FOnGameRichPresenceJoinRequestedDelegate m_OnGameRichPresenceJoinRequested;
 
 	/** Called when the user tries to join a different game server from their friends list. The game client should attempt to connect to specified server when this is received. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnGameServerChangeRequested"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnGameServerChangeRequested"))
 	FOnGameServerChangeRequestedDelegate m_OnGameServerChangeRequested;
 
 	/** Posted when the user has attempted to join a Steam group chat via JoinClanChatRoom */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnJoinClanChatRoomCompletionResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnJoinClanChatRoomCompletionResult"))
 	FOnJoinClanChatRoomCompletionResultDelegate m_OnJoinClanChatRoomCompletionResult;
 
 	/** Called whenever a friends' status changes. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnPersonaStateChange"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnPersonaStateChange"))
 	FOnPersonaStateChangeDelegate m_OnPersonaStateChange;
 
 	/** Reports the result of an attempt to change the current user's persona name. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Friends", meta = (DisplayName = "OnSetPersonaNameResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Friends", meta = (DisplayName = "OnSetPersonaNameResponse"))
 	FOnSetPersonaNameResponseDelegate m_OnSetPersonaNameResponse;
 
 private:

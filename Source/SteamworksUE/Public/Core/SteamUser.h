@@ -39,7 +39,7 @@ public:
 	USteamUser();
 	~USteamUser();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam User", CompactNodeTitle = "SteamUser"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam User", CompactNodeTitle = "SteamUser"))
 	static USteamUser* GetSteamUser() { return USteamUser::StaticClass()->GetDefaultObject<USteamUser>(); }
 
 	/**
@@ -52,7 +52,7 @@ public:
      * @param int32 Port - The connection port of the game server, in host order.
      * @return void
      */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	void AdvertiseGame(FSteamID SteamID, const FString& IP, int32 Port);
 
 	/**
@@ -66,7 +66,7 @@ public:
      * @param FSteamID SteamID - The entity's Steam ID that sent this ticket.
      * @return ESteamBeginAuthSessionResult
      */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	ESteamBeginAuthSessionResult BeginAuthSession(TArray<uint8> Ticket, FSteamID SteamID) { return (ESteamBeginAuthSessionResult)SteamUser()->BeginAuthSession(Ticket.GetData(), Ticket.Num(), SteamID); }
 
 	/**
@@ -75,7 +75,7 @@ public:
      *
      * @return bool - true if the current user is behind a NAT, otherwise false.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool BIsBehindNAT() { return SteamUser()->BIsBehindNAT(); }
 
 	/**
@@ -83,7 +83,7 @@ public:
      *
      * @return bool - true if the current user's phone uniquely verifies their identity; otherwise, false.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool BIsPhoneIdentifying() { return SteamUser()->BIsPhoneIdentifying(); }
 
 	/**
@@ -91,7 +91,7 @@ public:
      *
      * @return bool - true if the it is requiring verification; otherwise, false.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool BIsPhoneRequiringVerification() { return SteamUser()->BIsPhoneRequiringVerification(); }
 
 	/**
@@ -99,7 +99,7 @@ public:
      *
      * @return bool - true if the current user has phone verification enabled; otherwise, false.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool BIsPhoneVerified() { return SteamUser()->BIsPhoneVerified(); }
 
 	/**
@@ -107,7 +107,7 @@ public:
      *
      * @return bool - true if the current user has two factor authentication enabled; otherwise, false.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool BIsTwoFactorEnabled() { return SteamUser()->BIsTwoFactorEnabled(); }
 
 	/**
@@ -119,7 +119,7 @@ public:
      *
      * @return bool - true if the Steam client current has a live connection to the Steam servers; otherwise, false if there is no active connection due to either a networking issue on the local machine, or the Steam server is down/busy.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool BLoggedOn() { return SteamUser()->BLoggedOn(); }
 
 	/**
@@ -128,7 +128,7 @@ public:
      * @param FHAuthTicket AuthTicket - The active auth ticket to cancel.
      * @return void
      */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	void CancelAuthTicket(FHAuthTicket AuthTicket) { SteamUser()->CancelAuthTicket(AuthTicket); }
 
 	/**
@@ -140,7 +140,7 @@ public:
      * @param TArray<uint8> & UncompressedBuffer - The buffer where the raw audio data will be returned. This can then be passed to your audio subsystems for playback.
      * @return ESteamVoiceResult
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	ESteamVoiceResult DecompressVoice(const TArray<uint8>& CompressedBuffer, TArray<uint8>& UncompressedBuffer);
 
 	/**
@@ -149,7 +149,7 @@ public:
      * @param FSteamID SteamID - The entity to end the active auth session with
      * @return void
      */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	void EndAuthSession(FSteamID SteamID) { SteamUser()->EndAuthSession(SteamID); }
 
 	/**
@@ -164,7 +164,7 @@ public:
 	 * @return FHAuthTicket - A handle to the auth ticket. When you're done interacting with the entity you must call CancelAuthTicket on the handle.
 	 * Returns k_HAuthTicketInvalid if the call fails.
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	FHAuthTicket GetAuthSessionTicket(TArray<uint8>& Ticket);
 
 	/**
@@ -174,7 +174,7 @@ public:
      * @param int32 & CompressedSize - Returns the size of the available voice data in bytes.
      * @return ESteamVoiceResult
      */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	ESteamVoiceResult GetAvailableVoice(int32& CompressedSize) { return (ESteamVoiceResult)SteamUser()->GetAvailableVoice((uint32*)&CompressedSize); }
 
 	/**
@@ -182,7 +182,7 @@ public:
 	 *
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a DurationControl_t call result. Returns k_uAPICallInvalid if no connection to the Steam servers could be made.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	FSteamAPICall GetDurationControl() { return (FSteamAPICall)SteamUser()->GetDurationControl(); }
 
 	/**
@@ -199,7 +199,7 @@ public:
 	 * pTicket is too small to hold this ticket.
 	 * There was no ticket available. (Did you wait for EncryptedAppTicketResponse_t?)
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	bool GetEncryptedAppTicket(TArray<uint8>& Ticket);
 
 	/**
@@ -210,7 +210,7 @@ public:
 	 * @param bool bFoil - Check if they have received the foil badge.
 	 * @return int32 - The level of the badge, 0 if they don't have it.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	int32 GetGameBadgeLevel(int32 nSeries, bool bFoil) { return SteamUser()->GetGameBadgeLevel(nSeries, bFoil); }
 
 	/**
@@ -219,7 +219,7 @@ public:
 	 *
 	 * @return FHSteamUser
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	FHSteamUser GetHSteamUser() { return (FHSteamUser)SteamUser()->GetHSteamUser(); }
 
 	/**
@@ -227,7 +227,7 @@ public:
 	 *
 	 * @return int32 - The level of the current user.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	int32 GetPlayerSteamLevel() { return SteamUser()->GetPlayerSteamLevel(); }
 
 	/**
@@ -236,7 +236,7 @@ public:
 	 *
 	 * @return FSteamID
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	FSteamID GetSteamID() { return SteamUser()->GetSteamID().ConvertToUint64(); }
 
 	/**
@@ -256,7 +256,7 @@ public:
 	 * @param TArray<uint8> & VoiceData - The buffer where the audio data will be copied into.
 	 * @return ESteamVoiceResult
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	ESteamVoiceResult GetVoice(TArray<uint8>& VoiceData);
 
 	/**
@@ -267,7 +267,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	int32 GetVoiceOptimalSampleRate() { return (uint32)SteamUser()->GetVoiceOptimalSampleRate(); }
 
 	// #TODO RequestEncryptedAppTicket, RequestStoreAuthURL
@@ -278,7 +278,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	void StartVoiceRecording() { SteamUser()->StartVoiceRecording(); }
 
 	/**
@@ -288,7 +288,7 @@ public:
 	 *
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|User")
 	void StopVoiceRecording() { SteamUser()->StopVoiceRecording(); }
 
 	/**
@@ -299,7 +299,7 @@ public:
 	 * @param int32 AppID - The DLC App ID to check if the user owns it.
 	 * @return ESteamUserHasLicenseForAppResult
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|User")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|User")
 	ESteamUserHasLicenseForAppResult UserHasLicenseForApp(FSteamID SteamID, int32 AppID) { return (ESteamUserHasLicenseForAppResult)SteamUser()->UserHasLicenseForApp(SteamID, AppID); }
 
 	/** Delegates */
@@ -309,29 +309,29 @@ public:
 	 * The game client should immediately disconnect upon receiving this message.
 	 * This can usually occur if the user doesn't have rights to play on the game server.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnClientGameServerDeny"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnClientGameServerDeny"))
 	FOnClientGameServerDenyDelegate m_OnClientGameServerDeny;
 
 	/**
 	 * Sent for games with enabled anti indulgence / duration control, for enabled users. Lets the game know whether persistent rewards or XP should be granted at normal rate, half rate, or zero rate.
 	 * This callback is fired asynchronously in response to timers triggering. It is also fired in response to calls to GetDurationControl().
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnDurationControl"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnDurationControl"))
 	FOnDurationControlDelegate m_OnDurationControl;
 
 	/** Called when an encrypted application ticket has been received. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnEncryptedAppTicketResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnEncryptedAppTicketResponse"))
 	FOnEncryptedAppTicketResponseDelegate m_OnEncryptedAppTicketResponse;
 
 	/**
 	 * Sent to your game in response to a steam://gamewebcallback/ command from a user clicking a link in the Steam overlay browser.
 	 * You can use this to add support for external site signups where you want to pop back into the browser after some web page signup sequence, and optionally get back some detail about that.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnGameWebCallback"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnGameWebCallback"))
 	FOnGameWebCallbackDelegate m_OnGameWeb;
 
 	/** Result when creating an auth session ticket. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnGetAuthSessionTicketResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnGetAuthSessionTicketResponse"))
 	FOnGetAuthSessionTicketResponseDelegate m_OnGetAuthSessionTicketResponse;
 
 	/**
@@ -339,22 +339,22 @@ public:
 	 * When getting this message the client should disconnect from Steam, reset any stored Steam state and reconnect.
 	 * This usually occurs in the rare event the Steam client has some kind of fatal error.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnIPCFailure"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnIPCFailure"))
 	FOnIPCFailureDelegate m_IPCFailure;
 
 	/** Called whenever the users licenses (owned packages) changes. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnLicensesUpdated"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnLicensesUpdated"))
 	FOnLicensesUpdatedDelegate m_OnLicensesUpdated;
 
 	/** Called when a user has responded to a microtransaction authorization request. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnMicroTxnAuthorizationResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnMicroTxnAuthorizationResponse"))
 	FOnMicroTxnAuthorizationResponseDelegate m_OnMicroTxnAuthorizationResponse;
 
 	/**
 	 * Called when a connection attempt has failed.
 	 * This will occur periodically if the Steam client is not connected, and has failed when retrying to establish a connection.
      */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnSteamServerConnectFailure"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnSteamServerConnectFailure"))
 	FOnSteamServerConnectFailureDelegate m_OnSteamServerConnectFailure;
 
 	/**
@@ -362,22 +362,22 @@ public:
 	 * This means the Steam client now has a working connection to the Steam servers.
 	 * Usually this will have occurred before the game has launched, and should only be seen if the user has dropped connection due to a networking issue or a Steam server update.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnSteamServersConnected"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnSteamServersConnected"))
 	FOnSteamServersConnectedDelegate m_OnSteamServersConnected;
 
 	/**
 	 * Called if the client has lost connection to the Steam servers.
 	 * Real-time services will be disabled until a matching SteamServersConnected_t has been posted.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnSteamServersDisconnected"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnSteamServersDisconnected"))
 	FOnSteamServersDisconnectedDelegate m_OnSteamServersDisconnected;
 
 	/** Response when we have recieved the authentication URL after a call to RequestStoreAuthURL. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnStoreAuthURLResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnStoreAuthURLResponse"))
 	FOnStoreAuthURLResponseDelegate m_OnStoreAuthURLResponse;
 
 	/** Called when an auth ticket has been validated. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|User", meta = (DisplayName = "OnValidateAuthTicketResponse"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|User", meta = (DisplayName = "OnValidateAuthTicketResponse"))
 	FOnValidateAuthTicketResponseDelegate m_OnValidateAuthTicketResponse;
 
 private:

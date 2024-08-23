@@ -28,7 +28,7 @@ public:
 	USteamRemotePlay();
 	~USteamRemotePlay();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Remote Play", CompactNodeTitle = "SteamRemotePlay"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Remote Play", CompactNodeTitle = "SteamRemotePlay"))
 	static USteamRemotePlay* GetSteamRemotePlay() { return USteamRemotePlay::StaticClass()->GetDefaultObject<USteamRemotePlay>(); }
 
 	/**
@@ -36,7 +36,7 @@ public:
 	 *
 	 * @return int32 - The number of currently connected Steam Remote Play sessions
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemotePlay")
 	int32 GetSessionCount() const { return SteamRemotePlay()->GetSessionCount(); }
 
 	/**
@@ -45,7 +45,7 @@ public:
 	 * @param int32 SessionIndex - The index of the specified session
 	 * @return int32 - The session ID of the session at the specified index, or 0 if the index is less than 0 or greater than or equal to GetSessionCount()
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemotePlay")
 	int32 GetSessionID(int32 SessionIndex) const { return SteamRemotePlay()->GetSessionID(SessionIndex); }
 
 	/**
@@ -54,7 +54,7 @@ public:
 	 * @param int32 SessionID - The session ID to get information about
 	 * @return FSteamID - The Steam ID of the user associated with the Remote Play session. This would normally be the logged in user, or a friend in the case of Remote Play Together.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemotePlay")
 	FSteamID GetSessionSteamID(int32 SessionID) const { return SteamRemotePlay()->GetSessionSteamID(SessionID).ConvertToUint64(); }
 
 	/**
@@ -63,7 +63,7 @@ public:
 	 * @param int32 SessionID - The session ID to get information about
 	 * @return FString - The name of the device associated with the Remote Play session, or NULL if the session ID is not valid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemotePlay")
 	FString GetSessionClientName(int32 SessionID) const { return UTF8_TO_TCHAR(*SteamRemotePlay()->GetSessionClientName(SessionID)); }
 
 	/**
@@ -72,7 +72,7 @@ public:
 	 * @param int32 SessionID - 	The session ID to get information about
 	 * @return ESteamDeviceFormFactor_ - The form factor of the device associated with the Remote Play session, or k_ESteamDeviceFormFactorUnknown if the session ID is not valid.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemotePlay")
 	ESteamDeviceFormFactor_ GetSessionClientFormFactor(int32 SessionID) const { return (ESteamDeviceFormFactor_)SteamRemotePlay()->GetSessionClientFormFactor(SessionID); }
 
 	/**
@@ -82,7 +82,7 @@ public:
 	 * @param FIntPoint & Resolution - device resolution
 	 * @return bool - true if the session ID is valid; otherwise, false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|RemotePlay")
 	bool BGetSessionClientResolution(int32 SessionID, FIntPoint& Resolution) const;
 
 	/**
@@ -91,15 +91,15 @@ public:
 	 * @param FSteamID SteamIDFriend - The Steam ID of the friend you'd like to invite
 	 * @return bool - true if the invite was successfully sent; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|RemotePlay")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|RemotePlay")
 	bool BSendRemotePlayTogetherInvite(FSteamID SteamIDFriend) const { return SteamRemotePlay()->BSendRemotePlayTogetherInvite(SteamIDFriend); }
 
 	/** Delegates */
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemotePlay", meta = (DisplayName = "OnSteamRemotePlaySessionConnected"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemotePlay", meta = (DisplayName = "OnSteamRemotePlaySessionConnected"))
 	FOnSteamRemotePlaySessionConnectedDelegate m_OnSteamRemotePlaySessionConnected;
 
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|RemotePlay", meta = (DisplayName = "OnSteamRemotePlaySessionDisconnected"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|RemotePlay", meta = (DisplayName = "OnSteamRemotePlaySessionDisconnected"))
 	FOnSteamRemotePlaySessionDisconnectedDelegate m_OnSteamRemotePlaySessionDisconnected;
 
 private:

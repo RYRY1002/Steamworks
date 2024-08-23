@@ -28,7 +28,7 @@ public:
 	USteamApps();
 	~USteamApps();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Apps", CompactNodeTitle = "SteamApps"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Apps", CompactNodeTitle = "SteamApps"))
 	static USteamApps* GetSteamApps() { return USteamApps::StaticClass()->GetDefaultObject<USteamApps>(); }
 
 	/**
@@ -40,7 +40,7 @@ public:
 	 * @param FString & Name - Returns the name of the DLC.
 	 * @return bool - true if the current App ID has DLC's associated with it and iDLC falls between the range of 0 to GetDLCCount, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BGetDLCDataByIndex(int32 DLC, int32& AppID, bool& bAvailable, FString& Name);
 
 	/**
@@ -51,7 +51,7 @@ public:
 	 * @param int32 AppID - The App ID of the application to check.
 	 * @return bool - true if the specified App ID is installed; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsAppInstalled(int32 AppID) const { return SteamApps()->BIsAppInstalled(AppID); }
 
 	/**
@@ -61,7 +61,7 @@ public:
 	 * @param int32 AppID - The App ID of the DLC to check.
 	 * @return bool - true if the user owns the DLC and it's currently installed, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsDLCInstalled(int32 AppID) const { return SteamApps()->BIsDlcInstalled(AppID); }
 
 	/**
@@ -70,7 +70,7 @@ public:
 	 *
 	 * @return bool - true if the license owned by the user provides low violence depots; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsLowViolence() const { return SteamApps()->BIsLowViolence(); }
 
 	/**
@@ -79,7 +79,7 @@ public:
 	 *
 	 * @return bool - true if the active user owns the current AppId, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsSubscribed() const { return SteamApps()->BIsSubscribed(); }
 
 	/**
@@ -89,7 +89,7 @@ public:
 	 * @param int32 AppID - The App ID to check.
 	 * @return bool - true if the active user is subscribed to the specified App ID, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsSubscribedApp(int32 AppID) const { return SteamApps()->BIsSubscribedApp(AppID); }
 
 	/**
@@ -98,7 +98,7 @@ public:
 	 *
 	 * @return bool - true if the active user is accessing the current appID via family sharing, otherwise false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsSubscribedFromFamilySharing() const { return SteamApps()->BIsSubscribedFromFamilySharing(); }
 
 	/**
@@ -107,7 +107,7 @@ public:
 	 *
 	 * @return bool - true if the active user is subscribed to the current App Id via a free weekend otherwise false any other type of license.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsSubscribedFromFreeWeekend() const { return SteamApps()->BIsSubscribedFromFreeWeekend(); }
 
 	/**
@@ -115,7 +115,7 @@ public:
 	 *
 	 * @return bool - true if the user has a VAC ban on their account; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool BIsVACBanned() const { return SteamApps()->BIsVACBanned(); }
 
 	/**
@@ -123,7 +123,7 @@ public:
 	 *
 	 * @return int32 - The current Build Id of this App. Defaults to 0 if you're not running a build downloaded from steam.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	int32 GetAppBuildId() const { return SteamApps()->GetAppBuildId(); }
 
 	/**
@@ -134,7 +134,7 @@ public:
 	 * @param FString & Folder - The string buffer that the folder path will be copied into.
 	 * @return int32 - Returns the install directory path as a string into the buffer provided in pchFolder and returns the number of bytes that were copied into that buffer.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	int32 GetAppInstallDir(int32 AppID, FString& Folder);
 
 	/**
@@ -142,7 +142,7 @@ public:
 	 *
 	 * @return FSteamID - The original owner of the current app.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	FSteamID GetAppOwner() const { return SteamApps()->GetAppOwner().ConvertToUint64(); }
 
 	/**
@@ -150,7 +150,7 @@ public:
 	 *
 	 * @return FString - Returns a comma separated list of languages.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	FString GetAvailableGameLanguages() const { return SteamApps()->GetAvailableGameLanguages(); }
 
 	/**
@@ -159,7 +159,7 @@ public:
 	 * @param FString & Name - The buffer where the beta name will be copied in to.
 	 * @return bool - true if the user is on a beta branch; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool GetCurrentBetaName(FString& Name);
 
 	/**
@@ -168,7 +168,7 @@ public:
 	 *
 	 * @return FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	FString GetCurrentGameLanguage() const { return SteamApps()->GetCurrentGameLanguage(); }
 
 	/**
@@ -178,7 +178,7 @@ public:
 	 * @return int32 - The number of DLC pieces for the current app. Note that this value may max out at 64, depending on how much unowned DLC the user has. If your app has a large number of DLC, you should set your -
 	 * own internal list of known DLC to check against.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	int32 GetDLCCount() const { return SteamApps()->GetDLCCount(); }
 
 	/**
@@ -189,7 +189,7 @@ public:
 	 * @param int64 & BytesTotal - Returns the total size of the download in bytes.
 	 * @return bool - true if the specified DLC exists and is currently downloading; otherwise, false.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool GetDLCDownloadProgress(int32 AppID, int64& BytesDownloaded, int64& BytesTotal) const { return SteamApps()->GetDlcDownloadProgress(AppID, (uint64*)&BytesDownloaded, (uint64*)&BytesTotal); }
 
 	/**
@@ -199,7 +199,7 @@ public:
 	 * @param int32 AppID - The App ID to get the purchase time for.
 	 * @return int32 - The earliest purchase time in Unix epoch format (seconds since Jan 1st, 1970).
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	int32 GetEarliestPurchaseUnixTime(int32 AppID) const { return SteamApps()->GetEarliestPurchaseUnixTime(AppID); }
 
 	/**
@@ -208,7 +208,7 @@ public:
 	 * @param const FString & FileName - The absolute path and name to the file.
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a FileDetailsResult_t call result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	FSteamAPICall GetFileDetails(const FString& FileName) const { return SteamApps()->GetFileDetails(TCHAR_TO_UTF8(*FileName)); }
 
 	/**
@@ -219,7 +219,7 @@ public:
 	 * @param int32 MaxDepots - The maximum number of depots to obtain, typically the size of Depots.
 	 * @return int32 - The number of depots returned.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	int32 GetInstalledDepots(int32 AppID, TArray<int32>& Depots, int32 MaxDepots = 1) { return SteamApps()->GetInstalledDepots(AppID, (DepotId_t*)Depots.GetData(), MaxDepots); }
 
 	/**
@@ -230,7 +230,7 @@ public:
 	 * @param FString & CommandLine - The string buffer that the command line will be copied into.
 	 * @return int32 - Returns the command line as a string into the buffer provided in CommandLine and returns the number of bytes that were copied into that buffer.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	int32 GetLaunchCommandLine(FString& CommandLine);
 
 	/**
@@ -241,7 +241,7 @@ public:
 	 * @param const FString & Key - The launch key to test for. Ex: param1
 	 * @return FString - The value associated with the key provided. Returns an empty string ("") if the specified key does not exist.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	FString GetLaunchQueryParam(const FString& Key) const { return SteamApps()->GetLaunchQueryParam(TCHAR_TO_UTF8(*Key)); }
 
 	/**
@@ -251,7 +251,7 @@ public:
 	 * @param int32 AppID - The DLC you want to install.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Apps")
 	void InstallDLC(int32 AppID) { SteamApps()->InstallDLC(AppID); }
 
 	/**
@@ -261,7 +261,7 @@ public:
 	 * @param bool bMissingFilesOnly - 	Only scan for missing files, don't verify the checksum of each file.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Apps")
 	bool MarkContentCorrupt(bool bMissingFilesOnly) const { return SteamApps()->MarkContentCorrupt(bMissingFilesOnly); }
 
 	/**
@@ -270,24 +270,24 @@ public:
 	 * @param int32 AppID - The DLC you want to uninstall.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Apps")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Apps")
 	void UninstallDLC(int32 AppID) { SteamApps()->UninstallDLC(AppID); }
 
 	/** Delegates */
 
 	/** Triggered after the current user gains ownership of DLC and that DLC is installed. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnDLCInstalled"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Apps", meta = (DisplayName = "OnDLCInstalled"))
 	FOnDLCInstalledDelegate m_OnDLCInstalled;
 
 	/** Called after requesting the details of a specific file. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnFileDetailsResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Apps", meta = (DisplayName = "OnFileDetailsResult"))
 	FOnFileDetailsResultDelegate m_OnFileDetailsResult;
 
 	/**
 	 * Posted after the user executes a steam url with command line or query parameters such as steam://run/<appid>//?param1=value1;param2=value2;param3=value3; while the game is already running.
 	 * The new params can be queried with GetLaunchCommandLine and GetLaunchQueryParam.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Apps", meta = (DisplayName = "OnNewUrlLaunchParameters"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Apps", meta = (DisplayName = "OnNewUrlLaunchParameters"))
 	FOnNewUrlLaunchParametersDelegate m_OnNewUrlLaunchParameters;
 
 private:

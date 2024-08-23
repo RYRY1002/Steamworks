@@ -32,7 +32,7 @@ public:
 	USteamInventory();
 	~USteamInventory();
 
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore", meta = (DisplayName = "Steam Inventory", CompactNodeTitle = "SteamInventory"))
+	UFUNCTION(BlueprintPure, Category = "Steamworks", meta = (DisplayName = "Steam Inventory", CompactNodeTitle = "SteamInventory"))
 	static USteamInventory* GetSteamInventory() { return USteamInventory::StaticClass()->GetDefaultObject<USteamInventory>(); }
 
 	/**
@@ -50,7 +50,7 @@ public:
 	 * On success, the inventory result will include items which were granted, if any. If no items were granted because the user isn't eligible for any promotions, this is still considered a success.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool AddPromoItem(FSteamInventoryResult& ResultHandle, FSteamItemDef ItemDef) const { return SteamInventory()->AddPromoItem(&ResultHandle.Value, ItemDef.Value); }
 
 	/**
@@ -68,7 +68,7 @@ public:
 	 * On success, the inventory result will include items which were granted, if any. If no items were granted because the user isn't eligible for any promotions, this is still considered a success.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool AddPromoItems(FSteamInventoryResult& ResultHandle, const TArray<FSteamItemDef>& ItemDefs) const;
 
 	/**
@@ -79,7 +79,7 @@ public:
 	 * @param FSteamID SteamIDExpected - The Steam ID to verify.
 	 * @return bool - true if the result belongs to the target steam ID; otherwise, false.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool CheckResultSteamID(FSteamInventoryResult ResultHandle, FSteamID SteamIDExpected) const { return SteamInventory()->CheckResultSteamID(ResultHandle, SteamIDExpected); }
 
 	/**
@@ -93,7 +93,7 @@ public:
 	 * @param int32 Quantity - The number of items in that stack to consume.
 	 * @return bool - This function always returns true when called by a regular user, and always returns false when called from SteamGameServer. Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool ConsumeItem(FSteamInventoryResult& ResultHandle, FSteamItemInstanceID ItemID, int32 Quantity) const { return SteamInventory()->ConsumeItem(&ResultHandle.Value, ItemID, Quantity); }
 
 	/**
@@ -110,7 +110,7 @@ public:
 	 * @return bool - Always returns true and then delivers error codes via GetResultStatus.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool DeserializeResult(FSteamInventoryResult& ResultHandle, TArray<uint8> Buffer) const { return SteamInventory()->DeserializeResult(&ResultHandle.Value, Buffer.GetData(), Buffer.Num(), false); }
 
 	/**
@@ -119,7 +119,7 @@ public:
 	 * @param FSteamInventoryResult ResultHandle - The inventory result handle to destroy.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, Category = "Steamworks|Inventory")
 	void DestroyResult(FSteamInventoryResult ResultHandle) { SteamInventory()->DestroyResult(ResultHandle); }
 
 	/**
@@ -140,7 +140,7 @@ public:
 	 * Exchanges that do not match a recipe, or do not provide the required amounts, will fail.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool ExchangeItems(FSteamInventoryResult& ResultHandle, const TMap<FSteamItemDef, int32>& ItemsGenerated, const TMap<FSteamItemInstanceID, int32>& ItemsDestroyed) const;
 
 	/**
@@ -154,7 +154,7 @@ public:
 	 * @return bool - This function always returns true when called by a regular user, and always returns false when called from SteamGameServer.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GenerateItems(FSteamInventoryResult& ResultHandle, const TMap<FSteamItemDef, int32>& Items) const;
 
 	/**
@@ -168,7 +168,7 @@ public:
 	 * @return bool - This function always returns true when called by a regular user, and always returns false when called from SteamGameServer.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GetAllItems(FSteamInventoryResult& ResultHandle) const { return SteamInventory()->GetAllItems(&ResultHandle.Value); }
 
 	/**
@@ -179,7 +179,7 @@ public:
 	 * @param TArray<FSteamItemDef> & Items - 	Returns the item definition ids by copying them into this array.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GetEligiblePromoItemDefinitionIDs(FSteamID SteamID, TArray<FSteamItemDef>& Items) const;
 
 	/**
@@ -191,7 +191,7 @@ public:
 	 * @param TArray<FSteamItemDef> & Items - Returns the item definitions by copying them into this array.
 	 * @return bool - This call returns true upon success. It only returns false if item definitions have not been loaded from the server, or no item defintions exist for the current application.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GetItemDefinitionIDs(TArray<FSteamItemDef>& Items) const;
 
 	/**
@@ -207,7 +207,7 @@ public:
 	 * The associated value is returned via pchValueBuffer, and the total number of bytes required to hold the value is available from punValueBufferSizeOut. It's recommended to call this function twice, the first time with pchValueBuffer
 	 * set to NULL and punValueBufferSizeOut set to zero to get the size required for the buffer for the subsequent call.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GetItemDefinitionProperty(FSteamItemDef Definition, const FString& PropertyName, FString& Value) const;
 
 	/**
@@ -221,7 +221,7 @@ public:
 	 * @param const TArray<FSteamItemInstanceID> & InstanceIDs - A list of the item instance ids to update the state of.
 	 * @return bool - This function always returns true when called by a regular user, and always returns false when called from SteamGameServer. Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GetItemsByID(FSteamInventoryResult& ResultHandle, const TArray<FSteamItemInstanceID>& InstanceIDs) const;
 
 	/**
@@ -233,7 +233,7 @@ public:
 	 * @return bool - true upon success, indicating that pPrice has been successfully filled with the price for the given item definition id.
 	 * false if the parameters are invalid or if there is no price for the given item definition id.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Inventory")
 	bool GetItemPrice(FSteamItemDef ItemDef, int64& CurrentPrice, int64& BasePrice) const { return SteamInventory()->GetItemPrice(ItemDef, (uint64*)&CurrentPrice, (uint64*)&BasePrice); }
 
 	/**
@@ -242,7 +242,7 @@ public:
 	 * @param TArray<FSteamItemPriceData> & ItemData - The array of item definition ids to populate
 	 * @return bool - true upon success, indicating that pArrayItemDefs and pPrices have been successfully filled with the item definition ids and prices of items that are for sale. false if the parameters are invalid
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Inventory")
 	bool GetItemsWithPrices(TArray<FSteamItemPriceData>& ItemData) const;
 
 	/**
@@ -250,7 +250,7 @@ public:
 	 *
 	 * @return int32
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Inventory")
 	int32 GetNumItemsWithPrices() const { return SteamInventory()->GetNumItemsWithPrices(); }
 
 	/**
@@ -264,7 +264,7 @@ public:
 	 * @param FString & Value - Returns the value associated with pchPropertyName.
 	 * @return bool - This returns true upon success; otherwise, false indicating that the inventory result handle was invalid or the provided index does not contain an item.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Inventory")
 	bool GetResultItemProperty(FSteamInventoryResult ResultHandle, int32 ItemIndex, const FString& PropertyName, FString& Value) const;
 
 	/**
@@ -279,7 +279,7 @@ public:
 	 * The user has no items.
 	 * If the call is successful then punItemDefIDsArraySize will contain the number of item definitions available.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GetResultItems(FSteamInventoryResult ResultHandle, TArray<FSteamItemDetails>& ItemsArray) const;
 
 	/**
@@ -297,7 +297,7 @@ public:
 	 *  k_EResultLimitExceeded - ERROR: Operation would exceed per-user inventory limits.
 	 *  k_EResultFail - ERROR: Generic error.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Inventory")
 	ESteamResult GetResultStatus(FSteamInventoryResult ResultHandle) const { return (ESteamResult)SteamInventory()->GetResultStatus(ResultHandle); }
 
 	/**
@@ -307,7 +307,7 @@ public:
 	 * @return int32 - The timestamp is provided as Unix epoch time (Time since Jan 1st, 1970)
 	 * You can compare this value against ISteamUtils::GetServerRealTime to determine the age of the result.
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintPure, Category = "Steamworks|Inventory")
 	int32 GetResultTimestamp(FSteamInventoryResult ResultHandle) const { return SteamInventory()->GetResultTimestamp(ResultHandle); }
 
 	/**
@@ -325,7 +325,7 @@ public:
 	 * On success, the inventory result will include items which were granted, if any. If no items were granted because the user isn't eligible for any promotions, this is still considered a success.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool GrantPromoItems(FSteamInventoryResult& ResultHandle) const { return SteamInventory()->GrantPromoItems(&ResultHandle.Value); }
 
 	/**
@@ -337,7 +337,7 @@ public:
 	 *
 	 * @return bool - This call will always return true.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool LoadItemDefinitions() const { return SteamInventory()->LoadItemDefinitions(); }
 
 	// #TODO: RequestEligiblePromoItemDefinitionsIDs
@@ -348,7 +348,7 @@ public:
 	 *
 	 * @return FSteamAPICall - SteamAPICall_t to be used with a SteamInventoryRequestPricesResult_t call result. Returns k_uAPICallInvalid if there was an internal problem.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	FSteamAPICall RequestPrices() const { return SteamInventory()->RequestPrices(); }
 
 	/**
@@ -367,7 +367,7 @@ public:
 	 * resultHandle is invalid or the inventory result handle is not ready.
 	 * The value passed into punOutBufferSize was smaller then expected and pOutBuffer was not NULL.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool SerializeResult(FSteamInventoryResult ResultHandle, TArray<uint8>& Buffer) const;
 
 	// #TODO: StartPurchase
@@ -386,7 +386,7 @@ public:
 	 * @return bool - This function always returns true when called by a regular user, and always returns false when called from SteamGameServer.
 	 * Returns a new result handle via pResultHandle.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool TransferItemQuantity(FSteamInventoryResult& ResultHandle, FSteamItemInstanceID ItemIdSource, int32 Quantity, FSteamItemInstanceID ItemIdDest) const;
 
 	/**
@@ -407,7 +407,7 @@ public:
 	 * Returns a new result handle via pResultHandle.
 	 * The inventory result returned by this function will be the new item granted if the player is eligible. If the user is not eligible then it will return an empty result ('[]').
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool TriggerItemDrop(FSteamInventoryResult& ResultHandle, FSteamItemDef DropListDefinition) const { return SteamInventory()->TriggerItemDrop(&ResultHandle.Value, DropListDefinition); }
 
 	/**
@@ -418,7 +418,7 @@ public:
 	 *
 	 * @return FSteamInventoryUpdateHandle
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	FSteamInventoryUpdateHandle StartUpdateProperties() const { return SteamInventory()->StartUpdateProperties(); }
 
 	/**
@@ -429,7 +429,7 @@ public:
 	 * @param FSteamInventoryResult & ResultHandle - Returns a new inventory result handle.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool SubmitUpdateProperties(FSteamInventoryUpdateHandle UpdateHandle, FSteamInventoryResult& ResultHandle) const { return SteamInventory()->SubmitUpdateProperties(UpdateHandle, &ResultHandle.Value); }
 
 	/**
@@ -440,7 +440,7 @@ public:
 	 * @param const FString & PropertyName - The dynamic property being removed.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool RemoveProperty(FSteamInventoryUpdateHandle UpdateHandle, FSteamItemInstanceID ItemID, const FString& PropertyName) const { return SteamInventory()->RemoveProperty(UpdateHandle, ItemID, TCHAR_TO_UTF8(*PropertyName)); }
 
 	/**
@@ -452,7 +452,7 @@ public:
 	 * @param const FString & Value - The value being set.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool SetPropertyString(FSteamInventoryUpdateHandle UpdateHandle, FSteamItemInstanceID ItemID, const FString& PropertyName, const FString& PropertyValue) const;
 
 	/**
@@ -464,7 +464,7 @@ public:
 	 * @param bool Value - The value being set.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool SetPropertyBool(FSteamInventoryUpdateHandle UpdateHandle, FSteamItemInstanceID ItemID, const FString& PropertyName, bool Value) const { return SteamInventory()->SetProperty(UpdateHandle, ItemID, TCHAR_TO_UTF8(*PropertyName), Value); }
 
 	/**
@@ -476,7 +476,7 @@ public:
 	 * @param int64 Value - The value being set.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool SetPropertyInt(FSteamInventoryUpdateHandle UpdateHandle, FSteamItemInstanceID ItemID, const FString& PropertyName, int64 Value) const { return SteamInventory()->SetProperty(UpdateHandle, ItemID, TCHAR_TO_UTF8(*PropertyName), Value); }
 
 	/**
@@ -488,7 +488,7 @@ public:
 	 * @param float Value - The value being set.
 	 * @return bool
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Inventory")
+	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "Steamworks|Inventory")
 	bool SetPropertyFloat(FSteamInventoryUpdateHandle UpdateHandle, FSteamItemInstanceID ItemID, const FString& PropertyName, float Value) const { return SteamInventory()->SetProperty(UpdateHandle, ItemID, TCHAR_TO_UTF8(*PropertyName), Value); }
 
 	/** Delegates */
@@ -497,14 +497,14 @@ public:
 	 * This callback is triggered whenever item definitions have been updated, which could be in response to LoadItemDefinitions or any time new item definitions are available -
 	 * (eg, from the dynamic addition of new item types while players are still in-game).
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryDefinitionUpdate"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Inventory", meta = (DisplayName = "OnSteamInventoryDefinitionUpdate"))
 	FOnSteamInventoryDefinitionUpdateDelegate m_OnSteamInventoryDefinitionUpdate;
 
 	/**
 	 * Returned when you have requested the list of "eligible" promo items that can be manually granted to the given user.
 	 * These are promo items of type "manual" that won't be granted automatically. An example usage of this is an item that becomes available every week.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryEligiblePromoItemDefIDs"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Inventory", meta = (DisplayName = "OnSteamInventoryEligiblePromoItemDefIDs"))
 	FOnSteamInventoryEligiblePromoItemDefIDsDelegate m_OnSteamInventoryEligiblePromoItemDefIDs;
 
 	/**
@@ -512,19 +512,19 @@ public:
 	 * reversed in flight and the earlier result is already known to be stale/out-of-date.)
 	 * The regular SteamInventoryResultReady_t callback will still be triggered immediately afterwards; this is an additional notification for your convenience.
 	 */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryFullUpdate"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Inventory", meta = (DisplayName = "OnSteamInventoryFullUpdate"))
 	FOnSteamInventoryFullUpdateDelegate m_OnSteamInventoryFullUpdate;
 
 	/** This is fired whenever an inventory result transitions from k_EResultPending to any other completed state, see GetResultStatus for the complete list of states. There will always be exactly one callback per handle. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryResultReady"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Inventory", meta = (DisplayName = "OnSteamInventoryResultReady"))
 	FOnSteamInventoryResultReadyDelegate m_OnSteamInventoryResultReady;
 
 	/** Returned after StartPurchase is called. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryStartPurchaseResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Inventory", meta = (DisplayName = "OnSteamInventoryStartPurchaseResult"))
 	FOnSteamInventoryStartPurchaseResultDelegate m_OnSteamInventoryStartPurchaseResult;
 
 	/** Returned after RequestPrices is called. */
-	UPROPERTY(BlueprintAssignable, Category = "SteamworksUECore|Inventory", meta = (DisplayName = "OnSteamInventoryRequestPricesResult"))
+	UPROPERTY(BlueprintAssignable, Category = "Steamworks|Inventory", meta = (DisplayName = "OnSteamInventoryRequestPricesResult"))
 	FOnSteamInventoryRequestPricesResultDelegate m_OnSteamInventoryRequestPricesResult;
 
 private:
