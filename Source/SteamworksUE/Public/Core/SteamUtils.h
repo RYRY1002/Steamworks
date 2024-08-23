@@ -75,16 +75,6 @@ public:
 	ESteamUniverse GetConnectedUniverse() const { return (ESteamUniverse)SteamUtils()->GetConnectedUniverse(); }
 
 	/**
-	 * Gets the IP of the reporting server for valve - currently only used in Source engine games
-	 *
-	 * @param FString & IP - Returns the IP that the client is connected to.
-	 * @param int32 & Port - Returns the port that the client is connected to.
-	 * @return bool - Returns true if the user is currently connected; otherwise, false.
-	 */
-	UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "SteamworksUECore|Utils")
-	bool GetCSERIPPort(FString& IP, int32& Port) const;
-
-	/**
 	 * Gets the current amount of battery power on the computer.
 	 *
 	 * @return uint8 - The current battery power ranging between [0..100]%. Returns 255 when the user is on AC power.

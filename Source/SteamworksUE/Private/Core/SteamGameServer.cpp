@@ -38,7 +38,7 @@ FHAuthTicket USteamGameServer::GetAuthSessionTicket(TArray<uint8> &AuthTicket) c
 {
 	uint32 length = 0;
 	AuthTicket.SetNum(8192);
-	FHAuthTicket result = (FHAuthTicket)SteamGameServer()->GetAuthSessionTicket(AuthTicket.GetData(), 8192, &length);
+	FHAuthTicket result = (FHAuthTicket)SteamGameServer()->GetAuthSessionTicket(AuthTicket.GetData(), 8192, &length, nullptr);
 	AuthTicket.SetNum(length);
 	return result;
 }

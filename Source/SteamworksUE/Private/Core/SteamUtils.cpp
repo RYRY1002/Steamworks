@@ -24,16 +24,6 @@ USteamUtils::~USteamUtils()
 	OnSteamShutdownCallback.Unregister();
 }
 
-bool USteamUtils::GetCSERIPPort(FString& IP, int32& Port) const
-{
-	uint32 TmpIP;
-	uint16 TmpPort;
-	bool bResult = SteamUtils()->GetCSERIPPort(&TmpIP, &TmpPort);
-	IP = USteamworksUEUtils::ConvertIPToString(TmpIP);
-	Port = TmpPort;
-	return bResult;
-}
-
 bool USteamUtils::GetEnteredGamepadTextInput(FString& Text) const
 {
 	TArray<char> TmpStr;

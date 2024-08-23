@@ -24,7 +24,13 @@ struct STEAMWORKSUE_API FUint64
 		Value(0) {}
 	FUint64(uint64 value) :
 		Value(value) {}
+	FUint64(const FUint64& InValue) :
+		FUint64(InValue.Value) {}
 };
+FORCEINLINE uint32 GetTypeHash(const FUint64& InValue)
+{
+	return FCrc::MemCrc32(&InValue, sizeof(FUint64));
+}
 
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FUint32
@@ -40,7 +46,13 @@ struct STEAMWORKSUE_API FUint32
 		Value(0) {}
 	FUint32(uint32 value) :
 		Value(value) {}
+	FUint32(const FUint32& InValue) :
+		FUint32(InValue.Value) {}
 };
+FORCEINLINE uint32 GetTypeHash(const FUint32& InValue)
+{
+	return FCrc::MemCrc32(&InValue, sizeof(FUint32));
+}
 
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FInt32
@@ -57,7 +69,13 @@ struct STEAMWORKSUE_API FInt32
 		Value(0) {}
 	FInt32(int32 InValue) :
 		Value(InValue) {}
+	FInt32(const FInt32& InValue) :
+		FInt32(InValue.Value) {}
 };
+FORCEINLINE uint32 GetTypeHash(const FInt32& InValue)
+{
+	return FCrc::MemCrc32(&InValue, sizeof(FInt32));
+}
 
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FInt16
@@ -73,7 +91,13 @@ struct STEAMWORKSUE_API FInt16
 		Value(0) {}
 	FInt16(int16 InValue) :
 		Value(InValue) {}
+	FInt16(const FInt16& InValue) :
+		FInt16(InValue.Value) {}
 };
+FORCEINLINE uint32 GetTypeHash(const FInt16& InValue)
+{
+	return FCrc::MemCrc32(&InValue, sizeof(FInt16));
+}
 
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FHServerListRequest
@@ -86,7 +110,13 @@ struct STEAMWORKSUE_API FHServerListRequest
 		Value(nullptr) {}
 	FHServerListRequest(void* InValue) :
 		Value(InValue) {}
+	FHServerListRequest(const FHServerListRequest& InValue) :
+		FHServerListRequest(InValue.Value) {}
 };
+FORCEINLINE uint32 GetTypeHash(const FHServerListRequest& InValue)
+{
+	return FCrc::MemCrc32(&InValue, sizeof(FHServerListRequest));
+}
 
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FSteamID : public FUint64
@@ -157,12 +187,15 @@ struct STEAMWORKSUE_API FSteamInventoryResult : public FInt32
 	GENERATED_BODY()
 	using FInt32::FInt32;
 };
+
+// This type causing an error at Engine/Source/Runtime/Core/Public/Containers/Map.h(118).
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FSteamItemDef : public FInt32
 {
 	GENERATED_BODY()
 	using FInt32::FInt32;
 };
+
 USTRUCT(BlueprintType)
 struct STEAMWORKSUE_API FHServerQuery : public FInt32
 {

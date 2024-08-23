@@ -72,7 +72,7 @@ FHAuthTicket USteamUser::GetAuthSessionTicket(TArray<uint8>& Ticket)
 {
 	Ticket.SetNum(8192);
 	uint32 TempCounter = 0;
-	FHAuthTicket bResult = SteamUser()->GetAuthSessionTicket(Ticket.GetData(), 8192, &TempCounter);
+	FHAuthTicket bResult = SteamUser()->GetAuthSessionTicket(Ticket.GetData(), 8192, &TempCounter, nullptr);
 	Ticket.SetNum(TempCounter);
 	return bResult;
 }

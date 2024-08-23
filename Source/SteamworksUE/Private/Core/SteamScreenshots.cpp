@@ -31,7 +31,7 @@ FScreenshotHandle USteamScreenshots::AddVRScreenshotToLibrary(ESteamVRScreenshot
 
 FScreenshotHandle USteamScreenshots::WriteScreenshot(UTexture2D* Image) const
 {
-	FTexture2DMipMap* TmpMipMap = &Image->PlatformData->Mips[0];
+	FTexture2DMipMap* TmpMipMap = &Image->GetPlatformData()->Mips[0];
 	FByteBulkData* TmpData = &TmpMipMap->BulkData;
 	return SteamScreenshots()->WriteScreenshot(TmpData, TmpData->GetBulkDataSize(), Image->GetSizeX(), Image->GetSizeY());
 }

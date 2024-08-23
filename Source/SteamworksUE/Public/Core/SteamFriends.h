@@ -353,7 +353,7 @@ public:
 	 * @return bool - true if the user is a friend and is in a game; otherwise, false.
 	 */
 	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Friends")
-	bool GetFriendGamePlayed(FSteamID SteamIDFriend, FSteamID& GameID, FString& GameIP, int32& GamePort, int32& QueryPort, FSteamID& SteamIDLobby);
+	bool GetFriendGamePlayed(FSteamID SteamIDFriend, FSteamID& GameID, FString& GameIP, int32& Port, int32& QueryPort, FSteamID& SteamIDLobby);
 
 	/**
 	 * Gets the data from a Steam friends message.

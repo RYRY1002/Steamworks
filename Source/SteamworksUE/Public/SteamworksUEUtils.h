@@ -30,7 +30,7 @@ public:
 	template <typename TEnum>
 	static FString GetEnumValueAsString(const FString& Name, TEnum Value)
 	{
-		const UEnum* enumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		const UEnum* enumPtr = FindObject<UEnum>(GetTransientPackage(), *Name, true);
 		if (!enumPtr)
 		{
 			return FString("Invalid");

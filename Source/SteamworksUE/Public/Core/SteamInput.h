@@ -190,13 +190,17 @@ public:
 	int32 GetGamepadIndexForController(FInputHandle ControllerHandle) const { return SteamInput()->GetGamepadIndexForController(ControllerHandle); }
 
 	/**
+	 * @deprecated
 	 * Get a local path to art for on-screen glyph for a particular origin.
 	 *
 	 * @param ESteamInputActionOrigin Origin
 	 * @return FString
 	 */
-	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input")
-	FString GetGlyphForActionOrigin(ESteamInputActionOrigin Origin) const { return UTF8_TO_TCHAR(*SteamInput()->GetGlyphForActionOrigin((EInputActionOrigin)Origin)); }
+	UFUNCTION(BlueprintPure, Category = "SteamworksUECore|Input", meta = (DeprecatedFunction, DeprecationMessage = "Use `GetGlyphPNGForActionOrigin` instead."))
+	FString GetGlyphForActionOrigin(ESteamInputActionOrigin Origin) const { return UTF8_TO_TCHAR(*SteamInput()->GetGlyphForActionOrigin_Legacy((EInputActionOrigin)Origin)); }
+
+	// #TODO: GetGlyphPNGForActionOrigin
+	// #TODO: GetGlyphSVGForActionOrigin
 
 	/**
 	 * Returns the input type (device model) for the specified controller. This tells you if a given controller is a Steam controller, XBox 360 controller, PS4 controller, etc.
@@ -227,11 +231,12 @@ public:
 
 	/**
 	 * Must be called when starting use of the ISteamInput interface.
-	 *
+	 * 
+	 * @param bool bExplicitlyCallRunFrame - If true, you must call `RunFrame()` yourself every frame; otherwise, it will be called automatically by `SteamAPI_RunCallbacks()`.
 	 * @return bool - Always returns true.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
-	bool Init() { return SteamInput()->Init(); }
+	bool Init(bool bExplicitlyCallRunFrame) { return SteamInput()->Init(bExplicitlyCallRunFrame); }
 
 	/**
 	 * Synchronize API state with the latest Steam Controller inputs available. This is performed automatically by SteamAPI_RunCallbacks, but for the absolute lowest possible latency, you can call this -
@@ -299,6 +304,7 @@ public:
 	void StopAnalogActionMomentum(FInputHandle InputHandle, FInputAnalogActionHandle ActionHandle) { SteamInput()->StopAnalogActionMomentum(InputHandle, ActionHandle); }
 
 	/**
+	 * @deprecated
 	 * Triggers a (low-level) haptic pulse on supported controllers.
 	 * Currently only the VSC supports haptic pulses.
 	 * This API call will be ignored for all other controller models.
@@ -310,10 +316,11 @@ public:
 	 * @param int32 DurationMicroSec - Duration of the pulse, in microseconds (1/1,000,000th of a second)
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
-	void TriggerHapticPulse(FInputHandle InputHandle, ESteamControllerPad_ TargetPad, int32 DurationMicroSec) { SteamInput()->TriggerHapticPulse(InputHandle, (ESteamControllerPad)TargetPad, DurationMicroSec); }
+	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input", meta = (DeprecatedFunction))
+	void TriggerHapticPulse(FInputHandle InputHandle, ESteamControllerPad_ TargetPad, int32 DurationMicroSec) { SteamInput()->Legacy_TriggerHapticPulse(InputHandle, (ESteamControllerPad)TargetPad, DurationMicroSec); }
 
 	/**
+	 * @deprecated
 	 * Triggers a repeated haptic pulse on supported controllers.
 	 * Currently only the VSC supports haptic pulses.
 	 * This API call will be ignored for incompatible controller models.
@@ -327,8 +334,8 @@ public:
 	 * @param int32 Repeat - Number of times to repeat the DurationMicroSec / OffMicroSec duty cycle.
 	 * @return void
 	 */
-	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input")
-	void TriggerRepeatedHapticPulse(FInputHandle InputHandle, ESteamControllerPad_ TargetPad, int32 DurationMicroSec, int32 OffMicroSec, int32 Repeat) { SteamInput()->TriggerRepeatedHapticPulse(InputHandle, (ESteamControllerPad)TargetPad, DurationMicroSec, OffMicroSec, Repeat, 0); }
+	UFUNCTION(BlueprintCallable, Category = "SteamworksUECore|Input", meta = (DeprecatedFunction))
+	void TriggerRepeatedHapticPulse(FInputHandle InputHandle, ESteamControllerPad_ TargetPad, int32 DurationMicroSec, int32 OffMicroSec, int32 Repeat) { SteamInput()->Legacy_TriggerRepeatedHapticPulse(InputHandle, (ESteamControllerPad)TargetPad, DurationMicroSec, OffMicroSec, Repeat, 0); }
 
 	/**
 	 * Trigger a vibration event on supported controllers.

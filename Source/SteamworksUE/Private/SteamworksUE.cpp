@@ -2,7 +2,7 @@
 // Copyright 2020-2021 Russ 'trdwll' Treadwell <trdwll.com>. All Rights Reserved.
 // Some portions of this code are Copyright Valve Corporation (https://www.valvesoftware.com). All Rights Reserved.
 
-#include "SteamBridge.h"
+#include "SteamworksUE.h"
 
 #include "Developer/Settings/Public/ISettingsContainer.h"
 #include "Developer/Settings/Public/ISettingsModule.h"
@@ -92,10 +92,14 @@ void FSteamworksUEModule::RegisterSettings()
 			LOCTEXT("RuntimeWDCategoryDescription", "Game configuration for the SteamworksUE game module"));*/
 
 		// Register the settings
-		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Project", "Project", "SteamworksUE",
+		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings(
+			"Project",
+			"Project",
+			"SteamworksUE",
 			LOCTEXT("RuntimeGeneralSettingsName", "SteamworksUE"),
-			LOCTEXT("RuntimeGeneralSettingsDescription", "Configure Steamworks settings."),
-			GetMutableDefault<USteamBridgeSettings>());
+			LOCTEXT("RuntimeGeneralSettingsDescription", "Configure Steamworks settings"),
+			GetMutableDefault<USteamworksUESettings>()
+		);
 
 		// Register the save handler to your settings, you might want to use it to
 		// validate those or just act to settings changes.
